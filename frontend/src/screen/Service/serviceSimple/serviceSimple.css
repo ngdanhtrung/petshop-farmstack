@@ -1,0 +1,31 @@
+.section-service {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    padding: 0px 0px 60px 0px;
+}
+
+.cart-2 {
+    display: flex;
+    flex-direction: row;
+    text-decoration: none;
+    width: 40%;
+    height: 150px;
+    margin: 20px;
+    background-color: #FFDEDE;
+    border-radius: 40px;
+    box-shadow: 10px 10px 14px 4px rgba(0, 0, 0, 0.2), 10px 12px 26px 4px rgba(0, 0, 0, 0.19);
+}
+
+.cart-2 h3 {
+    color: #e7270c;
+}
+
+.cart-2 p {
+    color: #000;
+}
+
+.cart-2:hover {
+    transform: scale(1.1, 1.1);
+}
