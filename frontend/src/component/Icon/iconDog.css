@@ -1,0 +1,35 @@
+ .title-icon {
+     margin: 0 auto;
+     width: 100%;
+     display: flex;
+     flex-direction: row;
+     justify-content: center;
+     margin-top: 20px;
+ }
+
+ .title-icon::before {
+     content: ':::::::';
+     color: black;
+     left: 0px;
+     top: 0px;
+     /* position: absolute; */
+     font-size: 30px;
+     letter-spacing: 3px;
+     margin-right: 5px;
+ }
+
+ .title-icon::after {
+     content: ':::::::';
+     color: black;
+     right: 0px;
+     top: 0px;
+     /* position: absolute; */
+     font-size: 30px;
+     letter-spacing: 3px;
+     margin-left: 5px;
+ }
+
+ .feet-dog {
+     width: 55px;
+     height: 40px;
+ }
