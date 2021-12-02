@@ -1,6 +1,7 @@
 import React from 'react'
 import { CustomDialog, useDialog } from 'react-st-modal';
 import {useState} from 'react'
+import './index.css'
 
 const Login = () => {
     const dialog = useDialog();
@@ -8,9 +9,9 @@ const Login = () => {
     const [value, setValue] = useState();
   
     return (
-      <form>
+      <form className="form">
           <div className="form-input">
-          <label>Tên người dùng: </label>
+          <label className="label">Tên người dùng: </label>
         <input
           type="text"
           onChange={(e) => {
@@ -19,7 +20,7 @@ const Login = () => {
         />
         </div>
         <div className="form-input">
-         <label>Mật khẩu: </label>
+         <label className="label">Mật khẩu: </label>
         <input
           type="text"
           onChange={(e) => {
@@ -28,6 +29,7 @@ const Login = () => {
         />
         </div>
         <button
+            className="btn-login"
           onClick={() => {
             // Сlose the dialog and return the value
             dialog.close(value);

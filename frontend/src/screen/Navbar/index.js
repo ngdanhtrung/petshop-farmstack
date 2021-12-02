@@ -32,7 +32,7 @@ const Navbar = () => {
             <div className="container1">
             <div><NavLink to='/' className="profile">TÀI KHOẢN</NavLink></div>
             {/* <NavLink to='/Login' className="navlink" activeStyle={{fontWeight: "900",color: "#FFF338"}}>ĐĂNG NHẬP</NavLink> */}
-            <button className="btn-login"
+            <button className="button-login"
                     onClick={async () => {
                     const result = await CustomDialog(<Login />, {
                         title: 'Đăng nhập',
@@ -43,7 +43,7 @@ const Navbar = () => {
             ĐĂNG NHẬP
             </button>
             <p>/</p>
-            <button className="btn-login"
+            <button className="button-login"
                     onClick={async () => {
                     const result = await CustomDialog(<Login />, {
                         title: 'Custom Dialog',
