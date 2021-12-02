@@ -42,12 +42,26 @@ async def create_user(user):
 
 
 async def add_cart(username, cart):
-    cart = jsonable_encoder(cart)
-    await collection.update_one({'username': username},
-                                {'$push': {
-                                    "cart": cart
-                                }})
-    document = await collection.find_one({"username": username})
+
+    if await collection.count_documents({
+            "username": username,
+            "cart.id": cart.id
+    }) != 0:
+        #do something
+        await collection.update_one({
+            "username": username,
+            "cart.id": cart.id
+        }, {'$set': {
+            "cart.$.quantity": cart.quantity
+        }})
+        document = await collection.find_one({"username": username})
+    else:
+        cart = jsonable_encoder(cart)
+        await collection.update_one({'username': username},
+                                    {'$addToSet': {
+                                        "cart": cart
+                                    }})
+        document = await collection.find_one({"username": username})
     return document
 
 
