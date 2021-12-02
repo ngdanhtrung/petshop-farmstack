@@ -16,22 +16,24 @@
     flex-direction: row;
     align-items: center;
     /* justify-content: space-around; */
-    /* width: 100%; */
+    width: 100%;
     height: 70px;
     padding: 20px 40px 20px 10%;
     background-color: #E7470C;
     /* background-image: url(../../img/layer-1.png); */
     margin-bottom: 40px;
+    top: 0px;
 }
 
-.navbar-container {
+/* .navbar-container {
     margin: 0px 75px 0px 72px;
-}
+} */
 
 .container1 {
     display: flex;
     flex-direction: row;
     margin-left: 100px;
+    align-items: center;
 }
 
 .navlink {
@@ -76,7 +78,7 @@
 .pets-shop {
     height: 100%;
     width: 200px;
-    padding:  10px; 
+    padding:  10px 20px 10px 20px;  
     background-color: #fff;
     font-size: 20px;
     font-weight: 900;
@@ -84,10 +86,23 @@
     color: #000;
     text-decoration: none;
     margin-top: 20px;
-    margin-right: 30px;
+    /* margin-right: 30px; */
     border-radius: 60% 5%;
 }
 
 .navbar-content {
     margin-top: 100px;
+}
+
+.button-login {
+    background-color: #E7470C;
+    border:#E7470C;
+    color: #fff;
+    font-family: 'Varela Round', sans-serif;
+    font-size: 15px;
+    margin-left: 5px;
+}
+
+p {
+    color: #fff;
 }

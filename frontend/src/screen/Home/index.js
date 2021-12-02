@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link, Switch, Route} from "react-router-dom";
-import './Home.css';
+import './index.css';
 import Service from "../Service/Service";
 import ima from '../../img/image-1.jpg'
 import dichvu from '../../img/dichvu.jpg'
@@ -9,7 +9,33 @@ import cat from '../../img/icons8-black-cat-60.png'
 import foot from '../../img/icons8-cat-footprint-100.png'
 import Icon from '../../component/Icon/iconDog';
 import Service1 from "../Service/serviceSimple/serviceSimple";
-import Contact from '../../component/Contact/Contact1/Contact1';
+import { CustomDialog, useDialog } from 'react-st-modal';
+import {useState} from 'react'
+const CustomDialogContent = () => {
+  const dialog = useDialog();
+
+  const [value, setValue] = useState();
+
+  return (
+    <div>
+      <input
+        type="text"
+        onChange={(e) => {
+          setValue(e.target.value);
+        }}
+      />
+      <button
+        onClick={() => {
+          // Сlose the dialog and return the value
+          dialog.close(value);
+        }}
+      >
+        Custom button
+      </button>
+    </div>
+  );
+}
+
 const Home = () => {
     return(
         <>
@@ -57,13 +83,18 @@ const Home = () => {
             <Icon/>
             <h2>Các dịch vụ của Pets Shop</h2>
             <Service1></Service1>
-            
           </section>
           <Icon/>
-          <section className="sec4">
-            <h2>Liên hệ Pets Shop với tư cách Khách</h2>
-            <Contact/>
-          </section>
+          <button
+        onClick={async () => {
+          const result = await CustomDialog(<CustomDialogContent />, {
+            title: 'Custom Dialog',
+            showCloseIcon: true,
+          });
+        }}
+      >
+        Custom
+      </button>
         </>
         
     );
