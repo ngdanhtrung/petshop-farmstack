@@ -34,7 +34,7 @@ const data = [
     {
         name: "LIÊN HỆ",
         exact: "false",
-        link: "/"
+        link: "/Contact"
     },
 ]
 export default data;

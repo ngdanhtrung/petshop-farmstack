@@ -4,6 +4,7 @@ import { Link, NavLink, Switch, Route } from "react-router-dom";
 import data from "./data";
 import Home from "../Home/Home";
 import Service from "../Service/Service";
+import Contact from "../Contact/Contact";
 
 // const navName = ["TRANG CHỦ", "DỊCH VỤ", "THÚ CƯNG", "SẢN PHẨM", "BỘ SƯU TẬP", "GIỎ HÀNG", "LIÊN HỆ"]
 
@@ -32,20 +33,11 @@ const Navbar = () => {
             <NavLink to='/' className="navlink">ĐĂNG NHẬP</NavLink>
             <NavLink to='/' className="navlink">ĐĂNG KÍ</NavLink>
             </div>
-       
-        
-        {/* <Switch>
-            {data.map((value) => 
-                <Route path= {value.link} exact={value.exact} component={value.component}></Route>
-            )}
-            
-        </Switch> */}
-        
-
       </section>
       <Switch className="navbar-content">
             <Route path="/Home" exact><Home/></Route>
             <Route path="/Service"><Service/></Route>
+            <Route path="/Contact"><Contact/></Route>
         </Switch>
       </>
   );
