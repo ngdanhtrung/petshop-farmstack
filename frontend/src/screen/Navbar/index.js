@@ -1,10 +1,10 @@
 import React from "react";
-import './Navbar.css';
+import './index.css';
 import { Link, NavLink, Switch, Route } from "react-router-dom";
 import data from "./data";
-import Home from "../Home/Home";
+import Home from "../Home/index";
 import Service from "../Service/Service";
-import Contact from "../Contact/Contact";
+import Contact from "../Contact/index";
 
 // const navName = ["TRANG CHỦ", "DỊCH VỤ", "THÚ CƯNG", "SẢN PHẨM", "BỘ SƯU TẬP", "GIỎ HÀNG", "LIÊN HỆ"]
 

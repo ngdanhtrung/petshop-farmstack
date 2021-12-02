@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link, Switch, Route} from "react-router-dom";
-import './Home.css';
+import './index.css';
 import Service from "../Service/Service";
 import ima from '../../img/image-1.jpg'
 import dichvu from '../../img/dichvu.jpg'
@@ -9,7 +9,6 @@ import cat from '../../img/icons8-black-cat-60.png'
 import foot from '../../img/icons8-cat-footprint-100.png'
 import Icon from '../../component/Icon/iconDog';
 import Service1 from "../Service/serviceSimple/serviceSimple";
-import Contact from './../Contact/Contact';
 const Home = () => {
     return(
         <>
