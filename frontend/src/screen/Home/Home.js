@@ -9,7 +9,7 @@ import cat from '../../img/icons8-black-cat-60.png'
 import foot from '../../img/icons8-cat-footprint-100.png'
 import Icon from '../../component/Icon/iconDog';
 import Service1 from "../Service/serviceSimple/serviceSimple";
-import Contact from '../../component/Contact/Contact1/Contact1';
+import Contact from './../Contact/Contact';
 const Home = () => {
     return(
         <>
@@ -57,15 +57,9 @@ const Home = () => {
             <Icon/>
             <h2>Các dịch vụ của Pets Shop</h2>
             <Service1></Service1>
-            
           </section>
           <Icon/>
-          <section className="sec4">
-            <h2>Liên hệ Pets Shop với tư cách Khách</h2>
-            <Contact/>
-          </section>
         </>
-        
     );
 }
 
