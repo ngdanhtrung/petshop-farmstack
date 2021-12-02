@@ -6,6 +6,7 @@ import Home from "../Home/index";
 import Service from "../Service/Service";
 import Contact from "../Contact/index";
 import Login from "../Login/index";
+import Register from "../Register/index";
 import { CustomDialog } from 'react-st-modal';
 // const navName = ["TRANG CHỦ", "DỊCH VỤ", "THÚ CƯNG", "SẢN PHẨM", "BỘ SƯU TẬP", "GIỎ HÀNG", "LIÊN HỆ"]
 
@@ -45,8 +46,8 @@ const Navbar = () => {
             <p>/</p>
             <button className="button-login"
                     onClick={async () => {
-                    const result = await CustomDialog(<Login />, {
-                        title: 'Custom Dialog',
+                    const result = await CustomDialog(<Register />, {
+                        title: 'ĐĂNG KÝ',
                         showCloseIcon: true,
                     });
                     }}
