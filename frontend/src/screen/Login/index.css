@@ -1,0 +1,53 @@
+.form-input {
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content:center;
+    margin-bottom: 10px;
+}
+.form {
+    background-image: url('../../img/3.png');
+}
+
+.label {
+    width: 130px;
+    min-width: 130px;
+    font-weight: 900;
+}
+
+input {
+    display: block;
+    width: 30%;
+    height: 20px;
+    font-family: 'Open Sans';
+    line-height: 28px;
+    padding: 10px 25px;
+    margin-bottom: 0px;
+    font-weight: 400;
+    background: #ffffff;
+    border-radius: 50px;
+    border: 1px solid #000;
+}
+@import url('https://fonts.googleapis.com/css2?family=Gluten:wght@700&display=swap');
+
+
+.btn-login {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    width: 20%;
+    height: 40px;
+    background-color: #e7470e;
+    border: #e7470e;
+    color: #ffffff;
+    border-radius: 50px;
+    font-family: 'Gluten', cursive;
+    font-size: 15px;
+    text-transform: uppercase;
+    margin-top: 1px;
+    margin-bottom:10px;
+    align-content: center;
+}
