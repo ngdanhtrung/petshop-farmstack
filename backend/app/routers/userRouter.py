@@ -1,22 +1,47 @@
-from fastapi import APIRouter, Body, Request, HTTPException, status, Depends
-from fastapi.responses import JSONResponse
-from fastapi.encoders import jsonable_encoder
-from app.models.Models import User, Cart
+from fastapi import APIRouter, HTTPException, Depends
+from app.models.Models import User, Cart, Login
 from app.db import dbUser
+from datetime import timedelta, datetime
+from jose import jwt
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 router = APIRouter()
 
-# from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
+from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 
-# oauth2_scheme = OAuth2PasswordBearer(tokenUrl='token')
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl='users/login')
 
-# @router.post('/token')
-# async def token(form_data: OAuth2PasswordRequestForm = Depends()):
-#     return {'access_token': form_data.username + 'token'}
 
-# @router.get('/index')
-# async def index(token: str = Depends(oauth2_scheme)):
-#     return {'the_token': token} mấy cái này mò chơi tạm thời đừng chú ý
+def create_access_token(data: dict, expires_delta: timedelta):
+    to_encode = data.copy()
+    expire = datetime.utcnow() + expires_delta
+
+    to_encode.update({"exp": expire})
+    encoded_jwt = jwt.encode(to_encode, os.getenv('SECRET_KEY'),
+                             os.getenv('ALGORITHM'))
+    # print(to_encode)
+    return encoded_jwt
+
+
+@router.post('/login', tags=["authentication"])
+async def login(form_data: OAuth2PasswordRequestForm = Depends()):
+    username = form_data.username
+    password = form_data.password
+    # print(username, password)
+    if await dbUser.authenticate_user(username, password):
+        access_token = create_access_token(data={'sub': username},
+                                           expires_delta=timedelta(minutes=30))
+        return {"access_token": access_token, "token_type": "bearer"}
+    else:
+        raise HTTPException(status_code=400, detail="Incorrect password")
+
+
+@router.get('/token')
+async def get_token(token: str = Depends(oauth2_scheme)):
+    return {'the_token': token}
 
 
 @router.get('/')

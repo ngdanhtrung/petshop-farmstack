@@ -4,14 +4,15 @@ from fastapi import APIRouter, Body, Request, HTTPException, status
 from fastapi.responses import JSONResponse
 from fastapi.encoders import jsonable_encoder
 from app.models import Models
-from bson.objectid import ObjectId
-import base64
+from passlib.context import CryptContext
+import os
+import motor.motor_asyncio
 
 #loadenv
 load_dotenv()
 
-#MongoDB driver
-import motor.motor_asyncio
+#password_context
+pwd_context = CryptContext(schemes=['bcrypt'], deprecated='auto')
 
 #Client object
 client = motor.motor_asyncio.AsyncIOMotorClient(os.getenv('DB_HOST'))
@@ -32,10 +33,12 @@ async def fetch_all_users():
     return users
 
 
+def encrypt_password(password):
+    return pwd_context.hash(password)
+
+
 async def create_user(user):
-    password = user.pwd.encode("utf-8")
-    encoded = base64.b64encode(password)
-    user.pwd = encoded
+    user.pwd = encrypt_password(user.pwd)
     document = jsonable_encoder(user)
     await collection.insert_one(document)
     return document
@@ -80,6 +83,17 @@ async def delete_from_cart(username, id):
 async def list_items(username):
     document = await collection.find_one({'username': username}, {'cart': 1})
     return document
+
+
+async def authenticate_user(username, password):
+    if await collection.count_documents({"username": username}) == 1:
+        doc = await collection.find_one({"username": username})
+        p = doc['pwd']
+        password_check = pwd_context.verify(password, p)
+        # print(password_check)
+        return password_check
+    else:
+        raise HTTPException(status_code=400, detail="Username does not exist")
 
 
 # async def update_todo(id, completed):

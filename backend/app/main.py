@@ -9,7 +9,7 @@ load_dotenv()
 
 app = FastAPI()
 
-origins = [os.getenv('REACT_CLIENT')] 
+origins = [os.getenv('REACT_CLIENT')]
 
 app.add_middleware(
     CORSMiddleware,
@@ -18,5 +18,11 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+@app.get('/')
+async def read_root():
+    return ({"ping": "pong!"})
+
 
 app.include_router(UserRoute, tags=["users"], prefix="/users")

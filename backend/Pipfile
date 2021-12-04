@@ -7,6 +7,8 @@ name = "pypi"
 fastapi = "*"
 uvicorn = "*"
 motor = "*"
+passlib = {extras = ["bcrypt"], version = "*"}
+python-jose = {extras = ["cryptography"], version = "*"}
 
 [dev-packages]
 

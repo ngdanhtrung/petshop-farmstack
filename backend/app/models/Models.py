@@ -10,6 +10,11 @@ class Cart(BaseModel):
     quantity: int = 1
 
 
+class Login(BaseModel):
+    username: str
+    password: str
+
+
 class User(BaseModel):
     id: str = Field(default_factory=uuid.uuid4, alias="_id")
     username: str = Field(..., max_length=16)
