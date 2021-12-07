@@ -96,12 +96,6 @@ async def authenticate_user(username, password):
         raise HTTPException(status_code=400, detail="Username does not exist")
 
 
-# async def update_todo(id, completed):
-#     await collection.update_one({'_id': id},
-#                                 {'$set': {
-#                                     "completed": completed
-#                                 }})
-#     document = await collection.find_one({"_id": id})
-#     return document
-
-#decoded = base64.b64decode(encoded)
+async def get_username(username):
+    document = await collection.find_one({"username": username})
+    return document['username']

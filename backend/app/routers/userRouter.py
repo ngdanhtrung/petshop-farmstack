@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException, Depends
-from app.models.Models import User, Cart, Login
-from app.db import dbUser
+from app.models.Models import User, Cart, LoggedInUser
+from app.utils import dbUser
 from datetime import timedelta, datetime
 from jose import jwt
 import os
@@ -26,7 +26,7 @@ def create_access_token(data: dict, expires_delta: timedelta):
     return encoded_jwt
 
 
-@router.post('/login', tags=["authentication"])
+@router.post('/login')
 async def login(form_data: OAuth2PasswordRequestForm = Depends()):
     username = form_data.username
     password = form_data.password
@@ -37,6 +37,22 @@ async def login(form_data: OAuth2PasswordRequestForm = Depends()):
         return {"access_token": access_token, "token_type": "bearer"}
     else:
         raise HTTPException(status_code=400, detail="Incorrect password")
+
+
+#get user through token
+async def get_current_user(token: str = Depends(oauth2_scheme)):
+    try:
+        payload = jwt.decode(token, os.getenv('SECRET_KEY'),
+                             os.getenv('ALGORITHM'))
+        user = await dbUser.fetch_one_user(username=payload.get('sub'))
+        return user
+    except:
+        raise HTTPException(status_code=400, detail="Bad request")
+
+
+@router.get('/me', response_model=LoggedInUser)
+async def get_logged_in_user(user: LoggedInUser = Depends(get_current_user)):
+    return user
 
 
 @router.get('/token')
@@ -63,22 +79,33 @@ async def create_new_user(todo: User):
     response = await dbUser.create_user(todo)
     if response:
         return response
-    # raise HTTPException(status_code=405, detail=f"Username {todo.username} already exists")
+    raise HTTPException(status_code=400,
+                        detail=f"Username {todo.username} already exists")
+
+
+#get username through token
+async def get_current_username(token: str = Depends(oauth2_scheme)):
+    try:
+        payload = jwt.decode(token, os.getenv('SECRET_KEY'),
+                             os.getenv('ALGORITHM'))
+        user = await dbUser.get_username(username=payload.get('sub'))
+        return user
+    except:
+        raise HTTPException(status_code=400, detail="Bad request")
 
 
 @router.put('/addItem/')
-async def add_item_to_cart(username: str, cart: Cart):
+async def add_item_to_cart(cart: Cart,
+                           username: str = Depends(get_current_username)):
     response = await dbUser.add_cart(username, cart)
     if response:
         return response
-    raise HTTPException(404, f'there is no user with the username {username}')
-
-
-#Cart vẫn cần validation khi add vào, tránh add nhiều vật trùng vào cart
+    raise HTTPException(400, f'there is no user with the username {username}')
 
 
 @router.delete('/removeItem/')
-async def remove_item_from_cart(username: str, id: str):
+async def remove_item_from_cart(id: str,
+                                username: str = Depends(get_current_username)):
     response = await dbUser.delete_from_cart(username, id)
     if response:
         return response
