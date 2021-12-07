@@ -1,0 +1,31 @@
+.sec-icon2 .fa {
+    padding: 0px 4px;
+    display: inline-block;
+}
+
+.sec-icon2 {
+    padding-top:20px;
+    text-align: center;
+}
+
+.sec-icon2::before{
+    content: "----";
+    color: #333;
+    opacity: 0.5;
+}
+
+.sec-icon2::after{
+    content: "----";
+    color: #333;
+    opacity: 0.5;
+}
+
+.puple {
+    color: #630abb;
+    font-size: 16px;
+}
+
+.orange {
+    color:#e7470c;
+    font-size:20px;
+}

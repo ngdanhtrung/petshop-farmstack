@@ -2,7 +2,7 @@
 const data = [
     {
         name: "TRANG CHỦ",
-        link: "/Home",
+        link: "/",
         exact: "true",
     },
     {

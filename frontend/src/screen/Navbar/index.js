@@ -3,7 +3,7 @@ import './index.css';
 import { Link, NavLink, Switch, Route } from "react-router-dom";
 import data from "./data";
 import Home from "../Home/index";
-import Service from "../Service/Service";
+import Service from "../Service/index";
 import Contact from "../Contact/index";
 import Login from "../Login/index";
 import Register from "../Register/index";
@@ -16,7 +16,7 @@ const Navbar = () => {
       <section className="navlink-container">
         
             <nav >
-                <Link to="/Home" exact className="pets-shop">PETS SHOP</Link>
+                <Link to="/" exact className="pets-shop">PETS SHOP</Link>
             </nav>
             <nav className="navbar">
             <div className="navbar-container">
@@ -35,15 +35,15 @@ const Navbar = () => {
             {/* <NavLink to='/Login' className="navlink" activeStyle={{fontWeight: "900",color: "#FFF338"}}>ĐĂNG NHẬP</NavLink> */}
             <button className="button-login"
                     onClick={async () => {
-                    const result = await CustomDialog(<Login />, {
-                        title: 'Đăng nhập',
-                        showCloseIcon: true,
+                        const result = await CustomDialog(<Login />, {
+                            title: 'Đăng nhập',
+                            showCloseIcon: true,
                     });
                     }}
             >
             ĐĂNG NHẬP
             </button>
-            <p>/</p>
+            <div className="space">/</div>
             <button className="button-login"
                     onClick={async () => {
                     const result = await CustomDialog(<Register />, {
@@ -58,10 +58,9 @@ const Navbar = () => {
             </div>
       </section>
       <Switch className="navbar-content">
-            <Route path="/Home" exact><Home/></Route>
+            <Route path="/" exact><Home/></Route>
             <Route path="/Service"><Service/></Route>
             <Route path="/Contact"><Contact/></Route>
-            <Route path="/"><Login/></Route>
         </Switch>
       </>
   );

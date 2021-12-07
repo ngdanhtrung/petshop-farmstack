@@ -5,7 +5,7 @@ import Cut from '../../../img/chai-long.png';
 import Nhannuoi from '../../../img/nhan-nuoi.png';
 import Tiem from '../../../img/tiem.png';
 import Huanluyen from '../../../img/huan-luyen.png';
-import Service from '../Service'
+import Service from '../index'
 
 const serviceSimple = () =>  {
     return (
