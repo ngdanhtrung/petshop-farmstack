@@ -50,3 +50,34 @@
 .puplee {
     color: #630abb;
 }
+
+.send-request {
+    background-color: #334756;
+    border-radius: 20px;
+    width: 50%;
+    color: #fff;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    padding: 20px;
+}
+
+.form2 {
+    font-family: 'Baloo Bhaijaan 2', cursive;
+    margin: 10px;
+}
+
+.select {
+    width: 300px;
+    font-family: 'Baloo Bhaijaan 2', cursive;
+    border-radius: 20px;
+    margin-left: 20px;
+    height: 50px;
+    font-size: 20px;
+}
+
+.label-ser {
+    width: 100px;
+    min-width: 100px;
+    font-size: 20px;
+}
