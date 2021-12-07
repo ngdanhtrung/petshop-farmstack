@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException, Depends
 from app.models.Models import User, Cart, LoggedInUser
-from app.db import dbUser
+from app.utils import dbUser
 from datetime import timedelta, datetime
 from jose import jwt
 import os
