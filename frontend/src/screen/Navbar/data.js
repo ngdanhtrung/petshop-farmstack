@@ -13,7 +13,7 @@ const data = [
     {
         name: "THÚ CƯNG",
         exact: "false",
-        link: "/"
+        link: "/Pets"
         
     },
     {

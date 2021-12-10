@@ -5,33 +5,44 @@ import './index.css'
 
 const Login = () => {
     const dialog = useDialog();
-
     const [value, setValue] = useState();
-  
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const handleClickLogin = () => {
+      if (!username.value) {
+        alert("Cảnh báo", "Vui lòng nhập Email");
+        return;
+      }
+      if (!password) {
+          alert("Cảnh bảo", "Vui lòng nhập mật khẩu");
+          return;
+      }
+      dialog.close(value);
+    }
     return (
       <form className="form">
         <div className="form-input">
           <label className="label">Tên người dùng: </label>
           <input
             type="text"
-            onChange={(e) => {setValue(e.target.value);}}
+            value={username}
+            onChange={(e) => {setUsername(e.target.value);
+            }}
         />
         </div>
         <div className="form-input">
           <label className="label">Mật khẩu: </label>
           <input
             type="text"
+            value={password}
             onChange={(e) => {
-              setValue(e.target.value);
+              setPassword(e.target.value);
             }}
           />
         </div>
         <button
             className="btn-login"
-          onClick={() => {
-            // Сlose the dialog and return the value
-            dialog.close(value);
-          }}
+          onClick={handleClickLogin}
         >
           ĐĂNG NHẬP
         </button>
