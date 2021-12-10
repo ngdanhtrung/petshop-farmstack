@@ -9,6 +9,8 @@ uvicorn = "*"
 motor = "*"
 passlib = {extras = ["bcrypt"], version = "*"}
 python-jose = {extras = ["cryptography"], version = "*"}
+python-dotenv = "*"
+python-multipart = "*"
 
 [dev-packages]
 

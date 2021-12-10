@@ -25,7 +25,7 @@ class User(BaseModel):
     def name_must_not_contain_space(cls, v):
         if ' ' in v:
             raise ValueError('must not contain spaces')
-        return v.title()
+        return v
 
     @validator('username')
     def username_alphanumeric(cls, v):

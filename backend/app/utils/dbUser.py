@@ -38,10 +38,14 @@ def encrypt_password(password):
 
 
 async def create_user(user):
-    user.pwd = encrypt_password(user.pwd)
-    document = jsonable_encoder(user)
-    await collection.insert_one(document)
-    return document
+    try:
+        user.pwd = encrypt_password(user.pwd)
+        document = jsonable_encoder(user)
+        await collection.insert_one(document)
+        return document
+    except:
+        raise HTTPException(status_code=400,
+                            detail=f"Username {user.username} already exists")
 
 
 async def add_cart(username, cart):

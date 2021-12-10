@@ -75,12 +75,10 @@ async def get_user_by_username(username):
 
 
 @router.post("/", response_model=User)
-async def create_new_user(todo: User):
-    response = await dbUser.create_user(todo)
+async def create_new_user(user: User):
+    response = await dbUser.create_user(user)
     if response:
         return response
-    raise HTTPException(status_code=400,
-                        detail=f"Username {todo.username} already exists")
 
 
 #get username through token
@@ -112,8 +110,9 @@ async def remove_item_from_cart(id: str,
     raise HTTPException(404, f'there is no user with the username {username}')
 
 
-@router.get('/listItems/{username}')
-async def list_items_by_username(username):
+@router.get('/listItems/')
+async def list_items_by_username(
+        username: str = Depends(get_current_username)):
     response = await dbUser.list_items(username)
     if response:
         return response
