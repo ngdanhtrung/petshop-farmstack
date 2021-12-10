@@ -1,0 +1,13 @@
+img .pet {
+    border-radius: 75% 30% 30% 80% / 43% 46% 64% 66%;
+    border-top-left-radius: 75% 43%;
+    border-top-right-radius: 30% 46%;
+    border-bottom-right-radius: 30% 64%;
+    border-bottom-left-radius: 80% 66%;
+    padding-bottom: 30px;
+    transition: 1s;
+}
+
+.container-pets {
+    margin-top:110px;
+}

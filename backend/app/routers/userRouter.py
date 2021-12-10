@@ -26,6 +26,17 @@ def create_access_token(data: dict, expires_delta: timedelta):
     return encoded_jwt
 
 
+@router.post('/register', response_model=User)
+async def create_new_user(user: User):
+    if await dbUser.user_already_exist(user):
+        raise HTTPException(status_code=400,
+                        detail=f"Username {user.username} already exists or email {user.email} already used")
+    else:
+        await dbUser.create_user(user)
+        raise HTTPException(status_code=201, detail=f"User {user.username} created")
+    
+   
+
 @router.post('/login')
 async def login(form_data: OAuth2PasswordRequestForm = Depends()):
     username = form_data.username
@@ -92,6 +103,9 @@ async def get_current_username(token: str = Depends(oauth2_scheme)):
         raise HTTPException(status_code=400, detail="Bad request")
 
 
+
+
+#Item routes start from here
 @router.put('/addItem/')
 async def add_item_to_cart(cart: Cart,
                            username: str = Depends(get_current_username)):

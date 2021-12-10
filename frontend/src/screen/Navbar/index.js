@@ -1,5 +1,5 @@
 import React from "react";
-import './index.css';
+import './styles.css';
 import { Link, NavLink, Switch, Route } from "react-router-dom";
 import data from "./data";
 import Home from "../Home/index";
@@ -7,6 +7,7 @@ import Service from "../Service/index";
 import Contact from "../Contact/index";
 import Login from "../Login/index";
 import Register from "../Register/index";
+import Pets from "../Pets/index";
 import { CustomDialog } from 'react-st-modal';
 // const navName = ["TRANG CHỦ", "DỊCH VỤ", "THÚ CƯNG", "SẢN PHẨM", "BỘ SƯU TẬP", "GIỎ HÀNG", "LIÊN HỆ"]
 
@@ -61,6 +62,7 @@ const Navbar = () => {
             <Route path="/" exact><Home/></Route>
             <Route path="/Service"><Service/></Route>
             <Route path="/Contact"><Contact/></Route>
+            <Route path="/Pets"><Pets/></Route>
         </Switch>
       </>
   );
