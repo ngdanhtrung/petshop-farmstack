@@ -4,14 +4,13 @@ import { useState } from "react";
 import "./index.css";
 import axios from "axios";
 
-const Login = () => {
+const Login = (props) => {
   const dialog = useDialog();
   const [value, setValue] = useState();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const urlRequest = `${process.env.REACT_APP_API_KEY}users/login`;
-
   const handleClickLogin = async (e) => {
     e.preventDefault();
     if (!username) {
@@ -34,6 +33,9 @@ const Login = () => {
         data: loginFormData,
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
       }).then((res) => {
+        localStorage.setItem("access_token", res.data.access_token);
+        console.log(res);
+        props.getLoggedInUser();
         dialog.close();
       });
     } catch (error) {

@@ -21,6 +21,7 @@
   background-color: #e7470c;
   /* background-image: url(../../img/layer-1.png); */
   margin-bottom: 40px;
+  z-index: 300; /*z-index để tránh button nhảy qua navbar*/
 }
 
 /* .navbar-container {
