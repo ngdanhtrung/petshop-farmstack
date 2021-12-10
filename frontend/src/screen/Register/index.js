@@ -14,25 +14,23 @@ const Register = () => {
   const [error, setError] = useState("");
   const urlRequest = `${process.env.REACT_APP_API_KEY}users/register`;
 
-
   const registerhandler = (e) => {
     e.preventDefault();
     console.log(urlRequest);
     if (password === confirmPassword) {
-      axios.post(urlRequest, {
-        username: username,
-        email: email,
-        pwd: password,
-      }).then((response) => {
-        setError(response.data.detail)
-        // console.log(response);
-      })
-    } else {
-      setError("Mật khẩu không trùng khớp");
-      console.log("Register failed");
+      axios
+        .post(urlRequest, {
+          username: username,
+          email: email,
+          pwd: password,
+        })
+        .then((response) => {
+          setError(response.data.detail);
+          // console.log(response);
+        })
+        .catch((error) => setError(error.response.data.detail));
     }
   };
-
 
   return (
     <form className='form'>
