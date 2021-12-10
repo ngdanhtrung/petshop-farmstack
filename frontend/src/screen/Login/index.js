@@ -10,7 +10,7 @@ const Login = () => {
     const [password, setPassword] = useState('');
     const handleClickLogin = () => {
       if (!username.value) {
-        alert("Cảnh báo", "Vui lòng nhập Email");
+        alert("Cảnh báo", "Vui lòng nhập tên người dùng");
         return;
       }
       if (!password) {
