@@ -16,6 +16,14 @@
     font-weight: 900;
 }
 
+.label-error {
+    width: 250px;
+    min-width: 130px;
+    font-weight: 900;
+    color: red;
+    text-align: center;
+}
+
 input {
     display: block;
     width: 30%;

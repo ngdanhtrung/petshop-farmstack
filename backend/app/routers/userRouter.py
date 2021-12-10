@@ -30,10 +30,10 @@ def create_access_token(data: dict, expires_delta: timedelta):
 async def create_new_user(user: User):
     if await dbUser.user_already_exist(user):
         raise HTTPException(status_code=400,
-                        detail=f"Username {user.username} already exists or email {user.email} already used")
+                        detail=f"Tài khoản {user.username} đã tồn tại hoặc {user.email} đã được sử dụng")
     else:
         await dbUser.create_user(user)
-        raise HTTPException(status_code=201, detail=f"User {user.username} created")
+        raise HTTPException(status_code=201, detail=f"Tài khoản {user.username} đã được tạo")
     
    
 
@@ -84,12 +84,6 @@ async def get_user_by_username(username):
         return response
     raise HTTPException(404, f'there is no user with the username {username}')
 
-
-@router.post("/", response_model=User)
-async def create_new_user(user: User):
-    response = await dbUser.create_user(user)
-    if response:
-        return response
 
 
 #get username through token

@@ -9,7 +9,7 @@ const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const handleClickLogin = () => {
-      if (!username.value) {
+      if (!username) {
         alert("Cảnh báo", "Vui lòng nhập tên người dùng");
         return;
       }
@@ -25,7 +25,6 @@ const Login = () => {
           <label className="label">Tên người dùng: </label>
           <input
             type="text"
-            value={username}
             onChange={(e) => {setUsername(e.target.value);
             }}
         />
@@ -33,8 +32,7 @@ const Login = () => {
         <div className="form-input">
           <label className="label">Mật khẩu: </label>
           <input
-            type="text"
-            value={password}
+            type="password"
             onChange={(e) => {
               setPassword(e.target.value);
             }}

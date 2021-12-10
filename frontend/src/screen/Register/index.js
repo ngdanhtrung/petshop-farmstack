@@ -1,12 +1,38 @@
 import React from "react";
 import { CustomDialog, useDialog } from "react-st-modal";
 import { useState } from "react";
+import axios from "axios";
 import "../Login/index.css";
 
 const Register = () => {
   const dialog = useDialog();
 
-  const [value, setValue] = useState();
+  const [username, setUserName] = useState();
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+  const [confirmPassword, setConfirmPassword] = useState();
+  const [error, setError] = useState("");
+  const urlRequest = `${process.env.REACT_APP_API_KEY}users/register`;
+
+
+  const registerhandler = (e) => {
+    e.preventDefault();
+    console.log(urlRequest);
+    if (password === confirmPassword) {
+      axios.post(urlRequest, {
+        username: username,
+        email: email,
+        pwd: password,
+      }).then((response) => {
+        setError(response.data.detail)
+        // console.log(response);
+      })
+    } else {
+      setError("Mật khẩu không trùng khớp");
+      console.log("Register failed");
+    }
+  };
+
 
   return (
     <form className='form'>
@@ -15,7 +41,7 @@ const Register = () => {
         <input
           type='text'
           onChange={(e) => {
-            setValue(e.target.value);
+            setUserName(e.target.value);
           }}
         />
       </div>
@@ -24,35 +50,32 @@ const Register = () => {
         <input
           type='text'
           onChange={(e) => {
-            setValue(e.target.value);
+            setEmail(e.target.value);
           }}
         />
       </div>
       <div className='form-input'>
         <label className='label'>Mật khẩu: </label>
         <input
-          type='text'
+          type='password'
           onChange={(e) => {
-            setValue(e.target.value);
+            setPassword(e.target.value);
           }}
         />
       </div>
       <div className='form-input'>
         <label className='label'>Nhập lại mật khẩu: </label>
         <input
-          type='text'
+          type='password'
           onChange={(e) => {
-            setValue(e.target.value);
+            setConfirmPassword(e.target.value);
           }}
         />
       </div>
-      <button
-        className='btn-login'
-        onClick={() => {
-          // Сlose the dialog and return the value
-          dialog.close(value);
-        }}
-      >
+      <div className='form-input'>
+        <label className='label-error'>{error}</label>
+      </div>
+      <button className='btn-login' onClick={registerhandler}>
         ĐĂNG KÝ
       </button>
     </form>
