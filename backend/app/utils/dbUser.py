@@ -44,6 +44,29 @@ async def create_user(user):
     return document
 
 
+
+async def authenticate_user(username, password):
+    if await collection.count_documents({"username": username}) == 1:
+        doc = await collection.find_one({"username": username})
+        p = doc['pwd']
+        password_check = pwd_context.verify(password, p)
+        # print(password_check)
+        return password_check
+    else:
+        raise HTTPException(status_code=400, detail="Username does not exist")
+
+
+async def get_username(username):
+    document = await collection.find_one({"username": username})
+    return document['username']
+
+async def user_already_exist(user):
+    if await collection.count_documents({"username": user.username}) or await collection.count_documents({"email": user.email}):
+        return True
+    else:
+        return False
+
+#Item fuct start from here
 async def add_cart(username, cart):
 
     if await collection.count_documents({
@@ -83,19 +106,3 @@ async def delete_from_cart(username, id):
 async def list_items(username):
     document = await collection.find_one({'username': username}, {'cart': 1})
     return document
-
-
-async def authenticate_user(username, password):
-    if await collection.count_documents({"username": username}) == 1:
-        doc = await collection.find_one({"username": username})
-        p = doc['pwd']
-        password_check = pwd_context.verify(password, p)
-        # print(password_check)
-        return password_check
-    else:
-        raise HTTPException(status_code=400, detail="Username does not exist")
-
-
-async def get_username(username):
-    document = await collection.find_one({"username": username})
-    return document['username']

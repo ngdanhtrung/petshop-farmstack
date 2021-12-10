@@ -2,7 +2,7 @@ from enum import unique
 from typing import Optional
 from datetime import datetime
 import uuid
-from pydantic import BaseModel, Field, ValidationError, validator
+from pydantic import BaseModel, Field, ValidationError, validator, EmailStr
 
 
 class Cart(BaseModel):
@@ -18,6 +18,7 @@ class LoggedInUser(BaseModel):
 class User(BaseModel):
     id: str = Field(default_factory=uuid.uuid4, alias="_id")
     username: str = Field(..., max_length=16)
+    email: str = EmailStr(...)
     pwd: str = Field(...)
     created_at: str = Field(default_factory=datetime.utcnow)
 
@@ -36,8 +37,9 @@ class User(BaseModel):
         allow_population_by_field_name = True
         schema_extra = {
             "example": {
-                "username": "1",
-                "pwd": "1",
+                "username": "user",
+                "email": "example@mail.com",
+                "pwd": "password",
             }
         }
 
