@@ -16,8 +16,8 @@ const Navbar = () => {
   const [username, setUsername] = useState("");
   const getUserRequest = `${process.env.REACT_APP_API_KEY}users/me`;
 
-  const getLoggedInUser = () => {
-    axios
+  const getLoggedInUser = async () => {
+    await axios
       .get(getUserRequest, {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("access_token"),
