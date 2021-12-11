@@ -28,7 +28,11 @@ const Register = () => {
           setError(response.data.detail);
           // console.log(response);
         })
-        .catch((error) => setError(error.response.data.detail[0].msg));
+        .catch((error) => {
+          if (error.response.data.detail[0].msg)
+            setError(error.response.data.detail[0].msg);
+          else setError(error.response.data.detail);
+        });
     }
   };
 
