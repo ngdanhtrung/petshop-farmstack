@@ -12,8 +12,8 @@ const Pets = () => {
             <div className="row">
                 {data.map((value) => (
                     <div className="menber">
-                        <div className="img">
-                            <img src={value.src}></img>
+                        <div >
+                            <img className="img-pets" src={value.src}></img>
                         </div>
                         <div className="content">
                             <h4>{value.name}</h4>
@@ -23,8 +23,7 @@ const Pets = () => {
                                 <li><FaPaw className="li-icon"/>Đặc điểm: {value.characteristic}</li>
                             </ul>
                         </div>
-                        <div className="btn-adopt"><Link className="adopt" to='/'>Nhận nuôi <FaPaw/></Link></div>
-                        
+                        <nav className="btn-adopt"><Link className="adopt" to={value.to}>Nhận nuôi <FaPaw/></Link></nav>
                     </div>
                 ))}
             </div>

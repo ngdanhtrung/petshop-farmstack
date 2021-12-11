@@ -15,9 +15,10 @@
     flex-direction: row;
     flex-wrap: wrap;
 }
-img {
+.img-pets {
     border-radius: 75% 30% 30% 80% / 43% 46% 64% 66%;
     width: 350px;
+    height: 240px;
     
 }
 
