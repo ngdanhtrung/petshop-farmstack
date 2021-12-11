@@ -1,5 +1,5 @@
 from fastapi import APIRouter, HTTPException, Depends
-from app.models.Models import User, Cart, LoggedInUser
+from app.models.UsersModel import User, LoggedInUser
 from app.utils import dbUser
 from datetime import timedelta, datetime
 from jose import jwt
@@ -49,20 +49,8 @@ async def login(form_data: OAuth2PasswordRequestForm = Depends()):
     else:
         raise HTTPException(status_code=400, detail="Incorrect password")
 
-
-#get user through token
-async def get_current_user(token: str = Depends(oauth2_scheme)):
-    try:
-        payload = jwt.decode(token, os.getenv('SECRET_KEY'),
-                             os.getenv('ALGORITHM'))
-        user = await dbUser.fetch_one_user(username=payload.get('sub'))
-        return user
-    except:
-        raise HTTPException(status_code=400, detail="Bad request")
-
-
 @router.get('/me', response_model=LoggedInUser)
-async def get_logged_in_user(user: LoggedInUser = Depends(get_current_user)):
+async def get_logged_in_user(user: LoggedInUser = Depends(dbUser.get_current_user)):
     return user
 
 
@@ -86,41 +74,3 @@ async def get_user_by_username(username):
 
 
 
-#get username through token
-async def get_current_username(token: str = Depends(oauth2_scheme)):
-    try:
-        payload = jwt.decode(token, os.getenv('SECRET_KEY'),
-                             os.getenv('ALGORITHM'))
-        user = await dbUser.get_username(username=payload.get('sub'))
-        return user
-    except:
-        raise HTTPException(status_code=400, detail="Bad request")
-
-
-
-
-#Item routes start from here
-@router.put('/addItem/')
-async def add_item_to_cart(cart: Cart,
-                           username: str = Depends(get_current_username)):
-    response = await dbUser.add_cart(username, cart)
-    if response:
-        return response
-    raise HTTPException(400, f'there is no user with the username {username}')
-
-
-@router.delete('/removeItem/')
-async def remove_item_from_cart(id: str,
-                                username: str = Depends(get_current_username)):
-    response = await dbUser.delete_from_cart(username, id)
-    if response:
-        return response
-    raise HTTPException(404, f'there is no user with the username {username}')
-
-
-@router.get('/listItems/')
-async def list_items_by_username(
-        username: str = Depends(get_current_username)):
-    response = await dbUser.list_items(username)
-    if response:
-        return response

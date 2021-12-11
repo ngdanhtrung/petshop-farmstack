@@ -1,10 +1,13 @@
 import os
 from dotenv import load_dotenv
-from fastapi import APIRouter, Body, Request, HTTPException, status
+from fastapi import APIRouter, Body, Request, HTTPException, status, Depends
 from fastapi.responses import JSONResponse
 from fastapi.encoders import jsonable_encoder
-from app.models import Models
+from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
+from app.models import UsersModel
 from passlib.context import CryptContext
+from jose import jwt
+
 import os
 import motor.motor_asyncio
 
@@ -19,6 +22,7 @@ client = motor.motor_asyncio.AsyncIOMotorClient(os.getenv('DB_HOST'))
 database = client[os.getenv('DB_NAME')]
 collection = database.users
 
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl='users/login')
 
 async def fetch_one_user(username):
     document = await collection.find_one({"username": username})
@@ -29,7 +33,7 @@ async def fetch_all_users():
     users = []
     cursor = collection.find({})
     async for document in cursor:
-        users.append(Models.User(**document))
+        users.append(UsersModel.User(**document))
     return users
 
 
@@ -58,6 +62,27 @@ async def authenticate_user(username, password):
         return password_check
     else:
         raise HTTPException(status_code=400, detail="Username does not exist")
+
+
+#get user through token
+async def get_current_user(token: str = Depends(oauth2_scheme)):
+    try:
+        payload = jwt.decode(token, os.getenv('SECRET_KEY'),
+                             os.getenv('ALGORITHM'))
+        user = await fetch_one_user(username=payload.get('sub'))
+        return user
+    except:
+        raise HTTPException(status_code=400, detail="Bad request")
+
+#get username through token
+async def get_current_username(token: str = Depends(oauth2_scheme)):
+    try:
+        payload = jwt.decode(token, os.getenv('SECRET_KEY'),
+                             os.getenv('ALGORITHM'))
+        user = await get_username(username=payload.get('sub'))
+        return user
+    except:
+        raise HTTPException(status_code=400, detail="Bad request")
 
 
 async def get_username(username):

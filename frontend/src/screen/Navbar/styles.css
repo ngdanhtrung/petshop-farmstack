@@ -53,10 +53,10 @@
   /* position: absolute; */
 }
 
-@import url("https://fonts.googleapis.com/css2? family = BioRhyme & family = Gluten: wght @ 700; 800 & family = Pacifico & family = Rubik + Beastly & family = Varela + Round & display = swap ");
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 
 .profile {
-  font-family: "BioRhyme", serif;
+  font-family: "Roboto", sans-serif;
   background-color: #fff;
   border: #fff;
   border-radius: 8px;

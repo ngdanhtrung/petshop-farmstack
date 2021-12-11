@@ -28,7 +28,7 @@ const Register = () => {
           setError(response.data.detail);
           // console.log(response);
         })
-        .catch((error) => setError(error.response.data.detail));
+        .catch((error) => setError(error.response.data.detail[0].msg));
     }
   };
 

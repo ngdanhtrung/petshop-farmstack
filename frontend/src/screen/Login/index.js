@@ -6,7 +6,6 @@ import axios from "axios";
 
 const Login = (props) => {
   const dialog = useDialog();
-  const [value, setValue] = useState();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
