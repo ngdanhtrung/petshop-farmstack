@@ -118,9 +118,9 @@ const Navbar = () => {
         <Route path='/Pets'>
           <Pets />
         </Route>
-        <Route path='/Pets/Scooby'>
+        {/* <Route path='/Pets/Scooby'>
           <Scooby />
-        </Route>
+        </Route> */}
       </Switch>
     </>
   );
