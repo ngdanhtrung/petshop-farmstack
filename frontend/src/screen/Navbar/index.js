@@ -8,6 +8,7 @@ import Contact from "../Contact/index";
 import Login from "../Login/index";
 import Register from "../Register/index";
 import Pets from "../Pets/index";
+import Products from "../Products/index";
 import { CustomDialog } from "react-st-modal";
 import axios from "axios";
 // const navName = ["TRANG CHỦ", "DỊCH VỤ", "THÚ CƯNG", "SẢN PHẨM", "BỘ SƯU TẬP", "GIỎ HÀNG", "LIÊN HỆ"]
@@ -116,6 +117,9 @@ const Navbar = () => {
         </Route>
         <Route path='/Pets'>
           <Pets />
+        </Route>
+        <Route path='/Products'>
+          <Products />
         </Route>
       </Switch>
     </>
