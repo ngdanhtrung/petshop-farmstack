@@ -4,6 +4,8 @@ import Caine from './../../img/Teacup-Chihuahua.jpg'
 import Roscoe from '../../img/meo1.png'
 import Batu from '../../img/batu.jpg'
 import Gretchen from '../../img/husky.jpg'
+import Pet2 from '../../img/4.jpg'
+import Pet1 from '../../img/3.jpg'
 const data = [
     { 
         id: 1,
@@ -16,7 +18,9 @@ const data = [
         height: "50",
         weight: "12",
         male: "Cái",
-        origin: "Anh"
+        origin: "Anh",
+        src1: Pet1,
+        src2: Pet2,
     },
     { 
         id: 2,
@@ -29,7 +33,9 @@ const data = [
         height: "50",
         weight: "12",
         male: "Cái",
-        origin: "Anh"
+        origin: "Anh",
+        src1: Pet1,
+        src2: Pet2,
     },
     { 
         id: 3,
@@ -42,7 +48,9 @@ const data = [
         height: "50",
         weight: "12",
         male: "Cái",
-        origin: "Anh"
+        origin: "Anh",
+        src1: Pet1,
+        src2: Pet2,
     },
     { 
         id: 4,
@@ -55,7 +63,9 @@ const data = [
         height: "50",
         weight: "12",
         male: "Cái",
-        origin: "Anh"
+        origin: "Anh",
+        src1: Pet1,
+        src2: Pet2,
     },
     { 
         id: 5,
@@ -68,7 +78,9 @@ const data = [
         height: "50",
         weight: "12",
         male: "Cái",
-        origin: "Anh"
+        origin: "Anh",
+        src1: Pet1,
+        src2: Pet2,
     },
     { 
         id: 6,
@@ -81,7 +93,9 @@ const data = [
         height: "50",
         weight: "12",
         male: "Cái",
-        origin: "Anh"
+        origin: "Anh",
+        src1: Pet1,
+        src2: Pet2,
     },
 ];
 export default data;

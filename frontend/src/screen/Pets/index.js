@@ -29,6 +29,7 @@ const Pets = () => {
                                         </ul>
                                     </div>
                                     <div className="btn-adopt"><Link className="adopt" to={`${url}/${value.id}`}>Nhận nuôi <FaPaw/></Link></div> 
+                                    <hr></hr>
                                 </div>
                             ))}
                         </div>
