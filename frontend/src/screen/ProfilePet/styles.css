@@ -1,0 +1,28 @@
+.profile-pet {
+    margin: 30px;
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+}
+
+.img-pet {
+    width: 50%;
+    height: 360px;
+    border-radius: 75% 30% 30% 80% / 43% 46% 64% 66%;
+}
+
+.profile-content h3 {
+    margin-left: 20px;
+    font-family: 'Cabin', sans-serif;
+    font-size: 36px;
+}
+
+.profile-content h3 span {
+    color:#343434;
+    font-style: italic;
+}
+
+.profile-content ul li{
+    display: inline-block;
+    width: 40%;
+}

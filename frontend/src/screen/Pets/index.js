@@ -5,7 +5,7 @@ import Icon from '../../component/Icon/icon2';
 import { FaPaw } from "react-icons/fa";
 import {Link, Switch, Route, useRouteMatch} from "react-router-dom";
 import Home from './../Home/index'
-import Scooby from '../ProfilePet/Scooby'
+import ProfilePet from '../ProfilePet/index'
 const Pets = () => {
     let { path, url } = useRouteMatch();
     return (
@@ -35,7 +35,7 @@ const Pets = () => {
                     </>
                 </Route>
                 <Route path={`${path}/:id`}>
-                    <Scooby/>
+                    <ProfilePet/>
                 </Route>
             </Switch>
 
