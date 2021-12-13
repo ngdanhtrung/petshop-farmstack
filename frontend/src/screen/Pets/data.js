@@ -4,6 +4,8 @@ import Caine from './../../img/Teacup-Chihuahua.jpg'
 import Roscoe from '../../img/meo1.png'
 import Batu from '../../img/batu.jpg'
 import Gretchen from '../../img/husky.jpg'
+import Pet2 from '../../img/4.jpg'
+import Pet1 from '../../img/3.jpg'
 const data = [
     { 
         id: 1,
@@ -12,7 +14,13 @@ const data = [
         type: 'Chó Corgi',
         age: '3',
         characteristic: 'Thân dài, chân ngắn',
-        // to: 'Scooby',
+        color: "Nâu",
+        height: "50",
+        weight: "12",
+        male: "Cái",
+        origin: "Anh",
+        src1: Pet1,
+        src2: Pet2,
     },
     { 
         id: 2,
@@ -21,6 +29,13 @@ const data = [
         type: 'Chó Beagle',
         age: '5',
         characteristic: 'Bộ lông tam thể',
+        color: "Nâu",
+        height: "50",
+        weight: "12",
+        male: "Cái",
+        origin: "Anh",
+        src1: Pet1,
+        src2: Pet2,
     },
     { 
         id: 3,
@@ -29,6 +44,13 @@ const data = [
         type: 'Mèo chân ngắn Munchkin',
         age: '3',
         characteristic: ' Thân hình chắc chắn, khỏe mạnh, chân ngắn',
+        color: "Nâu",
+        height: "50",
+        weight: "12",
+        male: "Cái",
+        origin: "Anh",
+        src1: Pet1,
+        src2: Pet2,
     },
     { 
         id: 4,
@@ -37,6 +59,13 @@ const data = [
         type: 'Chó Husky',
         age: '7',
         characteristic: 'Tràn đầy năng lượng và tráng kiện',
+        color: "Nâu",
+        height: "50",
+        weight: "12",
+        male: "Cái",
+        origin: "Anh",
+        src1: Pet1,
+        src2: Pet2,
     },
     { 
         id: 5,
@@ -45,6 +74,13 @@ const data = [
         type: 'Mèo Ba tư',
         age: '4',
         characteristic: 'Đầu và mắt to, lông dài',
+        color: "Nâu",
+        height: "50",
+        weight: "12",
+        male: "Cái",
+        origin: "Anh",
+        src1: Pet1,
+        src2: Pet2,
     },
     { 
         id: 6,
@@ -52,7 +88,14 @@ const data = [
         name: 'Caine',
         type: 'Chihuahua',
         age: '2',
-        characteristic: 'Đầu tròn và mõm ngắn'
+        characteristic: 'Đầu tròn và mõm ngắn',
+        color: "Nâu",
+        height: "50",
+        weight: "12",
+        male: "Cái",
+        origin: "Anh",
+        src1: Pet1,
+        src2: Pet2,
     },
 ];
 export default data;

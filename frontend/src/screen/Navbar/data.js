@@ -19,7 +19,7 @@ const data = [
     {
         name: "SẢN PHẨM",
         exact: "false",
-        link: "/"
+        link: "/Products"
     },
     {
         name: "BỘ SƯU TẬP",

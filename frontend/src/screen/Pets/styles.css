@@ -43,7 +43,9 @@ li {
     margin-right: 10px;
 }
 .btn-adopt {
-    text-align: center;}
+    text-align: center;
+    margin-bottom: 30px;
+}
 .adopt {
     padding: 10px 20px;
     font-size: 14px;
