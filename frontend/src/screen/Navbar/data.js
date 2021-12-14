@@ -26,11 +26,7 @@ const data = [
         exact: "false",
         link: "/"
     },
-    {
-        name: "GIỎ HÀNG",
-        exact: "false",
-        link: "/Cart"
-    },
+    
     {
         name: "LIÊN HỆ",
         exact: "false",

@@ -1,0 +1,68 @@
+.table-name {
+    min-width: 20%;
+    width: 20%;
+}
+
+.table {
+    width: 100%;
+    text-align: center;
+    margin: 30px;
+}
+
+.table-img {
+    min-width: 25%;
+    width: 25%;
+}
+
+.img-card {
+    min-width: 50%;
+    width: 50%;
+}
+
+.table-price {
+    min-width: 10%;
+    width: 10%; 
+}
+
+td {
+    border-bottom: 1px solid #ccc;
+}
+
+.table-numbercount {
+    min-width: 15%;
+    width: 15%; 
+}
+
+.table input {
+    margin: 0 auto;
+}
+
+.sum-count-price {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.sum-count {
+
+    color: #fff;
+    background-color: #e7470c;
+    padding: 8px;
+    border-radius: 8px;
+}
+
+.row-sum {
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 8px;
+    justify-content: flex-end;
+    margin-right: 10%;
+}
+
+.btn-deleted {
+    background-color: #fff;
+    border: 1px solid #fff;
+    cursor: pointer;
+    color: #e7470c;
+    font-size: 17px;
+    font-family: 'Cabin';
+}

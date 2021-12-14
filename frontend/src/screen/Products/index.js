@@ -12,7 +12,6 @@ const Product = ({product, addCart, loadCurrentItem}) => {
         <Switch>
             <Route exact path={path}>
                 <div>
-                    <Icon title = "Các sản phẩm cho thú cưng của bạn"/>
                     <div className="row-products">
                         <div className="col-products">
                             <img alt = "a"src={product.img}></img>

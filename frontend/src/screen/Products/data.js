@@ -5,6 +5,12 @@ const data = [
         img: SP1,
         price: 20000,
         name: "Classic Pets Beef Flavour",
-    }
+    },
+    {
+        id: 2,
+        img: SP1,
+        price: 30000,
+        name: "Classic Pets Beef Flavour",
+    },
 ]
 export default data;

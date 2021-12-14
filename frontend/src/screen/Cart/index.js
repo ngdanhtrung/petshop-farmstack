@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from "react-redux";
-import CartItem from './CartItem'
+import CartItem from './CartItem';
+import './styles.css'
 
 const Cart = ({cart}) => {
     const [totalPrice, setTotalPrice] = useState(0);
@@ -17,29 +18,29 @@ const Cart = ({cart}) => {
       }, [cart, totalPrice, totalItem, setTotalPrice, setTotalItem]);
     return (
         <div>
-            <div className="col-md-12">
+            
             <table className="table">
-                <thead>
+            <thead>
                     <tr>
+                        <th className="table-name">Tên sản phẩm</th>
+                        <th className="table-img">Ảnh</th>
+                        <th className="table-price">Giá</th>
+                        <th className="table-numbercount">Số lượng</th>
                         <th></th>
-                        <th>Tên sản phẩm</th>
-                        <th>Ảnh</th>
-                        <th>Giá</th>
-                        <th>Số lượng</th>
-                        <th>Tổng tiền sản phẩm</th>
                     </tr>
                 </thead>
-                <tbody>
-                
-                </tbody>
-                
-            </table>
-            {cart.map((value) =>(
+                </table>
+                {cart.map((value) =>(
                     <CartItem key={value.id} item={value}></CartItem>
                 ))}
-            <div>Tổng tiền: {totalItem}</div>
-            <div>Giá: {totalPrice}</div>
+{/*                 
+            <div>Số lượng: {totalItem}</div> */}
+            <div className="row-sum">
+                <div className="sum-count">Tổng trị giá: </div>
+                <div className="sum-count-price">{totalPrice}</div>
             </div>
+            
+            
         </div>
     )
 }

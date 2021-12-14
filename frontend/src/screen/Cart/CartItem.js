@@ -10,7 +10,7 @@ const CartItem = ( {item, removeCart, adjQty} ) => {
   };
     return (
         <div>
-            <div>
+            {/* <div>
                 <img alt="img" src={item.img}></img>
                 <div>{item.name}</div>
                 <input
@@ -21,8 +21,24 @@ const CartItem = ( {item, removeCart, adjQty} ) => {
             value={input}
             onChange={onChangeHandler}
           />
-            </div> 
+            </div>  */}
+            <table className="table">
+                <tr>
+                    <td className="title-table table-name">{item.name}</td>
+                    <td className="table-img"><img className="img-card"  src={item.img}></img></td>
+                    <td className="table-price">{item.price}</td>
+                    <td className="table-numbercount"><input min='1'
+                            type='number'
+                            id='qty'
+                            name='qty'
+                            value={input}
+                            onChange={onChangeHandler}/>
+                    </td>
+                    <td><button className="btn btn-deleted"onClick={() => removeCart(item.id)}>Xóa sản phẩm</button></td>
+                </tr>
+            </table>
         </div>
+        
     )
 }
 

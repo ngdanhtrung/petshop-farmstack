@@ -70,7 +70,7 @@ const Navbar = ({ cart }) => {
                 {value.name}
               </NavLink>
             ))}
-            <NavLink to='/Cart'>Giỏ hàng {cartCount} <div>{totalPrice}</div></NavLink>
+            <NavLink className="navbar-name"activeStyle={{ fontWeight: "900", color: "#FFF338" }} to='/Cart'>GIỎ HÀNG {cartCount} </NavLink>
           </div>
         </nav>
 
