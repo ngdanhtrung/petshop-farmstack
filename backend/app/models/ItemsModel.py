@@ -1,13 +1,11 @@
-from enum import unique
-from typing import Optional
-from datetime import datetime
 import uuid
-from pydantic import BaseModel, create_model, Field, ValidationError, validator, EmailStr
+from pydantic import BaseModel, Field, ValidationError, validator, EmailStr
 
 
 class Item(BaseModel):
     id: str = Field(default_factory=uuid.uuid4, alias="_id")
     name: str
+    image: str = None
     isPet: bool = False
     value: int = 0
     description: str = None
@@ -18,7 +16,9 @@ class Item(BaseModel):
             "example": {
                 "id": "1",
                 "name":
+                
                 "Con Cu Giả Đa Năng Thượng Hạng Luxury Rung Cực Sướng Phê Lòi Lồn",
+                "image": "http://an.image",
                 "isPet": False,
                 "value": 122000,
                 "description": "",
@@ -28,6 +28,7 @@ class Item(BaseModel):
 
 class EditItem(BaseModel):
     name: str
+    image: str = None
     isPet: bool = False
     value: int = 0
     description: str = None
@@ -38,6 +39,7 @@ class EditItem(BaseModel):
             "example": {
                 "name":
                 "Con Cu Giả Đa Năng Thượng Hạng Luxury Rung Cực Sướng Phê Lòi Lồn",
+                "image": "http://an.image",
                 "isPet": False,
                 "value": 122000,
                 "description": "",

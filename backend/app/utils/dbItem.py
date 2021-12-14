@@ -4,7 +4,7 @@ from fastapi import APIRouter, Body, Request, HTTPException, status, Depends
 from fastapi.responses import JSONResponse
 from fastapi.encoders import jsonable_encoder
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
-from app.models import UsersModel
+from app.models import ItemsModel
 from passlib.context import CryptContext
 from jose import jwt
 
@@ -38,3 +38,24 @@ async def update_item(id, item):
                                 {'$set': jsonable_encoder(item)})
     document = await collection.find_one({"_id": id})
     return document
+
+async def list_pets():
+    pets = []
+    cursor = collection.find({'isPet': True})
+    async for document in cursor:
+        pets.append(ItemsModel.Item(**document))
+    return pets
+
+async def list_products():
+    items = []
+    cursor = collection.find({'isPet': False})
+    async for document in cursor:
+        items.append(ItemsModel.Item(**document))
+    return items
+
+async def fetch_one_product(id):
+    try:
+        document = await collection.find_one({"_id": id})
+        return document
+    except:
+        raise HTTPException(400, "Product not found")
