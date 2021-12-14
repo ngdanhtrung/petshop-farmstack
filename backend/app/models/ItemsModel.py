@@ -9,22 +9,26 @@ class Item(BaseModel):
     isPet: bool = False
     value: int = 0
     description: str = None
-    extra={}
+    extra = {}
+
     class Config:
         allow_population_by_field_name = True
         schema_extra = {
             "example": {
                 "id": "1",
                 "name":
-                
                 "Con Cu Giả Đa Năng Thượng Hạng Luxury Rung Cực Sướng Phê Lòi Lồn",
                 "image": "http://an.image",
                 "isPet": False,
                 "value": 122000,
                 "description": "",
-                "extra": {"foo": "bar", "hotel?":"trivago"}
+                "extra": {
+                    "foo": "bar",
+                    "hotel?": "trivago"
+                }
             }
         }
+
 
 class EditItem(BaseModel):
     name: str
@@ -32,7 +36,8 @@ class EditItem(BaseModel):
     isPet: bool = False
     value: int = 0
     description: str = None
-    extra={}
+    extra = {}
+
     class Config:
         allow_population_by_field_name = True
         schema_extra = {
@@ -54,7 +59,7 @@ class EditItem(BaseModel):
             }
         }
 
+
 class Cart(BaseModel):
     id: str = Field(...)
     quantity: int = 1
-

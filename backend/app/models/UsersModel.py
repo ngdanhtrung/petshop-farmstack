@@ -6,7 +6,6 @@ from email_validator import validate_email, EmailNotValidError
 from pydantic import BaseModel, Field, ValidationError, validator, EmailStr
 
 
-
 class LoggedInUser(BaseModel):
     id: str = Field(default_factory=uuid.uuid4, alias="_id")
     username: str = Field(..., max_length=16)
@@ -29,6 +28,7 @@ class User(BaseModel):
     def username_alphanumeric(cls, v):
         assert v.isalnum(), 'must be alphanumeric'
         return v
+
     @validator('email')
     def email_validator(cls, v):
         try:
@@ -36,6 +36,7 @@ class User(BaseModel):
         except EmailNotValidError as e:
             raise ValueError(e)
         return v
+
     class Config:
         allow_population_by_field_name = True
         schema_extra = {
