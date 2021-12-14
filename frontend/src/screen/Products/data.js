@@ -3,7 +3,7 @@ const data = [
     {
         id: 1,
         img: SP1,
-        money: 20000,
+        price: 20000,
         name: "Classic Pets Beef Flavour",
     }
 ]

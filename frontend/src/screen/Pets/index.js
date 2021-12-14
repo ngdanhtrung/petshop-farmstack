@@ -4,7 +4,6 @@ import data from './data';
 import Icon from '../../component/Icon/icon2';
 import { FaPaw } from "react-icons/fa";
 import {Link, Switch, Route, useRouteMatch} from "react-router-dom";
-import Home from './../Home/index'
 import ProfilePet from '../ProfilePet/index'
 const Pets = () => {
     let { path, url } = useRouteMatch();

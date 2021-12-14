@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./styles.css";
+import  {connect} from  'react-redux';
 import { Link, NavLink, Switch, Route, Redirect } from "react-router-dom";
 import data from "./data";
 import Home from "../Home/index";
@@ -8,14 +9,31 @@ import Contact from "../Contact/index";
 import Login from "../Login/index";
 import Register from "../Register/index";
 import Pets from "../Pets/index";
-import Products from "../Products/index";
+import Products from "../Products/Products";
+import Cart from "../Cart/index"
 import { CustomDialog } from "react-st-modal";
 import axios from "axios";
 // const navName = ["TRANG CHỦ", "DỊCH VỤ", "THÚ CƯNG", "SẢN PHẨM", "BỘ SƯU TẬP", "GIỎ HÀNG", "LIÊN HỆ"]
 
-const Navbar = () => {
+const Navbar = ({ cart }) => {
   const [username, setUsername] = useState("");
   const getUserRequest = `${process.env.REACT_APP_API_KEY}users/me`;
+  const [cartCount, setCartCount] = useState(0);
+  const [totalPrice, setTotalPrice] = useState(0);
+  const a = [];
+  console.log(typeof a)
+  useEffect(() => {
+    let count = 0;
+    let price = 0;
+    console.log(typeof cart)
+    cart.forEach((item) => {
+      count += item.qty;
+      price += item.qty * item.price;
+    });
+
+    setCartCount(count);
+    setTotalPrice(price);
+  }, [cart, cartCount, totalPrice]);
 
   const getLoggedInUser = async () => {
     await axios
@@ -52,6 +70,7 @@ const Navbar = () => {
                 {value.name}
               </NavLink>
             ))}
+            <NavLink to='/Cart'>Giỏ hàng {cartCount} <div>{totalPrice}</div></NavLink>
           </div>
         </nav>
 
@@ -121,8 +140,17 @@ const Navbar = () => {
         <Route path='/Products'>
           <Products />
         </Route>
+        <Route path='/Cart'>
+          <Cart />
+        </Route>
       </Switch>
     </>
   );
 };
-export default Navbar;
+const mapStateToProps = (state) => {
+  return {
+    cart: state._todoProduct.cart,
+  };
+};
+
+export default connect(mapStateToProps)(Navbar);

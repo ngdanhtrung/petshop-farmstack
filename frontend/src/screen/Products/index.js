@@ -1,24 +1,45 @@
 import React from 'react'
-import data from './data'
 import Icon from '../../component/Icon/icon2'
 import './styles.css'
-const Products = () => {
+import {connect} from 'react-redux';
+import {loadCurrentItem,addCart} from '../../redux/actions'
+import {Link, Switch, Route, useRouteMatch} from 'react-router-dom'
+import ProductDetails from './ProductDetails/index'
+
+const Product = ({product, addCart, loadCurrentItem}) => {
+    let { path, url } = useRouteMatch();
     return (
-        <div>
-            <Icon title = "Các sản phẩm cho thú cưng của bạn"/>
-            <div className="row-products">
-                {data.map((value) => (
-                    <div className="col-products">
-                        <img src={value.img}></img>
-                        <button className="">+</button>
-                        <h3>{value.name}</h3>
-                        <div>{value.money}</div>
+        <Switch>
+            <Route exact path={path}>
+                <div>
+                    <Icon title = "Các sản phẩm cho thú cưng của bạn"/>
+                    <div className="row-products">
+                        <div className="col-products">
+                            <img alt = "a"src={product.img}></img>
+                            <button className="" onClick={() => addCart(product.id)}>+</button>
+                            <Link onClick={() => loadCurrentItem(product)}
+                                    to={`${url}/${product.id}`}>
+                                Xem chi tiết
+                            </Link>
+                            <h3>{product.name}</h3>
+                            <div>{product.price}</div>
+                        </div>
                     </div>
-                ) )}
-                
-            </div>
-        </div>
+                </div>
+            </Route>
+            <Route path={`${path}/:id`}>
+                <ProductDetails/>
+            </Route>
+        </Switch>
     )
 }
 
-export default Products;
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+      addCart: (id) => dispatch(addCart(id)),
+      loadCurrentItem: (item) => dispatch(loadCurrentItem(item)),
+    };
+  };
+  //Because we don't use mapStateToProps the first param must be null
+  export default connect(null, mapDispatchToProps)(Product);

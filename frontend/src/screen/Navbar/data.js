@@ -29,7 +29,7 @@ const data = [
     {
         name: "GIỎ HÀNG",
         exact: "false",
-        link: "/"
+        link: "/Cart"
     },
     {
         name: "LIÊN HỆ",
