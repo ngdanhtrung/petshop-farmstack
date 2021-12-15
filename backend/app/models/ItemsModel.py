@@ -15,8 +15,7 @@ class Item(BaseModel):
         allow_population_by_field_name = True
         schema_extra = {
             "example": {
-                "name":
-                "Thức ăn cho mèo",
+                "name": "Thức ăn cho mèo",
                 "image": "http://an.image",
                 "isPet": False,
                 "value": 122000,
@@ -41,8 +40,7 @@ class EditItem(BaseModel):
         allow_population_by_field_name = True
         schema_extra = {
             "example": {
-                "name":
-                "Thức ăn cho chó",
+                "name": "Thức ăn cho chó",
                 "image": "http://an.image",
                 "isPet": False,
                 "value": 122000,
@@ -62,3 +60,4 @@ class EditItem(BaseModel):
 class Cart(BaseModel):
     id: str = Field(...)
     quantity: int = 1
+    value: int = 1000

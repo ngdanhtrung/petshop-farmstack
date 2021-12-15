@@ -45,14 +45,14 @@ async def get_products():
 
 
 @router.get('/getSingleProduct/{id}')
-async def get_single_product(id: str):
+async def get_single_product(id):
     response = await dbItem.fetch_one_product(id)
     if response:
         return response
     raise HTTPException('404', 'Product Not Found')
 
 
-@router.get('/searchItems/{keyword}')
+@router.get('/searchItems/{keywords}')
 async def search_for_items(keywords: str):
     isPet = False
     response = await dbItem.search(keywords, isPet)
@@ -60,8 +60,8 @@ async def search_for_items(keywords: str):
         return response
 
 
-@router.get('/searchPets/{keyword}')
-async def search_for_pets(keywords: str):
+@router.get('/searchPets/{keywords}')
+async def search_for_pets(keywords):
     isPet = True
     response = await dbItem.search(keywords, isPet)
     if response:

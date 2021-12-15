@@ -14,11 +14,11 @@ class LoggedInUser(BaseModel):
 class User(BaseModel):
     id: str = Field(default_factory=uuid.uuid4, alias="_id")
     username: str = Field(..., max_length=16)
-    fullname: str = Field(..., max_length=32)
+    fullname: Optional[str] = Field(None, max_length=32)
     email: str = EmailStr(...)
     pwd: str = Field(...)
     role: str = Field(default_factory=lambda: "user", max_length=16)
-    created_at: str = Field(default_factory=datetime.utcnow)
+    created_at: datetime = Field(default_factory=datetime.utcnow)
 
     @validator('username')
     def name_must_not_contain_space(cls, v):

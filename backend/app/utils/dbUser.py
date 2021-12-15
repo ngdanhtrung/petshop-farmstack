@@ -18,12 +18,13 @@ load_dotenv()
 pwd_context = CryptContext(schemes=['bcrypt'], deprecated='auto')
 
 #Client object
-# client = motor.motor_asyncio.AsyncIOMotorClient(os.getenv('DB_HOST'))
-client = motor.motor_asyncio.AsyncIOMotorClient("mongodb+srv://dbMaster:5e9C1QS42KSS4V2c@petshopcluster.2km87.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+client = motor.motor_asyncio.AsyncIOMotorClient(os.getenv('DB_HOST'))
+# client = motor.motor_asyncio.AsyncIOMotorClient("mongodb+srv://dbMaster:5e9C1QS42KSS4V2c@petshopcluster.2km87.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
 database = client[os.getenv('DB_NAME')]
 collection = database.users
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl='users/login')
+
 
 async def fetch_one_user(username):
     document = await collection.find_one({"username": username})
@@ -53,7 +54,6 @@ async def create_user(user):
                             detail=f"Username {user.username} already exists")
 
 
-
 async def authenticate_user(username, password):
     if await collection.count_documents({"username": username}) == 1:
         doc = await collection.find_one({"username": username})
@@ -75,6 +75,7 @@ async def get_current_user(token: str = Depends(oauth2_scheme)):
     except:
         raise HTTPException(status_code=400, detail="Bad request")
 
+
 #get username through token
 async def get_current_username(token: str = Depends(oauth2_scheme)):
     try:
@@ -90,11 +91,15 @@ async def get_username(username):
     document = await collection.find_one({"username": username})
     return document['username']
 
+
 async def user_already_exist(user):
-    if await collection.count_documents({"username": user.username}) or await collection.count_documents({"email": user.email}):
+    if await collection.count_documents({
+            "username": user.username
+    }) or await collection.count_documents({"email": user.email}):
         return True
     else:
         return False
+
 
 #Item fuct start from here
 async def add_cart(username, cart):
@@ -135,4 +140,12 @@ async def delete_from_cart(username, id):
 
 async def list_items(username):
     document = await collection.find_one({'username': username}, {'cart': 1})
+    return document
+
+
+async def clear_cart(username):
+    document = await collection.update_one({'username': username},
+                                           {'$unset': {
+                                               "cart": ""
+                                           }})
     return document
