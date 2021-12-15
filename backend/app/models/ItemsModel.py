@@ -15,9 +15,8 @@ class Item(BaseModel):
         allow_population_by_field_name = True
         schema_extra = {
             "example": {
-                "id": "1",
                 "name":
-                "Con Cu Giả Đa Năng Thượng Hạng Luxury Rung Cực Sướng Phê Lòi Lồn",
+                "Thức ăn cho mèo",
                 "image": "http://an.image",
                 "isPet": False,
                 "value": 122000,
@@ -43,7 +42,7 @@ class EditItem(BaseModel):
         schema_extra = {
             "example": {
                 "name":
-                "Con Cu Giả Đa Năng Thượng Hạng Luxury Rung Cực Sướng Phê Lòi Lồn",
+                "Thức ăn cho chó",
                 "image": "http://an.image",
                 "isPet": False,
                 "value": 122000,

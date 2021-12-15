@@ -16,14 +16,14 @@ async def create_new_product(item: Item):
         return response
 
 
-@router.put('/editProduct')
+@router.put('/editProduct/{id}')
 async def modify_product(id: str, item: EditItem):
     response = await dbItem.update_item(id, item)
     if response:
         return response
 
 
-@router.delete('/removeProduct')
+@router.delete('/removeProduct/{id}')
 async def delete_product(id: str):
     response = await dbItem.delete_item(id)
     if response:
@@ -44,7 +44,7 @@ async def get_products():
         return response
 
 
-@router.get('/getSingleProduct')
+@router.get('/getSingleProduct/{id}')
 async def get_single_product(id: str):
     response = await dbItem.fetch_one_product(id)
     if response:
@@ -52,7 +52,7 @@ async def get_single_product(id: str):
     raise HTTPException('404', 'Product Not Found')
 
 
-@router.get('/searchItems')
+@router.get('/searchItems/{keyword}')
 async def search_for_items(keywords: str):
     isPet = False
     response = await dbItem.search(keywords, isPet)
@@ -60,7 +60,7 @@ async def search_for_items(keywords: str):
         return response
 
 
-@router.get('/searchPets')
+@router.get('/searchPets/{keyword}')
 async def search_for_pets(keywords: str):
     isPet = True
     response = await dbItem.search(keywords, isPet)

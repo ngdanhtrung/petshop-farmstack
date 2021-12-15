@@ -14,8 +14,10 @@ class LoggedInUser(BaseModel):
 class User(BaseModel):
     id: str = Field(default_factory=uuid.uuid4, alias="_id")
     username: str = Field(..., max_length=16)
+    fullname: str = Field(..., max_length=32)
     email: str = EmailStr(...)
     pwd: str = Field(...)
+    role: str = Field(default_factory=lambda: "user", max_length=16)
     created_at: str = Field(default_factory=datetime.utcnow)
 
     @validator('username')
@@ -42,6 +44,7 @@ class User(BaseModel):
         schema_extra = {
             "example": {
                 "username": "user",
+                "fullname": "User Anderson",
                 "email": "example@mail.com",
                 "pwd": "password",
             }
