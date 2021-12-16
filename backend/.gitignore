@@ -1,5 +1,6 @@
 .env
 .vscode
+<<<<<<< HEAD
 
 
 # Byte-compiled / optimized / DLL files
@@ -59,3 +60,6 @@ docs/_build/
 
 # PyBuilder
 target/
+=======
+/venv
+>>>>>>> 23f1ebf6558b93acfa44fa720c0eb53e144d033f
