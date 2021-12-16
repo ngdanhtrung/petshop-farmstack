@@ -8,7 +8,7 @@ const Products = ({ products }) => {
   return (
     <>
     <Icon title = "Các sản phẩm cho thú cưng của bạn"/>
-    <div>
+    <div className="row-products">
       {products.map((product) => (
         <Product key={product.id} product={product} />
         ))}
