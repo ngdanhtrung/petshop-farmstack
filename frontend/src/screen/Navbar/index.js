@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./styles.css";
-import  {connect} from  'react-redux';
+import { connect } from "react-redux";
 import { Link, NavLink, Switch, Route, Redirect } from "react-router-dom";
 import data from "./data";
 import Home from "../Home/index";
@@ -10,7 +10,7 @@ import Login from "../Login/index";
 import Register from "../Register/index";
 import Pets from "../Pets/index";
 import Products from "../Products/Products";
-import Cart from "../Cart/index"
+import Cart from "../Cart/index";
 import { CustomDialog } from "react-st-modal";
 import axios from "axios";
 // const navName = ["TRANG CHỦ", "DỊCH VỤ", "THÚ CƯNG", "SẢN PHẨM", "BỘ SƯU TẬP", "GIỎ HÀNG", "LIÊN HỆ"]
@@ -18,22 +18,24 @@ import axios from "axios";
 const Navbar = ({ cart }) => {
   const [username, setUsername] = useState("");
   const getUserRequest = `${process.env.REACT_APP_API_KEY}users/me`;
+  const getCartRequest = `${process.env.REACT_APP_API_KEY}items/listItems`;
+
   const [cartCount, setCartCount] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
-  const a = [];
-  console.log(typeof a)
-  useEffect(() => {
-    let count = 0;
-    let price = 0;
-    console.log(typeof cart)
-    cart.forEach((item) => {
-      count += item.qty;
-      price += item.qty * item.price;
-    });
+  const [cart1, setCart] = useState([]);
 
-    setCartCount(count);
-    setTotalPrice(price);
-  }, [cart, cartCount, totalPrice]);
+  const getCart = async () => {
+    await axios
+      .get(getCartRequest, {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("access_token"),
+        },
+      })
+      .then((res) => {
+        setCart(res.data.cart);
+        console.log(res.data.cart);
+      });
+  };
 
   const getLoggedInUser = async () => {
     await axios
@@ -48,7 +50,20 @@ const Navbar = ({ cart }) => {
       })
       .catch((error) => console.log(error));
   };
+
+  useEffect(() => {
+    let count = 0;
+    let price = 0;
+    cart1.forEach((item) => {
+      count += item.quantity;
+      price += item.quantity * item.value;
+    });
+
+    setCartCount(count);
+    setTotalPrice(price);
+  }, [cart1]);
   useEffect(getLoggedInUser, []);
+  useEffect(getCart, []);
 
   return (
     <>
@@ -70,7 +85,14 @@ const Navbar = ({ cart }) => {
                 {value.name}
               </NavLink>
             ))}
-            <NavLink className="navbar-name"activeStyle={{ fontWeight: "900", color: "#FFF338" }} to='/Cart'>GIỎ HÀNG {cartCount} </NavLink>
+            <NavLink
+              className='navbar-name'
+              activeStyle={{ fontWeight: "900", color: "#FFF338" }}
+              to='/Cart'
+            >
+              {/* GIỎ HÀNG {cartCount}{" "} */}
+              GIỎ HÀNG
+            </NavLink>
           </div>
         </nav>
 

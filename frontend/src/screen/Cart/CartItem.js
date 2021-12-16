@@ -19,21 +19,25 @@ const CartItem = ({ item, getCart }) => {
       });
   };
   const updateCart = async (qty) => {
-    await axios.put(
-      urlRequest,
-      {
-        id: item.id,
-        name: item.name,
-        image: item.image,
-        quantity: qty,
-        value: item.value,
-      },
-      {
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem("access_token"),
+    await axios
+      .put(
+        urlRequest,
+        {
+          id: item.id,
+          name: item.name,
+          image: item.image,
+          quantity: qty,
+          value: item.value,
         },
-      }
-    );
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("access_token"),
+          },
+        }
+      )
+      .then(() => {
+        getCart();
+      });
   };
 
   const onChangeHandler = (e) => {

@@ -7,16 +7,6 @@ const Cart = ({ cart }) => {
   const [totalPrice, setTotalPrice] = useState(0);
   const [totalItem, setTotalItem] = useState(0);
   const [cart1, setCart] = useState([]);
-  useEffect(() => {
-    let items = 0;
-    let price = 0;
-    cart.forEach((item) => {
-      items += item.qty;
-      price += item.qty * item.price;
-    });
-    setTotalPrice(price);
-    setTotalItem(items);
-  }, [cart, totalPrice, totalItem, setTotalPrice, setTotalItem]);
 
   const urlRequest = `${process.env.REACT_APP_API_KEY}items/listItems`;
 
@@ -32,6 +22,16 @@ const Cart = ({ cart }) => {
         console.log(res.data.cart);
       });
   };
+  useEffect(() => {
+    let items = 0;
+    let price = 0;
+    cart1.forEach((item) => {
+      items += item.quantity;
+      price += item.quantity * item.value;
+    });
+    setTotalPrice(price);
+    setTotalItem(items);
+  }, [cart1]);
 
   useEffect(getCart, []);
 
