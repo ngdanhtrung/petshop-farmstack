@@ -49,7 +49,7 @@ const ProfilePet = () => {
               </li>
               <li>
                 <FaPaw className='li-icon' />
-                Tuổi: {pet.extra.age}
+                Ngày sinh: {pet.extra.age}
               </li>
               <li>
                 <FaPaw className='li-icon' />
