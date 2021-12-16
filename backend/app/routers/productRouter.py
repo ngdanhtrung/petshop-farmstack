@@ -53,7 +53,7 @@ async def get_single_product(id):
 
 
 @router.get('/searchItems/{keywords}')
-async def search_for_items(keywords: str):
+async def search_for_items(keywords):
     isPet = False
     response = await dbItem.search(keywords, isPet)
     if response:
