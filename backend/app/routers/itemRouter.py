@@ -26,8 +26,8 @@ async def add_item_to_cart(cart: Cart,
     raise HTTPException(400, f'there is no user with the username {username}')
 
 
-@router.delete('/removeItem/')
-async def remove_item_from_cart(id: str,
+@router.delete('/removeItem/{id}')
+async def remove_item_from_cart(id,
                                 username: str = Depends(
                                     dbUser.get_current_username)):
     response = await dbUser.delete_from_cart(username, id)
@@ -48,5 +48,12 @@ async def list_items_by_username(username: str = Depends(
 async def clear_users_cart(username: str = Depends(
     dbUser.get_current_username)):
     response = await dbUser.clear_cart(username)
+    if response:
+        return response
+
+
+@router.get('/cartCount')
+async def get_cart_count(username: str = Depends(dbUser.get_current_username)):
+    response = await dbUser.get_cart_count(username)
     if response:
         return response

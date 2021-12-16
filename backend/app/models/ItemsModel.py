@@ -59,5 +59,7 @@ class EditItem(BaseModel):
 
 class Cart(BaseModel):
     id: str = Field(...)
+    name: str
+    image: str
     quantity: int = 1
     value: int = 1000
