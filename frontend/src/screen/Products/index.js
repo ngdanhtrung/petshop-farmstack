@@ -11,20 +11,14 @@ const Product = ({product, addCart, loadCurrentItem}) => {
     return (
         <Switch>
             <Route exact path={path}>
-                <div>
-                    <div className="row-products">
-                        <div className="col-products">
-                            <img alt = "a"src={product.img}></img>
-                            <button className="" onClick={() => addCart(product.id)}>+</button>
-                            <Link onClick={() => loadCurrentItem(product)}
-                                    to={`${url}/${product.id}`}>
-                                Xem chi tiết
-                            </Link>
-                            <h3>{product.name}</h3>
-                            <div>{product.price}</div>
-                        </div>
-                    </div>
-                </div>
+                <Link onClick={() => loadCurrentItem(product)}
+                            to={`${url}/${product.id}`} className="col-products link-products">
+                    <img alt = "a"src={product.img}></img>
+                    <div className="type">{product.type}</div>
+                    <h3>{product.name}</h3>
+                    <div class="price">{product.price} đ</div>
+                    <button className="btn-add-to-cart" onClick={() => addCart(product.id)}>Thêm vào giỏ hàng</button>
+                    </Link>
             </Route>
             <Route path={`${path}/:id`}>
                 <ProductDetails/>

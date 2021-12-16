@@ -29,9 +29,15 @@ const Register = () => {
           // console.log(response);
         })
         .catch((error) => {
-          if (error.response.data.detail[0].msg)
-            setError(error.response.data.detail[0].msg);
-          else setError(error.response.data.detail);
+          console.log(error.response);
+          let message;
+          if (error.response !== undefined && error.response.data !== undefined && error.response.data.detail !== undefined && error.response.data.detail[0] != undefined) {
+            let detail = error.response.data.detail;
+            message = detail[0].msg ? detail[0].msg : detail;
+          } else {
+            message = "Lỗi request!";
+          }
+          setError(message);
         });
     }
   };

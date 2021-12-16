@@ -5,12 +5,28 @@ const data = [
         img: SP1,
         price: 20000,
         name: "Classic Pets Beef Flavour",
+        type: "Thức ăn"
     },
     {
         id: 2,
-        img: SP1,
+        img: 'http://www.shmai.com/preview/pawrex-html/images/resource/products/2.jpg',
         price: 30000,
         name: "Classic Pets Beef Flavour",
+        type: "Phụ kiện"
+    },
+    {
+        id: 2,
+        img: 'http://www.shmai.com/preview/pawrex-html/images/resource/products/2.jpg',
+        price: 30000,
+        name: "Classic Pets Beef Flavour",
+        type: "Phụ kiện"
+    },
+    {
+        id: 2,
+        img: 'http://www.shmai.com/preview/pawrex-html/images/resource/products/2.jpg',
+        price: 30000,
+        name: "Classic Pets Beef Flavour",
+        type: "Phụ kiện"
     },
 ]
 export default data;

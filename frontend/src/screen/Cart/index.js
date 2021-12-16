@@ -18,7 +18,6 @@ const Cart = ({cart}) => {
       }, [cart, totalPrice, totalItem, setTotalPrice, setTotalItem]);
     return (
         <div>
-            
             <table className="table">
             <thead>
                     <tr>

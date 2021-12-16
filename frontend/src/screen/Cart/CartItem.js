@@ -10,24 +10,13 @@ const CartItem = ( {item, removeCart, adjQty} ) => {
   };
     return (
         <div>
-            {/* <div>
-                <img alt="img" src={item.img}></img>
-                <div>{item.name}</div>
-                <input
-            min='1'
-            type='number'
-            id='qty'
-            name='qty'
-            value={input}
-            onChange={onChangeHandler}
-          />
-            </div>  */}
             <table className="table">
                 <tr>
                     <td className="title-table table-name">{item.name}</td>
                     <td className="table-img"><img className="img-card"  src={item.img}></img></td>
                     <td className="table-price">{item.price}</td>
-                    <td className="table-numbercount"><input min='1'
+                    <td className="table-numbercount">
+                      <input min='1'
                             type='number'
                             id='qty'
                             name='qty'

@@ -23,12 +23,12 @@ class User(BaseModel):
     @validator('username')
     def name_must_not_contain_space(cls, v):
         if ' ' in v:
-            raise ValueError('must not contain spaces')
+            raise ValueError('Tên người dùng không được có khoảng trắng')
         return v
 
     @validator('username')
     def username_alphanumeric(cls, v):
-        assert v.isalnum(), 'must be alphanumeric'
+        assert v.isalnum(), 'Tên người dùng chỉ được chứa chữ cái và số'
         return v
 
     @validator('email')
