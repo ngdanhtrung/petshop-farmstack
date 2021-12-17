@@ -49,6 +49,11 @@ async def list_pets():
         pets.append(ItemsModel.Item(**document))
     return pets
 
+async def count_pets():
+    return await collection.count_documents({"isPet": True})
+
+async def count_items():
+    return await collection.count_documents({"isPet": False})
 
 async def list_products():
     items = []

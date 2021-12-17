@@ -23,7 +23,7 @@ class User(BaseModel):
     email: str = EmailStr(...)
     pwd: str = Field(...)
     role: str = Field(default_factory=lambda: "user", max_length=16)
-    created_at: datetime = Field(default_factory=datetime.utcnow)
+    created_at: datetime = Field(default_factory=datetime.now)
 
     @validator('username')
     def name_must_not_contain_space(cls, v):

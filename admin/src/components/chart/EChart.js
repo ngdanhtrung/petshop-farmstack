@@ -13,53 +13,66 @@
 import ReactApexChart from "react-apexcharts";
 import { Row, Col, Typography } from "antd";
 import eChart from "./configs/eChart";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 function EChart() {
   const { Title, Paragraph } = Typography;
 
+  const [users, setUsers] = useState();
+  const [pets, setPets] = useState();
+  const [products, setProducts] = useState();
+
+  // const urlRequest = `${process.env.REACT_APP_API_KEY}admin`;
+
+  useEffect(() => {
+    axios.get(`${process.env.REACT_APP_API_KEY}admin/count/`).then((res) => {
+      setUsers(res.data.users);
+      setPets(res.data.pets);
+      setProducts(res.data.items);
+      console.log(res.data);
+    });
+  }, []);
+
   const items = [
     {
-      Title: "3,6K",
-      user: "Users",
+      Title: users,
+      user: "Người dùng",
     },
     {
-      Title: "2m",
-      user: "Clicks",
+      Title: pets,
+      user: "Thú nuôi",
     },
     {
-      Title: "$772",
-      user: "Sales",
+      Title: products,
+      user: "Sản phẩm",
     },
     {
-      Title: "82",
-      user: "Items",
+      Title: 0,
+      user: "Thu Nhập",
     },
   ];
 
   return (
     <>
-      <div id="chart">
+      <div id='chart'>
         <ReactApexChart
-          className="bar-chart"
+          className='bar-chart'
           options={eChart.options}
           series={eChart.series}
-          type="bar"
-          height={220}
+          type='bar'
+          height={300}
         />
       </div>
-      <div className="chart-vistior">
-        <Title level={5}>Active Users</Title>
-        <Paragraph className="lastweek">
-          than last week <span className="bnb2">+30%</span>
-        </Paragraph>
-        <Paragraph className="lastweek">
-          We have created multiple options for you to put together and customise
-          into pixel perfect pages.
+      <div className='chart-vistior'>
+        <Title level={5}>Bảng thống kê số lượng người dùng</Title>
+        <Paragraph className='lastweek'>
+          Đây là bảng thống kê số lượng người dùng trong 9 tháng vừa qua
         </Paragraph>
         <Row gutter>
           {items.map((v, index) => (
             <Col xs={6} xl={6} sm={6} md={6} key={index}>
-              <div className="chart-visitor-count">
+              <div className='chart-visitor-count'>
                 <Title level={4}>{v.Title}</Title>
                 <span>{v.user}</span>
               </div>

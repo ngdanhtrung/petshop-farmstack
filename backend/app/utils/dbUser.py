@@ -38,6 +38,8 @@ async def fetch_all_users():
         users.append(UsersModel.User(**document))
     return users
 
+async def count_users():
+    return await collection.count_documents({})
 
 def encrypt_password(password):
     return pwd_context.hash(password)
