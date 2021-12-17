@@ -9,21 +9,18 @@ import ProductDetails from './ProductDetails/index'
 const Product = ({product, addCart, loadCurrentItem}) => {
     let { path, url } = useRouteMatch();
     return (
-        <Switch>
-            <Route exact path={path}>
-                <Link onClick={() => loadCurrentItem(product)}
-                            to={`${url}/${product.id}`} className="col-products link-products">
-                    <img alt = "a"src={product.img}></img>
-                    <div className="type">{product.type}</div>
-                    <h3>{product.name}</h3>
-                    <div class="price">{product.price} đ</div>
-                    <button className="btn-add-to-cart" onClick={() => addCart(product.id)}>Thêm vào giỏ hàng</button>
-                    </Link>
-            </Route>
-            <Route path={`${path}/:id`}>
-                <ProductDetails/>
-            </Route>
-        </Switch>
+        
+        <div  className="col-products link-products">
+            <Link onClick={() => loadCurrentItem(product)}
+                    to={`${url}/${product.id}`}
+                    className="img-products"><img alt = "a"src={product.img}></img></Link>
+            <div className="type">{product.type}</div>
+            <Link onClick={() => loadCurrentItem(product)}
+                    to={`${url}/${product.id}`}
+                    className="name-products"><h3>{product.name}</h3></Link>
+            <div class="price">{product.price} đ</div>
+            <button className="btn-add-to-cart" onClick={() => addCart(product.id)}>Thêm vào giỏ hàng</button>
+        </div>  
     )
 }
 
