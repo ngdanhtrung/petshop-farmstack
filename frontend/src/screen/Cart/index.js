@@ -23,41 +23,46 @@ const Cart = ({ cart }) => {
       });
   };
   useEffect(() => {
-    let items = 0;
-    let price = 0;
-    cart1.forEach((item) => {
-      items += item.quantity;
-      price += item.quantity * item.value;
-    });
-    setTotalPrice(price);
-    setTotalItem(items);
+    if (cart1) {
+      let items = 0;
+      let price = 0;
+      cart1.forEach((item) => {
+        items += item.quantity;
+        price += item.quantity * item.value;
+      });
+      setTotalPrice(price);
+      setTotalItem(items);
+    }
   }, [cart1]);
 
   useEffect(getCart, []);
 
   return (
-    <div>
-      <table className='table'>
-        <thead>
-          <tr>
-            <th className='table-name'>Tên sản phẩm</th>
-            <th className='table-img'>Ảnh</th>
-            <th className='table-price'>Giá</th>
-            <th className='table-numbercount'>Số lượng</th>
-            <th></th>
-          </tr>
-        </thead>
-      </table>
-      {cart1.map((value) => (
-        <CartItem key={value.id} item={value} getCart={getCart}></CartItem>
-      ))}
-      {/*                 
+    <>
+      <div>
+        <table className='table'>
+          <thead>
+            <tr>
+              <th className='table-name'>Tên sản phẩm</th>
+              <th className='table-img'>Ảnh</th>
+              <th className='table-price'>Giá</th>
+              <th className='table-numbercount'>Số lượng</th>
+              <th></th>
+            </tr>
+          </thead>
+        </table>
+        {cart1 &&
+          cart1.map((value) => (
+            <CartItem key={value.id} item={value} getCart={getCart}></CartItem>
+          ))}
+        {/*                 
             <div>Số lượng: {totalItem}</div> */}
-      <div className='row-sum'>
-        <div className='sum-count'>Tổng trị giá: </div>
-        <div className='sum-count-price'>{totalPrice}</div>
+        <div className='row-sum'>
+          <div className='sum-count'>Tổng trị giá: </div>
+          <div className='sum-count-price'>{totalPrice}</div>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
