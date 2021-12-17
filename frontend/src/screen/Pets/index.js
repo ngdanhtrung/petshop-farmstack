@@ -84,7 +84,7 @@ const Pets = () => {
               </div>
             </>
           </Route>
-          <Route path={`${path}/:id`}>
+          <Route exact path={`${path}/:id`} key={`${path}/:id`}>
             <ProfilePet />
           </Route>
         </Switch>

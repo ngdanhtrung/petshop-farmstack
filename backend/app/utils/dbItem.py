@@ -87,3 +87,21 @@ async def search(keyword, boolean):
     async for document in cursor:
         results.append(ItemsModel.Item(**document))
     return results
+
+async def recommend(keyword, boolean, id):
+    await collection.create_index([("name", pymongo.TEXT)])
+    results = []
+    # cursor = collection.find({"isPet": boolean, "$text": {"$search": keyword, "$diacriticSensitive": True} })
+    recommend = collection.aggregate([
+       { "$search": {
+            "text" : {
+                "path" : "name",
+                "query": keyword,
+                "fuzzy": {}
+            }
+        }
+    }, { "$match" : { "isPet" : boolean , "_id": {"$not": {"$eq": id}}} },  { "$limit" : 3 }, 
+    ])
+    async for document in recommend:
+        results.append(ItemsModel.Item(**document))
+    return results

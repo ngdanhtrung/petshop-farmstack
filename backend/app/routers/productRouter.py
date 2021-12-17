@@ -66,3 +66,10 @@ async def search_for_pets(keywords):
     response = await dbItem.search(keywords, isPet)
     if response:
         return response
+
+@router.get('/recommendPets/{keywords}/{id}')
+async def recommend_pets(keywords, id):
+    isPet = True
+    response = await dbItem.recommend(keywords, isPet, id)
+    if response:
+        return response

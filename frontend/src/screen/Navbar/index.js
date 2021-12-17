@@ -51,17 +51,17 @@ const Navbar = ({ cart }) => {
       .catch((error) => console.log(error));
   };
 
-  useEffect(() => {
-    let count = 0;
-    let price = 0;
-    cart1.forEach((item) => {
-      count += item.quantity;
-      price += item.quantity * item.value;
-    });
+  // useEffect(() => {
+  //   let count = 0;
+  //   let price = 0;
+  //   cart1.forEach((item) => {
+  //     count += item.quantity;
+  //     price += item.quantity * item.value;
+  //   });
 
-    setCartCount(count);
-    setTotalPrice(price);
-  }, [cart1]);
+  //   setCartCount(count);
+  //   setTotalPrice(price);
+  // }, [cart1]);
   useEffect(getLoggedInUser, []);
   useEffect(getCart, []);
 

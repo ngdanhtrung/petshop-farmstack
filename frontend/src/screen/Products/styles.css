@@ -56,6 +56,9 @@ background: #e5a62d;
 .row-products {
     display:flex;
     flex-direction: row;
+    flex-flow: row wrap;
+    margin-left: 10%;
+    margin-right: auto;
 }
 
 .col-products .price{
