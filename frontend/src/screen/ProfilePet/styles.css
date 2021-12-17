@@ -1,110 +1,108 @@
 .profile-pet {
-    margin: 30px;
-    padding: 20px;
-    display: flex;
-    flex-direction: row;
+  margin: 30px;
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
 }
 
 .img-pet {
-    width: 50%;
-    height: 360px;
-    border-radius: 75% 30% 30% 80% / 43% 46% 64% 66%;
+  width: 50%;
+  height: 360px;
+  border-radius: 75% 30% 30% 80% / 43% 46% 64% 66%;
 }
 
-.profile-content h3 {
-    margin-left: 20px;
-    font-family: 'Cabin', sans-serif;
-    font-size: 36px;
+.profile-pet .profile-content h3 {
+  margin-left: 20px;
+  font-family: "Cabin", sans-serif;
+  font-size: 36px;
 }
 
-.profile-content h3 span {
-    color:#343434;
-    font-style: italic;
+.profile-pet .profile-content h3 span {
+  color: #343434;
+  font-style: italic;
 }
 
-.profile-content ul li{
-    display: inline-block;
-    width: 40%;
+.profile-content ul li {
+  display: inline-block;
+  width: 40%;
 }
 
 .btn-profile-adopt {
-    font-size: 20px;
+  font-size: 20px;
 }
 
 .btn-adopt1 {
-    text-align: left;
-    margin-left: 30px;
+  text-align: left;
+  margin-left: 30px;
 }
 
 .row-profile-pet {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
-.col {
-    margin-top: 30px;
-    width: 30%;
-    box-shadow: 0 0 20px #d6d2f8;
-    border: 1px solid #ecebf7;
-    border-radius:10px;
-    margin: 20px;
-    text-align: center;
-    margin-bottom: 20px;
+.col-pet {
+  margin-top: 30px;
+  width: 30%;
+  box-shadow: 0 0 20px #d6d2f8;
+  border: 1px solid #ecebf7;
+  border-radius: 10px;
+  margin: 20px;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 .btn-1 {
-    margin-top: 30px;
-    margin: 0 auto;
+  margin-top: 30px;
+  margin: 0 auto;
 }
 
- .row-profile-pet .profile-card-more img {
-    /* background-image: url('../../img/pet-4.png'); */
-    background-position: center;
-    background-size: cover;
-    height: 250px;
-    width: 100%;
-    border-radius: 10px 10px 0px 0px;
+.row-profile-pet .profile-card-more img {
+  /* background-image: url('../../img/pet-4.png'); */
+  background-position: center;
+  background-size: cover;
+  height: 250px;
+  width: 100%;
+  border-radius: 10px 10px 0px 0px;
 }
 
-.profile-card-more .icon-profile img{
-    height: 100%;
-    width: 100%;
-    border-radius: 50%;
-    padding: 0px;
-    border: 5px #fff solid;
+.profile-card-more .icon-profile img {
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+  padding: 0px;
+  border: 5px #fff solid;
 }
 
 .icon-profile {
-    position: relative;
-    top: -45px;
-    display: inline-block;
-    width: 105px;
-    height: 105px;
-    border-radius: 50%;
+  position: relative;
+  top: -45px;
+  display: inline-block;
+  width: 105px;
+  height: 105px;
+  border-radius: 50%;
 }
 
 .btn-icon {
-    background:#fff ;
-    margin-left: 0 auto;
-    margin-right: 0 auto;
-    box-shadow: 0 0 10px #949292;
-    font-size: 40px;
-    border-radius: 50%;
+  background: #fff;
+  margin-left: 0 auto;
+  margin-right: 0 auto;
+  box-shadow: 0 0 10px #949292;
+  font-size: 40px;
+  border-radius: 50%;
 }
 
 .view-more {
-    background:#e7470c;
-    text-decoration: none;
-    color:#fff;
-    border-radius: 20px;
-    padding: 15px;
-    font-family: 'Gluten', cursive;
-    margin-left: 0 auto;
-    margin-right: 0 auto;
+  background: #e7470c;
+  text-decoration: none;
+  color: #fff;
+  border-radius: 20px;
+  padding: 15px;
+  font-family: "Gluten", cursive;
+  margin-left: 0 auto;
+  margin-right: 0 auto;
 }
 
-.view-more Link{
-    
+.view-more Link {
 }
-

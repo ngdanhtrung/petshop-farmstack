@@ -45,8 +45,8 @@ const Products = ({ products }) => {
 
       <Switch>
         <Route exact path={path}>
-          <Icon title='Các sản phẩm cho thú cưng của bạn' />
-          <div className='row-products'>
+          <Icon title="Các sản phẩm cho thú cưng của bạn" />
+          <div className="row-products">
             {items ? (
               items.map((product) => (
                 <Product key={product._id} product={product} />

@@ -1,83 +1,82 @@
-@import url('https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@600&display=swap");
 .container-service {
-    /* margin-top: 110px; */
-    background-image: url('../../img/pattern-8\(2\).png')
+  /* margin-top: 110px; */
+  background-image: url("../../img/pattern-8\(2\).png");
 }
 
 .cards {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
-
-.card {
-    background-image: url(../../img/3.png);
-    width: 40%;
-    margin: 20px;
-    border-radius: 20px;
-    box-shadow: 0 0px 8px rgb(148, 135, 135);
+.cards .card {
+  background-image: url(../../img/3.png);
+  width: 40%;
+  margin: 20px;
+  border-radius: 20px;
+  box-shadow: 0 0px 8px rgb(148, 135, 135);
 }
 
 .icon-card {
-    margin-top: 15px;
-    width: 100px;
-    height: 100px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+  margin-top: 15px;
+  width: 100px;
+  height: 100px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .content-card {
-    font-family: 'Baloo Bhaijaan 2', cursive;
-    padding: 10px;
-    text-align: justify;
+  font-family: "Baloo Bhaijaan 2", cursive;
+  padding: 10px;
+  text-align: justify;
 }
 
 .title-card {
-    margin-top: 10px;
-    font-family: 'Baloo Bhaijaan 2', cursive;
-    padding-left: 10px;
-    text-align: center;
-    font-size: 24px;
+  margin-top: 10px;
+  font-family: "Baloo Bhaijaan 2", cursive;
+  padding-left: 10px;
+  text-align: center;
+  font-size: 24px;
 }
 
 .orangee {
-    color: #e7470c;
+  color: #e7470c;
 }
 
 .puplee {
-    color: #630abb;
+  color: #630abb;
 }
 
 .send-request {
-    background-color: #334756;
-    border-radius: 20px;
-    width: 50%;
-    color: #fff;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-    padding: 20px;
+  background-color: #334756;
+  border-radius: 20px;
+  width: 50%;
+  color: #fff;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  padding: 20px;
 }
 
 .form2 {
-    font-family: 'Baloo Bhaijaan 2', cursive;
-    margin: 10px;
+  font-family: "Baloo Bhaijaan 2", cursive;
+  margin: 10px;
 }
 
 .select {
-    width: 300px;
-    font-family: 'Baloo Bhaijaan 2', cursive;
-    border-radius: 20px;
-    margin-left: 20px;
-    height: 50px;
-    font-size: 20px;
+  width: 300px;
+  font-family: "Baloo Bhaijaan 2", cursive;
+  border-radius: 20px;
+  margin-left: 20px;
+  height: 50px;
+  font-size: 20px;
 }
 
 .label-ser {
-    width: 100px;
-    min-width: 100px;
-    font-size: 20px;
+  width: 100px;
+  min-width: 100px;
+  font-size: 20px;
 }

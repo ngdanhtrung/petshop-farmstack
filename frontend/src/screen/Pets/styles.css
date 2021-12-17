@@ -1,72 +1,70 @@
-@import url('https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@600;800&family=Cabin:wght@400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@600;800&family=Cabin:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap");
 
 .container-pets {
-    background-image: url('./../../img/pattern-8\(2\).png');
+  background-image: url("./../../img/pattern-8\(2\).png");
 }
 .menber {
-    width: 30%;
-    margin: 20px;
-    margin-left: auto;
-    margin-right: auto;
+  width: 30%;
+  margin: 20px;
+  margin-left: auto;
+  margin-right: auto;
 }
-.row {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+.container-pets_row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 .img-pets {
-    border-radius: 75% 30% 30% 80% / 43% 46% 64% 66%;
-    width: 350px;
-    height: 240px;
-    
+  border-radius: 75% 30% 30% 80% / 43% 46% 64% 66%;
+  width: 350px;
+  height: 240px;
 }
 
 h4 {
-    text-align: center;
-    font-family: 'Cabin', sans-serif;
-    font-size: 28px;
+  text-align: center;
+  font-family: "Cabin", sans-serif;
+  font-size: 28px;
 }
 
 ul {
-    padding: 15px;
-    margin-left: 20px;
+  padding: 15px;
+  margin-left: 20px;
 }
 li {
-    list-style: none;
-    font-family: 'Lato', sans-serif;
-    margin-bottom: 10px;
+  list-style: none;
+  font-family: "Lato", sans-serif;
+  margin-bottom: 10px;
 }
 
 .li-icon {
-    color: #e5a62d;
-    margin-right: 10px;
+  color: #e5a62d;
+  margin-right: 10px;
 }
 .btn-adopt {
-    text-align: center;
-    margin-bottom: 30px;
+  text-align: center;
+  margin-bottom: 30px;
 }
 .adopt {
-    padding: 10px 20px;
-    font-size: 14px;
-    font-weight: bold;
-    text-transform: capitalize;
-    transition: .5s;
-    box-shadow: 0px 5px 5px #343434;
-    color: #fff;
-    background:#630abb;
-    border: 2px solid #630abb;
-    border-radius: 50px;
-    border-top-right-radius: 0px;
-    transition: 0.3s;
-    overflow: hidden;
-    display: inline-block;
-    text-decoration: none;
-    font-family: 'Lato', sans-serif;
-    border: 0.3px #fff solid;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: capitalize;
+  transition: 0.5s;
+  box-shadow: 0px 5px 5px #343434;
+  color: #fff;
+  background: #630abb;
+  border: 2px solid #630abb;
+  border-radius: 50px;
+  border-top-right-radius: 0px;
+  transition: 0.3s;
+  overflow: hidden;
+  display: inline-block;
+  text-decoration: none;
+  font-family: "Lato", sans-serif;
+  border: 0.3px #fff solid;
 }
 
 .adopt:hover {
-    transform: scale(1.2, 1.2);
+  transform: scale(1.2, 1.2);
 }
-

@@ -24,7 +24,7 @@
     text-align: center;
 }
 
-input {
+.form input {
     display: block;
     width: 30%;
     height: 20px;

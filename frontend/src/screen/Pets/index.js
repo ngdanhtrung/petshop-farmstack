@@ -39,38 +39,38 @@ const Pets = () => {
   useEffect(searchPets, [input]);
   return (
     <>
-      <input value={input} onChange={onChangeHandler} />
-      <div className='container-pets'>
+      <div className="container-pets">
         <Switch>
           <Route exact path={path}>
             <>
-              <Icon title='Nhận nuôi thú cưng' />
-              <div className='row'>
+              <input value={input} onChange={onChangeHandler} />
+              <Icon title="Nhận nuôi thú cưng" />
+              <div className="container-pets_row">
                 {pets ? (
                   pets.map((value) => (
-                    <div className='menber'>
+                    <div className="menber">
                       <div>
-                        <img className='img-pets' src={value.image}></img>
+                        <img className="img-pets" src={value.image}></img>
                       </div>
-                      <div className='content'>
+                      <div className="content">
                         <h4>{value.name}</h4>
-                        <ul className='info-pet'>
+                        <ul className="info-pet">
                           <li>
-                            <FaPaw className='li-icon' />
+                            <FaPaw className="li-icon" />
                             Loại: {value.extra.type}
                           </li>
                           <li>
-                            <FaPaw className='li-icon' />
+                            <FaPaw className="li-icon" />
                             Tuổi: {value.extra.age}
                           </li>
                           <li>
-                            <FaPaw className='li-icon' />
+                            <FaPaw className="li-icon" />
                             Đặc điểm: {value.extra.characteristic}
                           </li>
                         </ul>
                       </div>
-                      <div className='btn-adopt'>
-                        <Link className='adopt' to={`/Pets/${value._id}`}>
+                      <div className="btn-adopt">
+                        <Link className="adopt" to={`/Pets/${value._id}`}>
                           Nhận nuôi <FaPaw />
                         </Link>
                       </div>

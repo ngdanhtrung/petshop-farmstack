@@ -47,48 +47,48 @@ const ProfilePet = () => {
     <>
       {pet && (
         <>
-          <div className='profile-pet'>
-            <img className='img-pet' src={pet.image}></img>
-            <div className='profile-content'>
+          <div className="profile-pet">
+            <img className="img-pet" src={pet.image}></img>
+            <div className="profile-content">
               <h3>
                 Tên: <span>{pet.name}</span>
               </h3>
-              <ul className='info-pet'>
+              <ul className="info-pet">
                 <li>
-                  <FaPaw className='li-icon' />
+                  <FaPaw className="li-icon" />
                   Giống: {pet.extra.gender}
                 </li>
                 <li>
-                  <FaPaw className='li-icon' />
+                  <FaPaw className="li-icon" />
                   Loại: {pet.extra.type}
                 </li>
                 <li>
-                  <FaPaw className='li-icon' />
+                  <FaPaw className="li-icon" />
                   Xuất xứ: {pet.extra.origin}
                 </li>
                 <li>
-                  <FaPaw className='li-icon' />
+                  <FaPaw className="li-icon" />
                   Ngày sinh: {pet.extra.age}
                 </li>
                 <li>
-                  <FaPaw className='li-icon' />
+                  <FaPaw className="li-icon" />
                   Chiều cao: {pet.extra.height}cm
                 </li>
                 <li>
-                  <FaPaw className='li-icon' />
+                  <FaPaw className="li-icon" />
                   Cân nặng: {pet.extra.weight}kg
                 </li>
                 <li>
-                  <FaPaw className='li-icon' />
+                  <FaPaw className="li-icon" />
                   Đặc điểm: {pet.extra.characteristic}
                 </li>
                 <li>
-                  <FaPaw className='li-icon' />
+                  <FaPaw className="li-icon" />
                   Màu lông: {pet.extra.color}
                 </li>
               </ul>
-              <div className='btn-adopt btn-adopt1 '>
-                <Link className='adopt btn-profile-adopt' to={`${url}`}>
+              <div className="btn-adopt btn-adopt1 ">
+                <Link className="adopt btn-profile-adopt" to={`${url}`}>
                   Nhận nuôi <FaPaw />
                 </Link>
               </div>
@@ -98,23 +98,23 @@ const ProfilePet = () => {
       )}
       {recommend && (
         <>
-          <Icon title='Các thú cưng khác' />
-          <div className='row-profile-pet'>
+          <Icon title="Các thú cưng khác" />
+          <div className="row-profile-pet">
             {recommend.map((pet) => (
-              <div className='col'>
-                <div className='profile-card-more'>
+              <div className="col-pet">
+                <div className="profile-card-more">
                   <img src={pet.image}></img>
-                  <div className='icon-profile'>
+                  <div className="icon-profile">
                     <img src={pet.image}></img>
                   </div>
                 </div>
                 <Link to={`/Pets/${pet._id}`}>
-                  <GrFormNextLink className='btn-icon' />
+                  <GrFormNextLink className="btn-icon" />
                 </Link>
               </div>
             ))}
-            <div className='btn-1'>
-              <Link className='view-more' to='/Pets'>
+            <div className="btn-1">
+              <Link className="view-more" to="/Pets">
                 Xem thêm thú cưng
               </Link>
             </div>

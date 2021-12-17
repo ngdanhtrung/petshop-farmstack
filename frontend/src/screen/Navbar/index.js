@@ -13,6 +13,8 @@ import Products from "../Products/Products";
 import Cart from "../Cart/index";
 import { CustomDialog } from "react-st-modal";
 import axios from "axios";
+import Payment from "../Payment";
+
 // const navName = ["TRANG CHỦ", "DỊCH VỤ", "THÚ CƯNG", "SẢN PHẨM", "BỘ SƯU TẬP", "GIỎ HÀNG", "LIÊN HỆ"]
 
 const Navbar = ({ cart }) => {
@@ -164,6 +166,9 @@ const Navbar = ({ cart }) => {
         </Route>
         <Route path='/Cart'>
           <Cart />
+        </Route>
+        <Route path='/Payment'>
+          <Payment />
         </Route>
       </Switch>
     </>
