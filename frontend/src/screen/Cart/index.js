@@ -72,7 +72,7 @@ const Cart = ({ cart }) => {
                   <span className='sum-count-price'>{totalPrice} đ</span>
                 </li>
               </url>
-              <Link className='btn-order'>Mua ngay</Link>
+              <Link to='/PaymentCart' className='btn-order'>Mua ngay</Link>
         </div>
 
       </div>

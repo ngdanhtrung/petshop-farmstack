@@ -31,11 +31,11 @@ const Payment = () => {
             <Form>
               <h1>Thông tin thanh toán</h1>
               <FormGroup>
-                <Label for="fullname">Ten</Label>
+                <Label for="fullname">Tên</Label>
                 <Input
                   id="fullname"
                   name="fullname"
-                  placeholder="Ten"
+                  placeholder="Tên"
                   type="text"
                 />
               </FormGroup>
@@ -44,7 +44,7 @@ const Payment = () => {
                 <Input
                   id="address"
                   name="address"
-                  placeholder="Dia chi"
+                  placeholder="Địa chỉ"
                   type="text"
                 />
               </FormGroup>
@@ -53,7 +53,7 @@ const Payment = () => {
                 <Input
                   id="phone"
                   name="phone"
-                  placeholder="Dia chi"
+                  placeholder="Số điện thoại"
                   type="text"
                 />
               </FormGroup>

@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./styles.css";
-import data from "./data";
 import Icon from "../../component/Icon/icon2";
 import { FaPaw } from "react-icons/fa";
 import { Link, Switch, Route, useRouteMatch } from "react-router-dom";
 import ProfilePet from "../ProfilePet/index";
 import {FiSearch} from 'react-icons/fi'
 const Pets = () => {
-  let { path, url } = useRouteMatch();
+  let { path } = useRouteMatch();
   const [pets, setPets] = useState([]);
   const [input, setInput] = useState("");
 

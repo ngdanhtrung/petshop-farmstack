@@ -87,8 +87,12 @@ const PaymentCart = () => {
                 </tr>
               </tbody>
             </table>
-            <p style={{ marginTop: "auto" }}>
-              <strong>Trả tiền mặt khi nhận hàng</strong>
+            <hr></hr>
+            <p style={{ marginTop: "auto" }}> Hình thức thanh toán:
+              <strong style={{ float: "right" }}>Trả tiền mặt khi nhận hàng</strong>
+            </p>
+            <p style={{ marginTop: "auto" }}> Tổng tiền:
+              <strong style={{ float: "right" }}></strong>
             </p>
             <Button color="primary">Thanh toán</Button>
           </Col>
