@@ -15,6 +15,13 @@ class Count(BaseModel):
     id: str = Field(default_factory=uuid.uuid4, alias="_id")
     count: int
 
+class FetchedUsers(BaseModel):
+    id: str = Field(default_factory=uuid.uuid4, alias="_id")
+    username: str = Field(..., max_length=16)
+    fullname: Optional[str] = Field(None, max_length=32)
+    email: str = EmailStr(...)
+    role: str = Field(default_factory=lambda: "user", max_length=16)
+    created_at: datetime = Field(default_factory=datetime.now)
 
 class User(BaseModel):
     id: str = Field(default_factory=uuid.uuid4, alias="_id")
