@@ -1,4 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Fuzzy+Bubbles:wght@700&family=Paytone+One&display=swap');
 .product-details {
     display:flex;
     flex-direction: row;
+    align-items: center;
+}
+
+.products-detail-img {
+    width: 40%;
+}
+
+
+ .product-details .content-product-details .product-details-name{
+    text-align: left;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 28px;
+    color: #181818;
+    padding-bottom: 23px;
+    margin: 0;
+    font-weight: 500;
+    font-family: 'Paytone One', sans-serif;
+}
+
+
+.product-details .content-product-details .product-details-price {
+    border-bottom: 1px solid #f0f0f0;
+    text-align: left;
+    padding: 15px;
+    color: #222;
+    font-weight: 400;
+
+}
+.product-details-price span {
+    font-size: 24px;
+    color: #e5a62d;
+    margin-right: 15px;
+    font-family: 'Paytone One', sans-serif;
 }

@@ -34,14 +34,18 @@ const Product = ({ product, addCart, loadCurrentItem }) => {
   };
 
   return (
-    <Link
-      // onClick={() => loadCurrentItem(product)}
-      to={`/Products/${product._id}`}
-      className='col-products link-products'
-    >
-      <img alt='a' src={product.image}></img>
+    <div className="col-products">
+      <Link 
+        onClick={() => loadCurrentItem(product)}
+        to={`/Products/${product._id}`}
+        className=' link-products'
+      >
+        <img alt='a' src={product.image}></img>
+      </Link>
       <div className='type'>{product.extra.type}</div>
-      <h3>{product.name}</h3>
+      <Link onClick={() => loadCurrentItem(product)}
+        to={`/Products/${product._id}`} 
+        className="name-product"><h3>{product.name}</h3></Link>
       <div class='price'>{product.value} đ</div>
       <button
         className='btn-add-to-cart'
@@ -49,7 +53,7 @@ const Product = ({ product, addCart, loadCurrentItem }) => {
       >
         Thêm vào giỏ hàng
       </button>
-    </Link>
+    </div>
   );
 };
 

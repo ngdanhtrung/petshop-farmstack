@@ -61,10 +61,13 @@ const ProductDetails = ({ current, addCart }) => {
       {" "}
       {item && (
         <div className='product-details'>
-          <img alt='img' src={item.image}></img>
+          <img className="products-detail-img" alt='img' src={item.image}></img>
           <div className='content-product-details'>
-            <div>{item.name}</div>
-            <div>{item.value}</div>
+            <div className="product-details-name">{item.name}</div>
+            <div className="product-details-price">
+              <span>{item.value} đ</span>
+            </div>
+            <div>{item.description}</div>
             <td className='table-numbercount'>
               <input
                 min='1'
