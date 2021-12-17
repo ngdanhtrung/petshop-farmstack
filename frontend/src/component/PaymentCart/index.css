@@ -1,0 +1,7 @@
+.tableCart {
+  width: 100%;
+}
+.tableCart th,
+.tableCart td {
+  padding-block: 25px;
+}

@@ -88,7 +88,10 @@ const ProfilePet = () => {
                 </li>
               </ul>
               <div className="btn-adopt btn-adopt1 ">
-                <Link className="adopt btn-profile-adopt" to={`${url}`}>
+                <Link
+                  className="adopt btn-profile-adopt"
+                  to={`/payment/${params.id}`}
+                >
                   Nhận nuôi <FaPaw />
                 </Link>
               </div>

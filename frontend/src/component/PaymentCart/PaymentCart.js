@@ -1,5 +1,6 @@
 import React from "react";
 import {
+  Button,
   Card,
   CardImg,
   Col,
@@ -8,26 +9,15 @@ import {
   FormGroup,
   Row,
 } from "react-bootstrap";
-import { useParams } from "react-router-dom";
-import {
-  Input,
-  Label,
-  CardText,
-  CardSubtitle,
-  Button,
-  CardBody,
-  CardTitle,
-} from "reactstrap";
+import { Input, Label, Table } from "reactstrap";
 
-//import './index.css'
-const Payment = () => {
-  const { id } = useParams();
-  console.log(id);
+import "./index.css";
+const PaymentCart = () => {
   return (
     <>
       <Container className="payment" style={{ marginTop: 30 }}>
         <Row xs="4">
-          <Col xs="8" className="bg-light border">
+          <Col xs="6" className="bg-light border" style={{ padding: 20 }}>
             <Form>
               <h1>Thong tin thanh toan</h1>
               <FormGroup>
@@ -73,27 +63,34 @@ const Payment = () => {
               </FormGroup>
             </Form>
           </Col>
-          <Col xs="4" className="bg-light border">
-            <Card style={{ width: "100%" }}>
-              <CardImg
-                alt="Card image cap"
-                src="https://picsum.photos/256/186"
-                top
-                width="100%"
-              />
-              <CardBody>
-                <CardTitle tag="h5">Card title</CardTitle>
-                <CardSubtitle className="mb-2 text-muted" tag="h6">
-                  Card subtitle
-                </CardSubtitle>
-                <CardText>
-                  This is a wider card with supporting text below as a natural
-                  lead-in to additional content. This content is a little bit
-                  longer.
-                </CardText>
-                <Button>Nhận nuôi</Button>
-              </CardBody>
-            </Card>
+          <Col
+            xs="6"
+            className="bg-light border"
+            style={{ display: "flex", flexDirection: "column", padding: 20 }}
+          >
+            <h1>Don hang cua ban</h1>
+            <table className="tableCart">
+              <thead>
+                <tr>
+                  <th>SẢN PHẨM</th>
+                  <th>TIỀN</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>chó Alaska nâu đỏ × 1</td>
+                  <td>12.000.000₫</td>
+                </tr>
+                <tr>
+                  <td>chó Alaska nâu đỏ × 1</td>
+                  <td>12.000.000₫</td>
+                </tr>
+              </tbody>
+            </table>
+            <p style={{ marginTop: "auto" }}>
+              <strong>Trả tiền mặt khi nhận hàng</strong>
+            </p>
+            <Button color="primary">Thanh toan</Button>
           </Col>
         </Row>
       </Container>
@@ -101,4 +98,4 @@ const Payment = () => {
   );
 };
 
-export default Payment;
+export default PaymentCart;
