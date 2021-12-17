@@ -37,7 +37,7 @@ const ProfilePet = () => {
             <ul className='info-pet'>
               <li>
                 <FaPaw className='li-icon' />
-                Giống: {pet.gender}
+                Giống: {pet.extra.gender}
               </li>
               <li>
                 <FaPaw className='li-icon' />
