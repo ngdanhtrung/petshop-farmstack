@@ -41,7 +41,7 @@ const ProfilePet = () => {
   };
   useEffect(() => {
     getPet();
-  }, []);
+  }, [params.id]);
 
   return (
     <>
@@ -108,7 +108,7 @@ const ProfilePet = () => {
                     <img src={pet.image}></img>
                   </div>
                 </div>
-                <Link to={`${url}`}>
+                <Link to={`/Pets/${pet._id}`}>
                   <GrFormNextLink className='btn-icon' />
                 </Link>
               </div>

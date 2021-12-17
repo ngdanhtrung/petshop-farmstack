@@ -18,8 +18,8 @@ from app.models.ItemsModel import Item
 load_dotenv()
 
 #Client object
-client = motor.motor_asyncio.AsyncIOMotorClient(os.getenv('DB_HOST'))
-# client = motor.motor_asyncio.AsyncIOMotorClient("mongodb+srv://dbMaster:5e9C1QS42KSS4V2c@petshopcluster.2km87.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+# client = motor.motor_asyncio.AsyncIOMotorClient(os.getenv('DB_HOST'))
+client = motor.motor_asyncio.AsyncIOMotorClient("mongodb+srv://dbMaster:5e9C1QS42KSS4V2c@petshopcluster.2km87.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
 database = client[os.getenv('DB_NAME')]
 userTbl = database.users
 paymentTbl = database.payments
