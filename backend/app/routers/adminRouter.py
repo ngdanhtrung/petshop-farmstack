@@ -11,5 +11,11 @@ router = APIRouter()
 async def count():
   users = await dbUser.count_users()
   pets = await dbItem.count_pets()
-  items = await dbItem.count_items()  
+  items = await dbItem.count_items()
   return {"users": users, "pets": pets, "items": items}
+
+@router.get('/countUsers/{time}')
+async def count_users(time):
+  response = await dbUser.count_users_in_month(time)
+  if response:
+    return response

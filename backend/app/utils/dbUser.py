@@ -7,7 +7,7 @@ from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from app.models import UsersModel
 from passlib.context import CryptContext
 from jose import jwt
-
+import pymongo
 import os
 import motor.motor_asyncio
 
@@ -35,11 +35,28 @@ async def fetch_all_users():
     users = []
     cursor = collection.find({})
     async for document in cursor:
-        users.append(UsersModel.User(**document))
+        users.append(UsersModel.FetchedUsers(**document))
     return users
 
 async def count_users():
     return await collection.count_documents({})
+
+async def count_users_in_month(time):
+    await collection.create_index([("created_at", pymongo.TEXT)])
+    results = []
+    # cursor = collection.find({"isPet": boolean, "$text": {"$search": keyword, "$diacriticSensitive": True} })
+    cursor = collection.aggregate([
+       { "$search": {
+            "text" : {
+                "path" : "created_at",
+                "query": time,
+                "fuzzy": {}
+            }
+        }
+    },])
+    async for document in cursor:
+        results.append(UsersModel.Item(**document))
+    return results
 
 def encrypt_password(password):
     return pwd_context.hash(password)
