@@ -69,7 +69,16 @@ async def fetch_one_product(id):
 async def search(keyword, boolean):
     await collection.create_index([("name", pymongo.TEXT)])
     results = []
-    cursor = collection.find({"isPet": boolean, "$text": {"$search": keyword}})
+    # cursor = collection.find({"isPet": boolean, "$text": {"$search": keyword, "$diacriticSensitive": True} })
+    cursor = collection.aggregate([
+       { "$search": {
+            "text" : {
+                "path" : "name",
+                "query": keyword,
+                "fuzzy": {}
+            }
+        }
+    }, { "$match" : { "isPet" : boolean } }])
     async for document in cursor:
         results.append(ItemsModel.Item(**document))
     return results
