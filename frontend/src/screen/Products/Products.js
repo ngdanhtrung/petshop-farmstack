@@ -6,6 +6,7 @@ import Icon from "../../component/Icon/icon2";
 import axios from "axios";
 import { Link, Switch, Route, useRouteMatch } from "react-router-dom";
 import ProductDetails from "./ProductDetails/index";
+import {FiSearch} from 'react-icons/fi'
 const Products = ({ products }) => {
   let { path, url } = useRouteMatch();
   const [input, setInput] = useState("");
@@ -44,7 +45,10 @@ const Products = ({ products }) => {
 
       <Switch>
         <Route exact path={path}>
-           <input value={input} onChange={onChangeHandler} />
+          <div className="containers-input-search">
+             <input className="input-search" value={input} onChange={onChangeHandler}></input>
+              <FiSearch className="icon-search"></FiSearch>
+          </div>
           <Icon title="Các sản phẩm cho thú cưng của bạn" />
           <div className="row-products">
             {items ? (

@@ -19,31 +19,31 @@ const PaymentCart = () => {
         <Row xs="4">
           <Col xs="6" className="bg-light border" style={{ padding: 20 }}>
             <Form>
-              <h1>Thong tin thanh toan</h1>
+              <h1>Thông tin thanh toán</h1>
               <FormGroup>
-                <Label for="fullname">Ten</Label>
+                <Label for="fullname">Tên</Label>
                 <Input
                   id="fullname"
                   name="fullname"
-                  placeholder="Ten"
+                  placeholder="Tên"
                   type="text"
                 />
               </FormGroup>
               <FormGroup>
-                <Label for="address">Dia chi</Label>
+                <Label for="address">Địa chỉ</Label>
                 <Input
                   id="address"
                   name="address"
-                  placeholder="Dia chi"
+                  placeholder="Địa chỉ"
                   type="text"
                 />
               </FormGroup>
               <FormGroup>
-                <Label for="phone">So dien thoai</Label>
+                <Label for="phone">Số điện thoại</Label>
                 <Input
                   id="phone"
                   name="phone"
-                  placeholder="Dia chi"
+                  placeholder="Số điện thoại"
                   type="text"
                 />
               </FormGroup>
@@ -58,7 +58,7 @@ const PaymentCart = () => {
                 />
               </FormGroup>
               <FormGroup>
-                <Label for="more">Thong tin bo sung</Label>
+                <Label for="more">Thông tin bổ sung</Label>
                 <Input id="more" name="more" type="textarea" />
               </FormGroup>
             </Form>
@@ -68,7 +68,7 @@ const PaymentCart = () => {
             className="bg-light border"
             style={{ display: "flex", flexDirection: "column", padding: 20 }}
           >
-            <h1>Don hang cua ban</h1>
+            <h1>Đơn hàng của bạn</h1>
             <table className="tableCart">
               <thead>
                 <tr>
@@ -90,7 +90,7 @@ const PaymentCart = () => {
             <p style={{ marginTop: "auto" }}>
               <strong>Trả tiền mặt khi nhận hàng</strong>
             </p>
-            <Button color="primary">Thanh toan</Button>
+            <Button color="primary">Thanh toán</Button>
           </Col>
         </Row>
       </Container>

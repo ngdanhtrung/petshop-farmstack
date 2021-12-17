@@ -6,6 +6,7 @@ import Icon from "../../component/Icon/icon2";
 import { FaPaw } from "react-icons/fa";
 import { Link, Switch, Route, useRouteMatch } from "react-router-dom";
 import ProfilePet from "../ProfilePet/index";
+import {FiSearch} from 'react-icons/fi'
 const Pets = () => {
   let { path, url } = useRouteMatch();
   const [pets, setPets] = useState([]);
@@ -43,7 +44,10 @@ const Pets = () => {
         <Switch>
           <Route exact path={path}>
             <>
-              <input value={input} onChange={onChangeHandler} />
+            <div className="containers-input-search">
+             <input className="input-search" value={input} onChange={onChangeHandler}></input>
+              <FiSearch className="icon-search"></FiSearch>
+          </div>
               <Icon title="Nhận nuôi thú cưng" />
               <div className="container-pets_row">
                 {pets ? (

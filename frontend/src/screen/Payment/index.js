@@ -29,7 +29,7 @@ const Payment = () => {
         <Row xs="4">
           <Col xs="8" className="bg-light border">
             <Form>
-              <h1>Thong tin thanh toan</h1>
+              <h1>Thông tin thanh toán</h1>
               <FormGroup>
                 <Label for="fullname">Ten</Label>
                 <Input
@@ -40,7 +40,7 @@ const Payment = () => {
                 />
               </FormGroup>
               <FormGroup>
-                <Label for="address">Dia chi</Label>
+                <Label for="address">Địa chỉ</Label>
                 <Input
                   id="address"
                   name="address"
@@ -49,7 +49,7 @@ const Payment = () => {
                 />
               </FormGroup>
               <FormGroup>
-                <Label for="phone">So dien thoai</Label>
+                <Label for="phone">Số điện thoại</Label>
                 <Input
                   id="phone"
                   name="phone"
@@ -68,7 +68,7 @@ const Payment = () => {
                 />
               </FormGroup>
               <FormGroup>
-                <Label for="more">Thong tin bo sung</Label>
+                <Label for="more">Thông tin bổ sung</Label>
                 <Input id="more" name="more" type="textarea" />
               </FormGroup>
             </Form>
