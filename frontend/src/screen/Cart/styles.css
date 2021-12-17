@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 .table-name {
     min-width: 20%;
     width: 20%;
@@ -58,11 +59,53 @@ td {
     margin-right: 10%;
 }
 
-.btn-deleted {
+td .btn-deleted {
     background-color: #fff;
     border: 1px solid #fff;
     cursor: pointer;
     color: #e7470c;
     font-size: 17px;
     font-family: 'Cabin';
+}
+
+.table-numbercount input{
+    border: 1px solid #ccc;
+}
+
+.cart_totals {
+padding: 54px 48px 30px;
+width: 60%;
+margin-left: auto;
+margin-right: auto;
+}
+
+.cart_totals li span {
+    float: right;
+}
+
+ .cart_totals url .li-total {
+    font-weight: 900;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.btn-order {
+    float: right;
+    position: relative;
+    padding: 11px 39px;
+    line-height: 15px;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 50px;
+    background-color: #e7470c;
+    border: 2px solid #e7470c;
+    font-family: 'Cabin';
+    text-decoration: none;
+    margin-bottom: 50px;
+}
+
+.btn-order:hover {
+    background-color: #fff;
+    border: 2px solid #e7470c;
+    color: #e7470c;
 }
