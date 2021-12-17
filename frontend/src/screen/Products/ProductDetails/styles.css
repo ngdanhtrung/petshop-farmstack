@@ -1,12 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Fuzzy+Bubbles:wght@700&family=Paytone+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fuzzy+Bubbles:wght@700&family=Montserrat:wght@500&family=Paytone+One&display=swap');
 .product-details {
     display:flex;
     flex-direction: row;
     align-items: center;
+    padding: 30px;
 }
 
 .products-detail-img {
-    width: 40%;
+    width: 440px;
+    height: 440px;
+    margin-right: 40px;
 }
 
 
@@ -21,6 +24,9 @@
     font-family: 'Paytone One', sans-serif;
 }
 
+.product-details .content-product-details {
+    width: 55%;
+}
 
 .product-details .content-product-details .product-details-price {
     border-bottom: 1px solid #f0f0f0;
@@ -35,4 +41,28 @@
     color: #e5a62d;
     margin-right: 15px;
     font-family: 'Paytone One', sans-serif;
+}
+
+.product-details .content-product-details .product-details-description{
+    font-family: "Roboto", sans-serif;
+    color: #000;
+    font-family: 'Montserrat', sans-serif;
+    text-align: justify;
+}
+
+.btn-add-to-cart1 {
+    background-color: #f54820;
+    color: #fff;
+    text-transform: uppercase;
+    border: 0px;
+    padding: 10px;
+}
+
+.container-count-addCart {
+    margin-top: 15px;
+    align-items: center;
+}
+
+.container-count-addCart .table-numbercount input {
+    height: 44px;
 }

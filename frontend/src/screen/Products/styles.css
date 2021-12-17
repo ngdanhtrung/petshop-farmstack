@@ -20,7 +20,12 @@
     max-height: 210px;
     position: relative;
     border: 1px solid #eeeeee;
+    width: 250px;
     
+}
+
+.col-products .link-products {
+    width: 322px;
 }
 
 .col-products h3 {
@@ -46,6 +51,7 @@
     width: 170px;
     margin-left: auto;
     margin-right: auto;
+    cursor: pointer;
 }
 .btn-add-to-cart:hover {
 background: #e5a62d;
@@ -84,4 +90,11 @@ position: relative;
 
 .col-products .name-product h3:hover{
     color: #f5cd2d;
+}
+
+.container-count-addCart {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    justify-items: flex-start;
 }

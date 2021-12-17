@@ -67,24 +67,26 @@ const ProductDetails = ({ current, addCart }) => {
             <div className="product-details-price">
               <span>{item.value} đ</span>
             </div>
-            <div>{item.description}</div>
-            <td className='table-numbercount'>
-              <input
-                min='1'
-                max='20'
-                type='number'
-                id='qty'
-                name='qty'
-                value={input}
-                onChange={onChangeHandler}
-              />
-            </td>
-            <button
-              className='btn-add-to-cart'
-              onClick={() => addSingleItem(item)}
-            >
-              Thêm vào giỏ hàng
-            </button>
+            <span className="product-details-description">{item.description}</span>
+            <div className="container-count-addCart">
+              <td className='table-numbercount'>
+                  <input
+                    min='1'
+                    max='20'
+                    type='number'
+                    id='qty'
+                    name='qty'
+                    value={input}
+                    onChange={onChangeHandler}
+                  />
+                </td>
+                <button
+                  className='btn-add-to-cart1'
+                  onClick={() => addSingleItem(item)}
+                >
+                  Thêm vào giỏ hàng
+                </button>
+            </div>
           </div>
         </div>
       )}
