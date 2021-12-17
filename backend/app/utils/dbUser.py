@@ -149,3 +149,21 @@ async def clear_cart(username):
                                                "cart": ""
                                            }})
     return document
+
+
+async def get_cart_count(username):
+    count = []
+    cursor = collection.aggregate([{
+        "$match": {
+            "username": username
+        }
+    }, {
+        "$project": {
+            "count": {
+                "$size": "$cart"
+            }
+        }
+    }])
+    async for document in cursor:
+        count.append(UsersModel.Count(**document))
+    return count
