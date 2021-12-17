@@ -34,29 +34,22 @@ const Product = ({ product, addCart, loadCurrentItem }) => {
   };
 
   return (
-    <Switch>
-      <Route exact path={path}>
-        <Link
-          onClick={() => loadCurrentItem(product)}
-          to={`${url}/${product._id}`}
-          className='col-products link-products'
-        >
-          <img alt='a' src={product.image}></img>
-          <div className='type'>{product.extra.type}</div>
-          <h3>{product.name}</h3>
-          <div class='price'>{product.value} đ</div>
-          <button
-            className='btn-add-to-cart'
-            onClick={() => addSingleItem(product)}
-          >
-            Thêm vào giỏ hàng
-          </button>
-        </Link>
-      </Route>
-      <Route path={`${path}/:id`}>
-        <ProductDetails />
-      </Route>
-    </Switch>
+    <Link
+      // onClick={() => loadCurrentItem(product)}
+      to={`/Products/${product._id}`}
+      className='col-products link-products'
+    >
+      <img alt='a' src={product.image}></img>
+      <div className='type'>{product.extra.type}</div>
+      <h3>{product.name}</h3>
+      <div class='price'>{product.value} đ</div>
+      <button
+        className='btn-add-to-cart'
+        onClick={() => addSingleItem(product)}
+      >
+        Thêm vào giỏ hàng
+      </button>
+    </Link>
   );
 };
 
