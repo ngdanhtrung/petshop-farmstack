@@ -21,11 +21,7 @@ const data = [
         exact: "false",
         link: "/Products"
     },
-    {
-        name: "BỘ SƯU TẬP",
-        exact: "false",
-        link: "/"
-    },
+    
     
     {
         name: "LIÊN HỆ",

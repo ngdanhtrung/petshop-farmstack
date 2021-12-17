@@ -1,36 +1,107 @@
-import React from 'react'
-import { addCart } from '../../../redux/actions'
+import React, { useEffect, useState } from "react";
+import { addCart } from "../../../redux/actions";
 import { connect } from "react-redux";
-import './styles.css'
+import { useParams, useRouteMatch } from "react-router-dom";
+import "./styles.css";
+import axios from "axios";
+const ProductDetails = ({ current, addCart }) => {
+  let params = useParams();
+  console.log(params.id);
+  const [input, setInput] = useState(1);
+  const [item, setItem] = useState(null);
 
-const ProductDetails = ({current, addCart}) => {
-    return (
-        <div className="product-details">
-           <img alt="img" src={current.img}></img>
-           <div className="content-product-details">
-            <div>{current.name}</div> 
-            <div>{current.price}</div>
+  const onChangeHandler = (e) => {
+    setInput(e.target.value);
+    // updateCart(e.target.value);
+  };
+
+  const urlRequest = `${process.env.REACT_APP_API_KEY}items/addItem`;
+  const getSingleProduct = `${process.env.REACT_APP_API_KEY}products/getSingleProduct`;
+  const getItem = async () => {
+    await axios
+      .get(`${getSingleProduct}/${params.id}`)
+      .then((res) => {
+        setItem(res.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  useEffect(() => {
+    getItem();
+  }, []);
+
+  const addSingleItem = async (product) => {
+    console.log(product);
+    await axios
+      .put(
+        urlRequest,
+        {
+          id: product._id,
+          name: product.name,
+          image: product.image,
+          quantity: input,
+          value: product.value,
+        },
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("access_token"),
+          },
+        }
+      )
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((error) => console.log(error));
+  };
+
+  return (
+    <>
+      {" "}
+      {item && (
+        <div className='product-details'>
+          <img className="products-detail-img" alt='img' src={item.image}></img>
+          <div className='content-product-details'>
+            <div className="product-details-name">{item.name}</div>
+            <div className="product-details-price">
+              <span>{item.value} đ</span>
+            </div>
+            <div>{item.description}</div>
+            <td className='table-numbercount'>
+              <input
+                min='1'
+                max='20'
+                type='number'
+                id='qty'
+                name='qty'
+                value={input}
+                onChange={onChangeHandler}
+              />
+            </td>
             <button
-          onClick={() => addCart(current.id)}
-        >
-          +
-        </button>
-           </div>
-           
+              className='btn-add-to-cart'
+              onClick={() => addSingleItem(item)}
+            >
+              Thêm vào giỏ hàng
+            </button>
+          </div>
         </div>
-    )
-}
+      )}
+    </>
+  );
+};
 
 const mapStateToProps = (state) => {
-    return {
-      current: state._todoProduct.currentItem,
-    };
+  return {
+    current: state._todoProduct.currentItem,
   };
-  
-  const mapDispatchToProps = (dispatch) => {
-    return {
-      addCart: (id) => dispatch(addCart(id)),
-    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addCart: (id) => dispatch(addCart(id)),
   };
-  
-  export default connect(mapStateToProps, mapDispatchToProps)(ProductDetails);
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductDetails);

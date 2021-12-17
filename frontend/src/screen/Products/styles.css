@@ -4,6 +4,12 @@
     flex-direction: column;
     margin: 25px;
     width: 25%;
+    text-align: center;
+    padding: 10px;
+}
+
+.col-products:hover {
+    box-shadow: 3px 3px 3px 3px #aaaaaa;
 }
 
 .col-products img {
@@ -52,16 +58,6 @@ background: #e5a62d;
     flex-direction: row;
 }
 
-.link-products {
-    text-decoration: none;
-    text-align: center;
-    padding: 10px;
-}
-
-.link-products:hover {
-    box-shadow: 0 0 2px #b4aaaa;
-}
-
 .col-products .price{
 position: relative;
     color: #e7470c;
@@ -77,4 +73,12 @@ position: relative;
     margin-bottom: 2px;
     font-size: 12px;
     text-transform: capitalize;
+}
+
+.col-products .name-product{
+    text-decoration: none;
+}
+
+.col-products .name-product h3:hover{
+    color: #f5cd2d;
 }
