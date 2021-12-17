@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import CartItem from "./CartItem";
 import "./styles.css";
 import axios from "axios";
+import {Link} from 'react-router-dom'
 const Cart = ({ cart }) => {
   const [totalPrice, setTotalPrice] = useState(0);
   const [totalItem, setTotalItem] = useState(0);
@@ -57,10 +58,23 @@ const Cart = ({ cart }) => {
           ))}
         {/*                 
             <div>Số lượng: {totalItem}</div> */}
-        <div className='row-sum'>
-          <div className='sum-count'>Tổng trị giá: </div>
-          <div className='sum-count-price'>{totalPrice}</div>
+            <hr></hr>
+            <div className="cart_totals">
+              <url>
+                <li> Tổng trị giá:
+                  <span className='sum-count-price'>{totalPrice} đ</span>
+                </li>
+                <li> Phí vận chuyển:
+                  <span className='sum-count-price'>Free ship</span>
+                </li>
+                <hr></hr>
+                <li className='li-total' style={{fontWeight:900}}> Tổng tiền:
+                  <span className='sum-count-price'>{totalPrice} đ</span>
+                </li>
+              </url>
+              <Link className='btn-order'>Mua ngay</Link>
         </div>
+
       </div>
     </>
   );
