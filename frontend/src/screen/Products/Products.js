@@ -41,10 +41,10 @@ const Products = ({ products }) => {
 
   return (
     <>
-      <input value={input} onChange={onChangeHandler} />
 
       <Switch>
         <Route exact path={path}>
+           <input value={input} onChange={onChangeHandler} />
           <Icon title="Các sản phẩm cho thú cưng của bạn" />
           <div className="row-products">
             {items ? (

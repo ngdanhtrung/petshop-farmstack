@@ -67,4 +67,8 @@ li {
 
 .adopt:hover {
   transform: scale(1.2, 1.2);
+  color: #630abb;
+  background: #fff;
+  border: 2px solid #fff;
+  border: 0.3px #630abb solid;
 }

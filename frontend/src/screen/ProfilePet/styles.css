@@ -97,12 +97,15 @@
   background: #e7470c;
   text-decoration: none;
   color: #fff;
-  border-radius: 20px;
+  border-radius: 30px;
   padding: 15px;
   font-family: "Gluten", cursive;
   margin-left: 0 auto;
   margin-right: 0 auto;
 }
 
-.view-more Link {
+.view-more:hover  {
+  background: #fff;
+  color: #e7470c;
+  border: 2px solid #e7470c;
 }
