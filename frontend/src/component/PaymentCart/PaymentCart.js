@@ -97,62 +97,62 @@ const PaymentCart = () => {
 
   return (
     <>
-      <Container className='payment' style={{ marginTop: 30 }}>
-        <Row xs='4'>
-          <Col xs='6' className='bg-light border' style={{ padding: 20 }}>
+      <Container className="payment" style={{ marginTop: 30 }}>
+        <Row xs="4">
+          <Col xs="6" className="bg-light border" style={{ padding: 20 }}>
             <Form>
               <h1>Thông tin thanh toán</h1>
               <FormGroup>
-                <Label for='fullname'>Tên</Label>
+                <Label for="fullname">Tên</Label>
                 <Input
-                  id='fullname'
-                  name='fullname'
-                  placeholder='Tên'
-                  type='text'
+                  id="fullname"
+                  name="fullname"
+                  placeholder="Tên"
+                  type="text"
                   value={fullName}
                   onChange={handleName}
                 />
               </FormGroup>
               <FormGroup>
-                <Label for='address'>Địa chỉ</Label>
+                <Label for="address">Địa chỉ</Label>
                 <Input
-                  id='address'
-                  name='address'
-                  placeholder='Địa chỉ'
-                  type='text'
+                  id="address"
+                  name="address"
+                  placeholder="Địa chỉ"
+                  type="text"
                   value={address}
                   onChange={handleAddress}
                 />
               </FormGroup>
               <FormGroup>
-                <Label for='phone'>Số điện thoại</Label>
+                <Label for="phone">Số điện thoại</Label>
                 <Input
-                  id='phone'
-                  name='phone'
-                  placeholder='Số điện thoại'
-                  type='text'
+                  id="phone"
+                  name="phone"
+                  placeholder="Số điện thoại"
+                  type="text"
                   value={number}
                   onChange={handleNum}
                 />
               </FormGroup>
 
               <FormGroup>
-                <Label for='email'>Email</Label>
+                <Label for="email">Email</Label>
                 <Input
-                  id='email'
-                  name='email'
-                  placeholder='Email'
-                  type='text'
+                  id="email"
+                  name="email"
+                  placeholder="Email"
+                  type="text"
                   value={mail}
                   onChange={handleMail}
                 />
               </FormGroup>
               <FormGroup>
-                <Label for='more'>Thông tin bổ sung</Label>
+                <Label for="more">Thông tin bổ sung</Label>
                 <Input
-                  id='more'
-                  name='more'
-                  type='textarea'
+                  id="more"
+                  name="more"
+                  type="textarea"
                   value={extra}
                   onChange={handleExtra}
                 />
@@ -160,12 +160,12 @@ const PaymentCart = () => {
             </Form>
           </Col>
           <Col
-            xs='6'
-            className='bg-light border'
+            xs="6"
+            className="bg-light border"
             style={{ display: "flex", flexDirection: "column", padding: 20 }}
           >
             <h1>Đơn hàng của bạn</h1>
-            <table className='tableCart'>
+            <table className="tableCart">
               <thead>
                 <tr>
                   <th>SẢN PHẨM</th>
@@ -173,14 +173,15 @@ const PaymentCart = () => {
                 </tr>
               </thead>
               <tbody>
-                {cart1.map((item, index) => (
-                  <tr key={index}>
-                    <td>
-                      {item.name} x {item.quantity}
-                    </td>
-                    <td>{item.quantity * item.value} ₫</td>
-                  </tr>
-                ))}
+                {cart1 &&
+                  cart1.map((item, index) => (
+                    <tr key={index}>
+                      <td>
+                        {item.name} x {item.quantity}
+                      </td>
+                      <td>{item.quantity * item.value} ₫</td>
+                    </tr>
+                  ))}
               </tbody>
             </table>
             <hr></hr>
@@ -193,10 +194,10 @@ const PaymentCart = () => {
             </p>
             <p style={{ marginTop: "auto" }}>
               {" "}
-              Tổng tiền: 
+              Tổng tiền:
               <strong style={{ float: "right" }}>{totalPrice} ₫</strong>
             </p>
-            <Button color='primary' onClick={submitPayment}>
+            <Button color="primary" onClick={submitPayment}>
               Thanh toán
             </Button>
             {message}

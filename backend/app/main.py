@@ -13,7 +13,7 @@ load_dotenv()
 
 app = FastAPI()
 
-origins = [os.getenv('REACT_CLIENT')]
+origins = [os.getenv('REACT_CLIENT'),'http://localhost:3001']
 
 app.add_middleware(
     CORSMiddleware,
