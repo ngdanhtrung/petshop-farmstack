@@ -6,7 +6,6 @@ import "./styles.css";
 import axios from "axios";
 const ProductDetails = ({ current, addCart }) => {
   let params = useParams();
-  console.log(params.id);
   const [input, setInput] = useState(1);
   const [item, setItem] = useState(null);
   const [username, setUsername] = useState("");
@@ -30,7 +29,6 @@ const ProductDetails = ({ current, addCart }) => {
       })
       .then((res) => {
         setUsername(res.data.username);
-        console.log(res.data.username);
       })
       .catch((error) => console.log(error));
   };

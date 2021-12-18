@@ -23,7 +23,6 @@ const Product = ({ product, addCart, loadCurrentItem }) => {
       })
       .then((res) => {
         setUsername(res.data.username);
-        console.log(res.data.username);
       })
       .catch((error) => console.log(error));
   };
@@ -47,9 +46,6 @@ const Product = ({ product, addCart, loadCurrentItem }) => {
             },
           }
         )
-        .then((res) => {
-          console.log(res.data);
-        })
         .catch((error) => console.log(error));
     } else {
       setMessage("Xin vui lòng đăng nhập trước");
