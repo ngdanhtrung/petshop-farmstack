@@ -6,7 +6,7 @@ import "./index.css";
 
 const ref = React.createRef();
 
-const Bill = () => {
+const BillCart = () => {
   let params = useParams();
   const [payment, setPayment] = useState([]);
 
@@ -103,4 +103,4 @@ const Bill = () => {
   );
 };
 
-export default Bill;
+export default BillCart;

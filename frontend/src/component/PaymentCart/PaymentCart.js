@@ -80,7 +80,7 @@ const PaymentCart = () => {
         )
         .then(() => {
           setMessage("Thanh toán thành công");
-          history.replace("bill");
+          history.replace("BillCart");
         })
         .catch(() => {
           setMessage("Có trục trặc xảy ra");
