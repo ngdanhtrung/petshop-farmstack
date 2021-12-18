@@ -10,6 +10,7 @@ from pydantic.types import Json
 class LoggedInUser(BaseModel):
     id: str = Field(default_factory=uuid.uuid4, alias="_id")
     username: str = Field(..., max_length=16)
+    role: Optional[str]
 
 
 class Count(BaseModel):
