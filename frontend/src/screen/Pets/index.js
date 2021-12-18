@@ -72,7 +72,7 @@ const Pets = () => {
                           </li>
                           <li>
                             <FaPaw className='li-icon' />
-                            Tuổi: {value.extra.age}
+                            Ngày sinh: {value.extra.age}
                           </li>
                           <li>
                             <FaPaw className='li-icon' />

@@ -119,3 +119,9 @@ margin-right: auto;
     display: flex;
     flex-direction: row;
 }
+
+
+.container-message-not-found {
+  display: flex;
+flex-direction: column;
+}
