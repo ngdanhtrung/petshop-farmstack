@@ -62,7 +62,11 @@ function Home() {
         setRole(res.data.role);
         console.log(res.data.role);
       })
-      .catch(() => (document.location.href = "/sign-in"));
+      .catch(() => () => {
+        if (role) {
+          document.location.href = "/sign-in";
+        }
+      });
   };
 
   useEffect(getLoggedInUser, []);
