@@ -1,13 +1,14 @@
 from fastapi import APIRouter, HTTPException, Depends
 from app.models.UsersModel import User, LoggedInUser
 from app.models.ItemsModel import Cart
-from app.models.PaymentsModel import Payment
+from app.models.PaymentsModel import Payment, PetPayment
 from app.utils import dbUser
 from app.utils import dbPayment
 from datetime import timedelta, datetime
 from jose import jwt
 import os
 from dotenv import load_dotenv
+
 
 load_dotenv()
 
@@ -23,6 +24,15 @@ async def create_new_payment(payment: Payment,
                              username: str = Depends(
                                  dbUser.get_current_username)):
     response = await dbPayment.add_payment(username, payment)
+    if response:
+        return response
+
+
+@router.post('/addPPet/')
+async def create_new_pet_payment(payment: PetPayment,
+                             username: str = Depends(
+                                 dbUser.get_current_username)):
+    response = await dbPayment.add_payment_pet(username, payment)
     if response:
         return response
 

@@ -146,7 +146,7 @@ const Navbar = ({ cart }) => {
         <Route path='/PaymentCart'>
           <PaymentCart />
         </Route>
-        <Route path="/Bill">
+        <Route path='/Bill/:id'>
           <Bill />
         </Route>
       </Switch>
