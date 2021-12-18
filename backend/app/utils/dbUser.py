@@ -41,20 +41,33 @@ async def fetch_all_users():
 async def count_users():
     return await collection.count_documents({})
 
-async def count_users_in_month(time):
-    await collection.create_index([("created_at", pymongo.TEXT)])
+async def count_users_in_month():
     results = []
-    cursor = collection.find({"$text": {"$search": time, "$diacriticSensitive": True} })
+    cursor = collection.aggregate([ 
+       {"$project" : { 
+            "month" : {"$month" : "$created_at"}, 
+            "year" : {"$year" :  "$created_at"}}
+       }, 
+        {"$group" : { 
+            "_id" : {"month" : "$month", "year" : "$year"},  
+            "count" : {"$sum":1},
+            # "month" : {"month" : "$month"},
+            # "year" : {"year" : "$year"}
+        }}])
     # cursor = collection.aggregate([
-    #    { "$search": {
-    #         "text" : {
-    #             "path" : "created_at",
-    #             "query": time,
-    #         }
-    #     }
-    # },])
+    # {"$group" : { 
+    #     "_id" : { 
+    #     "month" : {"$month" : "$created_at"}, 
+    #     "year" : {"$year" :  "$created_at"}
+    #     },  
+    #     "count" : {"$sum" : 1} ,
+        
+    #     }}
+    #     "month" : {"$month" : "$created_at"},
+    #     "year" : {"$year" : "$created_at"}
+    # ])
     async for document in cursor:
-        results.append(UsersModel.User(**document))
+        results.append(UsersModel.UserCount(**document))
     return results
 
 def encrypt_password(password):

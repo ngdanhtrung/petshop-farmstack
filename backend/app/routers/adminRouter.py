@@ -14,8 +14,8 @@ async def count():
   items = await dbItem.count_items()
   return {"users": users, "pets": pets, "items": items}
 
-@router.get('/countUsers/{time}')
-async def count_users(time):
-  response = await dbUser.count_users_in_month(time)
+@router.get('/countUsers/')
+async def count_users():
+  response = await dbUser.count_users_in_month()
   if response:
     return response
