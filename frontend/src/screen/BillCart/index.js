@@ -9,7 +9,7 @@ const ref = React.createRef();
 const BillCart = () => {
   let params = useParams();
   const [payment, setPayment] = useState([]);
-
+  const [cart, setCart] = useState([]);
   const urlRequest = `${process.env.REACT_APP_API_KEY}payments/findPayment`;
 
   const getPayment = async () => {
@@ -17,7 +17,9 @@ const BillCart = () => {
       .get(`${urlRequest}/${params.id}`)
       .then((res) => {
         setPayment(res.data);
+        setCart(res.data.user.cart);
         console.log(res.data);
+        console.log(res.data.user.cart);
       })
       .catch((error) => {
         console.log(error);
@@ -31,15 +33,15 @@ const BillCart = () => {
   return (
     <>
       {payment && (
-        <div className="invoice-box" ref={ref}>
+        <div className='invoice-box' ref={ref}>
           <table cellPadding={0} cellSpacing={0}>
             <tbody>
-              <tr className="top">
+              <tr className='top'>
                 <td colSpan={2}>
                   <table>
                     <tbody>
                       <tr>
-                        <td className="title">PETS SHOP</td>
+                        <td className='title'>PETS SHOP</td>
                         <td>
                           Invoice #: {payment._id}
                           <br />
@@ -50,7 +52,7 @@ const BillCart = () => {
                   </table>
                 </td>
               </tr>
-              <tr className="information">
+              <tr className='information'>
                 <td colSpan={2}>
                   <table>
                     <tbody>
@@ -72,29 +74,39 @@ const BillCart = () => {
                   </table>
                 </td>
               </tr>
-              <tr className="heading">
+              <tr className='heading'>
                 <td>Payment Method</td>
                 <td></td>
               </tr>
-              <tr className="details">
+              <tr className='details'>
                 <td>COD</td>
+                <td></td>
               </tr>
-              <tr className="heading">
+              <tr>
+                <td>Full name:</td>
+                <td>{payment.name}</td>
+              </tr>
+              <tr className='heading'>
                 <td>Item</td>
                 <td>Price</td>
               </tr>
-              <tr className="item">
-                <td>{payment.petName}</td>
-                <td>{payment.value} đ</td>
-              </tr>
+              <tr className='item'></tr>
+              {cart.map((item) => (
+                <>
+                  <tr>
+                    <td>{item.name}</td>
+                    <td>{item.value} đ</td>
+                  </tr>
+                </>
+              ))}
 
-              <tr className="total">
+              <tr className='total'>
                 <td />
-                <td>Total: {payment.value} đ</td>
+                <td>Total: {payment.amount} đ</td>
               </tr>
             </tbody>
           </table>
-          <Pdf targetRef={ref} filename="post.pdf">
+          <Pdf targetRef={ref} filename='post.pdf'>
             {({ toPdf }) => <button onClick={toPdf}>Print PDF</button>}
           </Pdf>
         </div>
