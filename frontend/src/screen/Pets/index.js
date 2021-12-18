@@ -58,8 +58,8 @@ const Pets = () => {
               <Icon title='Nhận nuôi thú cưng' />
               <div className='container-pets_row'>
                 {pets ? (
-                  pets.map((value) => (
-                    <div className='menber'>
+                  pets.map((value, index) => (
+                    <div key={index} className='menber'>
                       <div>
                         <img className='img-pets' src={value.image}></img>
                       </div>

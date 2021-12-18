@@ -177,8 +177,8 @@ const PaymentCart = () => {
               </thead>
               <tbody>
                 {cart1 &&
-                  cart1.map((item) => (
-                    <tr>
+                  cart1.map((item, index) => (
+                    <tr key={index}>
                       <td>
                         {item.name} x {item.quantity}
                       </td>
