@@ -4,6 +4,7 @@ import CartItem from "./CartItem";
 import "./styles.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import {RiEmotionSadLine} from 'react-icons/ri';
 const Cart = ({ cart }) => {
   const [totalPrice, setTotalPrice] = useState(0);
   const [totalItem, setTotalItem] = useState(0);
@@ -91,7 +92,13 @@ const Cart = ({ cart }) => {
           </div>
         </div>
       ) : (
-        <div>Giỏ hàng ko có gì</div>
+        <div className="container-message-not-found message-not-found" >
+          <div className="message-not-found">
+          <RiEmotionSadLine></RiEmotionSadLine>
+          <span>Giỏ hàng chưa có sản phẩm, đi tới trang sản phẩm!</span>
+          </div>
+          <Link className='btn-order' to="/Products">Xem sản phẩm</Link>
+        </div>
       )}
     </>
   );
