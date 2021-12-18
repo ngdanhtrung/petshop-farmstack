@@ -41,7 +41,7 @@ function Home() {
   const [userList, setUserList] = useState([{}]);
   const [paymentsList, setPaymentsList] = useState([{}]);
 
-  useEffect((async () => {
+  useEffect(async () => {
     axios.get(`${process.env.REACT_APP_API_KEY}users`).then((res) => {
       setUserList(res.data);
       console.log(res.data);
@@ -52,7 +52,7 @@ function Home() {
         setPaymentsList(res.data);
         console.log(res.data);
       });
-  }), []);
+  }, []);
 
   const [role, setRole] = useState("");
   const urlRequest = `${process.env.REACT_APP_API_KEY}users/me`;
@@ -66,6 +66,9 @@ function Home() {
       })
       .then((res) => {
         setRole(res.data.role);
+        if (res.data.role != "admin") {
+          document.location.href = "/sign-in";
+        }
       })
       .catch(() => {
         document.location.href = "/sign-in";
@@ -74,9 +77,9 @@ function Home() {
 
   useEffect(getLoggedInUser, []);
 
-  useEffect(getUsersList, []);
+  // useEffect(getUsersList, []);
 
-    const usersColumns = [
+  const usersColumns = [
     {
       title: "Mã người dùng",
       dataIndex: "_id",
@@ -143,7 +146,7 @@ function Home() {
       render: (text) => moment(text).format("YYYY-MM-DD HH:mm"),
     },
   ];
-  
+
   return (
     <>
       <div className='layout-content'>
@@ -219,7 +222,9 @@ function Home() {
                 >
                   <CSVLink
                     data={paymentsList}
-                    filename={moment().format("[Payments List] YYYY-MM-DD HH:mm")}
+                    filename={moment().format(
+                      "[Payments List] YYYY-MM-DD HH:mm"
+                    )}
                   >
                     <span className='click'>Click to Download</span>
                   </CSVLink>
