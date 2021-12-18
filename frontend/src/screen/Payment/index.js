@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory, Redirect } from "react-router-dom";
+
 import {
   Card,
   CardImg,
@@ -21,9 +22,15 @@ import {
 import axios from "axios";
 //import './index.css'
 const Payment = () => {
+  const history = useHistory();
   let params = useParams();
   const [pet, setPet] = useState(null);
+  const [redirect, setRedireact] = useState(false);
   const urlRequest = `${process.env.REACT_APP_API_KEY}products/getSingleProduct`;
+
+  const handleClickE = () => {
+    setRedireact(true);
+  };
 
   const getPet = async () => {
     await axios
@@ -38,72 +45,76 @@ const Payment = () => {
   useEffect(() => {
     getPet();
   }, [params.id]);
+
+  if (redirect) {
+    return <Redirect to="bill" />;
+  }
   return (
     <>
       {pet && (
-        <Container className='payment' style={{ marginTop: 30 }}>
-          <Row xs='4'>
-            <Col xs='8' className='bg-light border'>
+        <Container className="payment" style={{ marginTop: 30 }}>
+          <Row xs="4">
+            <Col xs="8" className="bg-light border">
               <Form>
                 <h1>Thông tin thanh toán</h1>
                 <FormGroup>
-                  <Label for='fullname'>Tên</Label>
+                  <Label for="fullname">Tên</Label>
                   <Input
-                    id='fullname'
-                    name='fullname'
-                    placeholder='Tên'
-                    type='text'
+                    id="fullname"
+                    name="fullname"
+                    placeholder="Tên"
+                    type="text"
                   />
                 </FormGroup>
                 <FormGroup>
-                  <Label for='address'>Địa chỉ</Label>
+                  <Label for="address">Địa chỉ</Label>
                   <Input
-                    id='address'
-                    name='address'
-                    placeholder='Địa chỉ'
-                    type='text'
+                    id="address"
+                    name="address"
+                    placeholder="Địa chỉ"
+                    type="text"
                   />
                 </FormGroup>
                 <FormGroup>
-                  <Label for='phone'>Số điện thoại</Label>
+                  <Label for="phone">Số điện thoại</Label>
                   <Input
-                    id='phone'
-                    name='phone'
-                    placeholder='Số điện thoại'
-                    type='text'
+                    id="phone"
+                    name="phone"
+                    placeholder="Số điện thoại"
+                    type="text"
                   />
                 </FormGroup>
 
                 <FormGroup>
-                  <Label for='email'>Email</Label>
+                  <Label for="email">Email</Label>
                   <Input
-                    id='email'
-                    name='email'
-                    placeholder='Email'
-                    type='text'
+                    id="email"
+                    name="email"
+                    placeholder="Email"
+                    type="text"
                   />
                 </FormGroup>
                 <FormGroup>
-                  <Label for='more'>Thông tin bổ sung</Label>
-                  <Input id='more' name='more' type='textarea' />
+                  <Label for="more">Thông tin bổ sung</Label>
+                  <Input id="more" name="more" type="textarea" />
                 </FormGroup>
               </Form>
             </Col>
-            <Col xs='4' className='bg-light border'>
+            <Col xs="4" className="bg-light border">
               <Card style={{ width: "100%" }}>
                 <CardImg
-                  alt='Card image cap'
+                  alt="Card image cap"
                   src={pet.image}
                   top
-                  width='100%'
+                  width="100%"
                 />
                 <CardBody>
-                  <CardTitle tag='h5'>{pet.name}</CardTitle>
-                  <CardSubtitle className='mb-2 text-muted' tag='h6'>
+                  <CardTitle tag="h5">{pet.name}</CardTitle>
+                  <CardSubtitle className="mb-2 text-muted" tag="h6">
                     {pet.value}
                   </CardSubtitle>
                   <CardText>{pet.description}</CardText>
-                  <Button>Nhận nuôi</Button>
+                  <Button onClick={handleClickE}>Nhận nuôi</Button>
                 </CardBody>
               </Card>
             </Col>
