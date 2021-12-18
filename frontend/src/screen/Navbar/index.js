@@ -22,24 +22,6 @@ import PaymentCart from "../../component/PaymentCart/PaymentCart";
 const Navbar = ({ cart }) => {
   const [username, setUsername] = useState("");
   const getUserRequest = `${process.env.REACT_APP_API_KEY}users/me`;
-  const getCartRequest = `${process.env.REACT_APP_API_KEY}items/listItems`;
-
-  const [cartCount, setCartCount] = useState(0);
-  const [totalPrice, setTotalPrice] = useState(0);
-  const [cart1, setCart] = useState([]);
-
-  const getCart = async () => {
-    await axios
-      .get(getCartRequest, {
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem("access_token"),
-        },
-      })
-      .then((res) => {
-        setCart(res.data.cart);
-        console.log(res.data.cart);
-      });
-  };
 
   const getLoggedInUser = async () => {
     await axios
@@ -55,45 +37,33 @@ const Navbar = ({ cart }) => {
       .catch((error) => console.log(error));
   };
 
-  // useEffect(() => {
-  //   let count = 0;
-  //   let price = 0;
-  //   cart1.forEach((item) => {
-  //     count += item.quantity;
-  //     price += item.quantity * item.value;
-  //   });
-
-  //   setCartCount(count);
-  //   setTotalPrice(price);
-  // }, [cart1]);
   useEffect(getLoggedInUser, []);
-  useEffect(getCart, []);
 
   return (
     <>
-      <section className="navlink-container">
+      <section className='navlink-container'>
         <nav>
-          <Link to="/" exact className="pets-shop">
+          <Link to='/' exact className='pets-shop'>
             PETS SHOP
           </Link>
         </nav>
-        <nav className="navbar">
-          <div className="navbar-container">
+        <nav className='navbar'>
+          <div className='navbar-container'>
             {data.map((value, index) => (
               <NavLink
                 key={index}
                 to={value.link}
                 exact={value.exact}
-                className="navbar-name"
+                className='navbar-name'
                 activeStyle={{ fontWeight: "900", color: "#FFF338" }}
               >
                 {value.name}
               </NavLink>
             ))}
             <NavLink
-              className="navbar-name"
+              className='navbar-name'
               activeStyle={{ fontWeight: "900", color: "#FFF338" }}
-              to="/Cart"
+              to='/Cart'
             >
               {/* GIỎ HÀNG {cartCount}{" "} */}
               GIỎ HÀNG
@@ -101,16 +71,16 @@ const Navbar = ({ cart }) => {
           </div>
         </nav>
 
-        <div className="container1">
+        <div className='container1'>
           <div>
-            <NavLink to="/" className="profile">
+            <NavLink to='/' className='profile'>
               {username ? "XIN CHÀO, " + username : "TÀI KHOẢN"}
             </NavLink>
           </div>
           {/* <NavLink to='/Login' className="navlink" activeStyle={{fontWeight: "900",color: "#FFF338"}}>ĐĂNG NHẬP</NavLink> */}
           {username ? (
             <button
-              className="button-login"
+              className='button-login'
               onClick={async () => {
                 localStorage.removeItem("access_token");
                 setUsername("");
@@ -121,7 +91,7 @@ const Navbar = ({ cart }) => {
           ) : (
             <>
               <button
-                className="button-login"
+                className='button-login'
                 onClick={async () => {
                   const result = await CustomDialog(
                     <Login getLoggedInUser={getLoggedInUser} />,
@@ -134,9 +104,9 @@ const Navbar = ({ cart }) => {
               >
                 ĐĂNG NHẬP
               </button>
-              <div className="space">/</div>
+              <div className='space'>/</div>
               <button
-                className="button-login"
+                className='button-login'
                 onClick={async () => {
                   const result = await CustomDialog(<Register />, {
                     title: "ĐĂNG KÝ",
@@ -151,29 +121,29 @@ const Navbar = ({ cart }) => {
           {/* <NavLink to='/' className="navlink">ĐĂNG KÍ</NavLink> */}
         </div>
       </section>
-      <Switch className="navbar-content">
-        <Route path="/" exact>
+      <Switch className='navbar-content'>
+        <Route path='/' exact>
           <Home />
         </Route>
-        <Route path="/Service">
+        <Route path='/Service'>
           <Service />
         </Route>
-        <Route path="/Contact">
+        <Route path='/Contact'>
           <Contact />
         </Route>
-        <Route path="/Pets">
+        <Route path='/Pets'>
           <Pets />
         </Route>
-        <Route path="/Products">
+        <Route path='/Products'>
           <Products />
         </Route>
-        <Route path="/Cart">
+        <Route path='/Cart'>
           <Cart />
         </Route>
-        <Route path="/Payment/:id">
+        <Route path='/Payment/:id'>
           <Payment />
         </Route>
-        <Route path="/PaymentCart">
+        <Route path='/PaymentCart'>
           <PaymentCart />
         </Route>
         <Route path="/Bill">

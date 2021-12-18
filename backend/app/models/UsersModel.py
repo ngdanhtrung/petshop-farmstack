@@ -61,3 +61,9 @@ class User(BaseModel):
                 "pwd": "password",
             }
         }
+
+class UserCount(BaseModel):
+    _id = {}
+    count: int
+    # month: int
+    # year: int

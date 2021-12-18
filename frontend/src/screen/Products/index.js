@@ -8,9 +8,13 @@ import ProductDetails from "./ProductDetails/index";
 import axios from "axios";
 const Product = ({ product, addCart, loadCurrentItem }) => {
   let { path, url } = useRouteMatch();
+  const [username, setUsername] = useState("");
+  const [message, setMessage] = useState("");
+
   const urlRequest = `${process.env.REACT_APP_API_KEY}items/addItem`;
+  const getUserRequest = `${process.env.REACT_APP_API_KEY}users/me`;
+
   const addSingleItem = async (product) => {
-    console.log(product);
     await axios
       .put(
         urlRequest,
@@ -27,15 +31,15 @@ const Product = ({ product, addCart, loadCurrentItem }) => {
           },
         }
       )
-      .then((res) => {
-        console.log(res.data);
+      .then(() => {
+        setMessage("Vật phẩm đã được thêm");
       })
-      .catch((error) => console.log(error));
+      .catch(() => setMessage("Xin vui lòng đăng nhập trước"));
   };
 
   return (
-    <div className="col-products">
-      <Link 
+    <div className='col-products'>
+      <Link
         onClick={() => loadCurrentItem(product)}
         to={`/Products/${product._id}`}
         className=' link-products'
@@ -43,9 +47,13 @@ const Product = ({ product, addCart, loadCurrentItem }) => {
         <img alt='a' src={product.image}></img>
       </Link>
       <div className='type'>{product.extra.type}</div>
-      <Link onClick={() => loadCurrentItem(product)}
-        to={`/Products/${product._id}`} 
-        className="name-product"><h3>{product.name}</h3></Link>
+      <Link
+        onClick={() => loadCurrentItem(product)}
+        to={`/Products/${product._id}`}
+        className='name-product'
+      >
+        <h3>{product.name}</h3>
+      </Link>
       <div class='price'>{product.value} đ</div>
       <button
         className='btn-add-to-cart'
@@ -53,6 +61,7 @@ const Product = ({ product, addCart, loadCurrentItem }) => {
       >
         Thêm vào giỏ hàng
       </button>
+      {message}
     </div>
   );
 };
