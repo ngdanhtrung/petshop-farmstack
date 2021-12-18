@@ -54,7 +54,7 @@ export default class SignIn extends Component {
     // const [username, setUsername];
     // const [password, setPassword] = useState("");
     // const [error, setError] = useState("");
-    const urlRequest = `${process.env.REACT_APP_API_KEY}users/login`;
+    const urlRequest = `${process.env.REACT_APP_API_KEY}users/loginAdmin`;
     const handleClickLogin = async (e) => {
       e.preventDefault();
       if (!this.state.username) {
