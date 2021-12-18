@@ -12,9 +12,10 @@
 
 import ReactApexChart from "react-apexcharts";
 import { Row, Col, Typography } from "antd";
-import eChart from "./configs/eChart";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import moment from "moment";
+import { FundProjectionScreenOutlined } from "@ant-design/icons";
 
 function EChart() {
   const { Title, Paragraph } = Typography;
@@ -22,16 +23,62 @@ function EChart() {
   const [users, setUsers] = useState();
   const [pets, setPets] = useState();
   const [products, setProducts] = useState();
-
+  const [series, setSeries] = useState([{}]);
   // const urlRequest = `${process.env.REACT_APP_API_KEY}admin`;
+  
+  const range = (start, stop, step) =>
+    Array.from(
+      { length: (stop - start) / step + 1 },
+      (_, i) => start + i * step
+    );
+  const thisMonth = moment().format("M");
+  const arrMonth = range(thisMonth - 8, thisMonth, 1);
+  console.log(arrMonth);
+  let arrMonthData = [];
+  let arrMonthDisplay = [];
 
-  useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_KEY}admin/count/`).then((res) => {
-      setUsers(res.data.users);
-      setPets(res.data.pets);
-      setProducts(res.data.items);
-      console.log(res.data);
-    });
+  useEffect(async () => {
+    await axios
+      .get(`${process.env.REACT_APP_API_KEY}admin/count/`)
+      .then((res) => {
+        setUsers(res.data.users);
+        setPets(res.data.pets);
+        setProducts(res.data.items);
+        console.log(res.data);
+      }).catch((error) => {
+        console.log(error.response)
+      });
+    await axios
+      .get(`${process.env.REACT_APP_API_KEY}admin/countUsers`)
+      .then((res) => {
+        // setUsersMonth(res.data);
+        res.data.map((item) => {
+          const temp = {
+            month: item._id.month,
+            year: item._id.year,
+            count: item.count,
+          };
+          arrMonthData.push(temp);
+        });
+        console.log(res.data);
+        arrMonthDisplay = arrMonthData
+          .filter(
+            (item) =>
+              item.month >= thisMonth - 8 &&
+              item.month <= thisMonth &&
+              item.year == 2021
+          )
+          .sort((a, b) => a.month - b.month)
+          .map((item) => item.count);
+        setSeries([
+          {
+            name: "Users",
+            data: arrMonthDisplay,
+            color: "#fff",
+          },
+        ]);
+        console.log(arrMonthDisplay);
+      });
   }, []);
 
   const items = [
@@ -53,13 +100,109 @@ function EChart() {
     },
   ];
 
+  //EChart from here  
+  const eChart = {
+    series: [
+      {
+        name: "Sales",
+        data: arrMonthDisplay,
+        color: "#fff",
+      },
+    ],
+
+    options: {
+      chart: {
+        type: "bar",
+        width: "100%",
+        height: "auto",
+
+        toolbar: {
+          show: false,
+        },
+      },
+      plotOptions: {
+        bar: {
+          horizontal: false,
+          columnWidth: "55%",
+          borderRadius: 5,
+        },
+      },
+      dataLabels: {
+        enabled: false,
+      },
+      stroke: {
+        show: true,
+        width: 1,
+        colors: ["transparent"],
+      },
+      grid: {
+        show: true,
+        borderColor: "#ccc",
+        strokeDashArray: 2,
+      },
+      xaxis: {
+        categories: arrMonth,
+        labels: {
+          show: true,
+          align: "right",
+          minWidth: 0,
+          maxWidth: 160,
+          style: {
+            colors: [
+              "#fff",
+              "#fff",
+              "#fff",
+              "#fff",
+              "#fff",
+              "#fff",
+              "#fff",
+              "#fff",
+              "#fff",
+              "#fff",
+            ],
+          },
+        },
+      },
+      yaxis: {
+        labels: {
+          show: true,
+          align: "right",
+          minWidth: 0,
+          maxWidth: 160,
+          style: {
+            colors: [
+              "#fff",
+              "#fff",
+              "#fff",
+              "#fff",
+              "#fff",
+              "#fff",
+              "#fff",
+              "#fff",
+              "#fff",
+              "#fff",
+            ],
+          },
+        },
+      },
+
+      tooltip: {
+        y: {
+          formatter: function (val) {
+            return val + " người dùng";
+          },
+        },
+      },
+    },
+  };
+
   return (
     <>
       <div id='chart'>
         <ReactApexChart
           className='bar-chart'
           options={eChart.options}
-          series={eChart.series}
+          series={series}
           type='bar'
           height={300}
         />
