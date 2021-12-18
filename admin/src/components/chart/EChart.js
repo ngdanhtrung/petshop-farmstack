@@ -23,6 +23,7 @@ function EChart() {
   const [users, setUsers] = useState();
   const [pets, setPets] = useState();
   const [products, setProducts] = useState();
+  const [payments, setPayments] = useState();
   const [series, setSeries] = useState([{}]);
   // const urlRequest = `${process.env.REACT_APP_API_KEY}admin`;
   
@@ -44,6 +45,7 @@ function EChart() {
         setUsers(res.data.users);
         setPets(res.data.pets);
         setProducts(res.data.items);
+        setPayments(res.data.payments);
         console.log(res.data);
       }).catch((error) => {
         console.log(error.response)
@@ -95,8 +97,8 @@ function EChart() {
       user: "Sản phẩm",
     },
     {
-      Title: 0,
-      user: "Thu Nhập",
+      Title: payments,
+      user: "Số đơn hàng",
     },
   ];
 

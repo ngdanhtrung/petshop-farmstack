@@ -6,6 +6,7 @@ from fastapi.responses import JSONResponse
 from fastapi.encoders import jsonable_encoder
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from app.models import UsersModel
+from app.models import PaymentsModel
 from app.utils import dbUser
 from passlib.context import CryptContext
 from jose import jwt
@@ -74,3 +75,36 @@ async def add_payment_pet(username, payment):
 async def get_payment_by_id(id):
     document = await paymentTbl.find_one({"_id": id})
     return document
+
+async def count_payments():
+    return await paymentTbl.count_documents({})
+
+async def total_amount_by_month():
+    results = []
+    cursor = paymentTbl.aggregate([ 
+        {"$project": {
+            "month" : {"$month" : "$created_at"},
+            "year" : {"$year" : "$created_at"},
+            "total": {"$sum": "$amount"}
+        }},
+        {"$group" : { 
+            "_id" : {"month" : "$month", "year" : "$year"},  
+            "totalAmount" : {"$sum": "$total"}
+            # "month" : {"month" : "$month"},
+            # "year" : {"year" : "$year"}
+        }}])
+    # cursor = collection.aggregate([
+    # {"$group" : { 
+    #     "_id" : { 
+    #     "month" : {"$month" : "$created_at"}, 
+    #     "year" : {"$year" :  "$created_at"}
+    #     },  
+    #     "count" : {"$sum" : 1} ,
+        
+    #     }}
+    #     "month" : {"$month" : "$created_at"},
+    #     "year" : {"$year" : "$created_at"}
+    # ])
+    async for document in cursor:
+        results.append(PaymentsModel.totalAmount(**document))
+    return results
