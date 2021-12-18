@@ -89,7 +89,7 @@ async def total_amount_by_month():
         }},
         {"$group" : { 
             "_id" : {"month" : "$month", "year" : "$year"},  
-            "totalAmount" : {"$sum": "$total"}
+            "total" : {"$sum": "$total"}
             # "month" : {"month" : "$month"},
             # "year" : {"year" : "$year"}
         }}])
