@@ -1,12 +1,14 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-
+import Pdf from "react-to-pdf";
 import "./index.css";
+
+const ref = React.createRef();
 
 const Bill = () => {
   return (
     <>
-      <div className="invoice-box">
+      <div className="invoice-box" ref={ref}>
         <table cellPadding={0} cellSpacing={0}>
           <tbody>
             <tr className="top">
@@ -14,12 +16,7 @@ const Bill = () => {
                 <table>
                   <tbody>
                     <tr>
-                      <td className="title">
-                        <img
-                          src="https://www.sparksuite.com/images/logo.png"
-                          style={{ width: "100%", maxWidth: "300px" }}
-                        />
-                      </td>
+                      <td className="title">PETS SHOP</td>
                       <td>
                         Invoice #: 123
                         <br />
@@ -38,18 +35,16 @@ const Bill = () => {
                   <tbody>
                     <tr>
                       <td>
-                        Sparksuite, Inc.
+                        PETS SHOP
                         <br />
-                        12345 Sunny Road
+                        An Dương Vương, Quận 5
                         <br />
-                        Sunnyville, CA 12345
+                        TPHCM
                       </td>
                       <td>
-                        Acme Corp.
-                        <br />
-                        John Doe
-                        <br />
-                        john@example.com
+                        Nhóm ComChien
+                        <br></br>
+                        petshop@example.com
                       </td>
                     </tr>
                   </tbody>
@@ -84,6 +79,9 @@ const Bill = () => {
               <td />
               <td>Total: $385.00</td>
             </tr>
+            <Pdf targetRef={ref} filename="post.pdf">
+              {({ toPdf }) => <button onClick={toPdf}>Print PDF</button>}
+            </Pdf>
           </tbody>
         </table>
       </div>
