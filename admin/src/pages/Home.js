@@ -9,7 +9,7 @@
   =========================================================
   * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
-import { useState , useEffect} from "react";
+import { useState, useEffect } from "react";
 
 import {
   Card,
@@ -19,7 +19,7 @@ import {
   message,
   Button,
   Timeline,
-  Table
+  Table,
 } from "antd";
 import {
   VerticalAlignBottomOutlined,
@@ -48,8 +48,26 @@ function Home() {
     });
   };
 
-  useEffect(getUsersList, []);
+  const [role, setRole] = useState("");
+  const urlRequest = `${process.env.REACT_APP_API_KEY}users/loginAdmin`;
 
+  const getLoggedInUser = async () => {
+    await axios
+      .get(urlRequest, {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("access_token"),
+        },
+      })
+      .then((res) => {
+        setRole(res.data.role);
+        console.log(res.data.role);
+      })
+      .catch(() => (document.location.href = "/sign-in"));
+  };
+
+  useEffect(getLoggedInUser, []);
+
+  useEffect(getUsersList, []);
 
   const timelineList = [
     {
@@ -111,11 +129,10 @@ function Home() {
       title: "Thời điểm tạo tài khoản",
       dataIndex: "created_at",
       key: "created_at",
-      render: (text) => (moment(text).format("YYYY-MM-DD HH:mm"))
+      render: (text) => moment(text).format("YYYY-MM-DD HH:mm"),
     },
   ];
 
-  
   return (
     <>
       <div className='layout-content'>
@@ -147,7 +164,7 @@ function Home() {
                 <Table
                   columns={columns}
                   dataSource={userList}
-                  pagination={{position:['bottomCenter']}}
+                  pagination={{ position: ["bottomCenter"] }}
                 />
               </div>
               <div className='uploadfile shadow-none'>
