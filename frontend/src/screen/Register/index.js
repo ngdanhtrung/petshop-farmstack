@@ -8,6 +8,7 @@ const Register = () => {
   const dialog = useDialog();
 
   const [username, setUserName] = useState();
+  const [fullname, setFullName] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [confirmPassword, setConfirmPassword] = useState();
@@ -22,6 +23,7 @@ const Register = () => {
         .post(urlRequest, {
           username: username,
           email: email,
+          fullname: fullname,
           pwd: password,
         })
         .then((response) => {
@@ -45,11 +47,20 @@ const Register = () => {
   return (
     <form className='form'>
       <div className='form-input'>
-        <label className='label'>Tên người dùng: </label>
+        <label className='label'>Tên đăng nhập: </label>
         <input
           type='text'
           onChange={(e) => {
             setUserName(e.target.value);
+          }}
+        />
+      </div>
+      <div className='form-input'>
+        <label className='label'>Họ và tên: </label>
+        <input
+          type='text'
+          onChange={(e) => {
+            setFullName(e.target.value);
           }}
         />
       </div>
