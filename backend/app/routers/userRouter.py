@@ -49,6 +49,18 @@ async def login(form_data: OAuth2PasswordRequestForm = Depends()):
     else:
         raise HTTPException(status_code=400, detail="Incorrect password")
 
+@router.post('/loginAdmin')
+async def login(form_data: OAuth2PasswordRequestForm = Depends()):
+    username = form_data.username
+    password = form_data.password
+    # print(username, password)
+    if await dbUser.authenticate_admin(username, password):
+        access_token = create_access_token(data={'sub': username, "role": "admin"},
+                                           expires_delta=timedelta(minutes=30))
+        return {"access_token": access_token, "token_type": "bearer"}
+    else:
+        raise HTTPException(status_code=400, detail="Incorrect password")
+
 @router.get('/me', response_model=LoggedInUser)
 async def get_logged_in_user(user: LoggedInUser = Depends(dbUser.get_current_user)):
     return user
