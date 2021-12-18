@@ -49,7 +49,7 @@ function Home() {
   };
 
   const [role, setRole] = useState("");
-  const urlRequest = `${process.env.REACT_APP_API_KEY}users/loginAdmin`;
+  const urlRequest = `${process.env.REACT_APP_API_KEY}users/me`;
 
   const getLoggedInUser = async () => {
     await axios
@@ -60,12 +60,9 @@ function Home() {
       })
       .then((res) => {
         setRole(res.data.role);
-        console.log(res.data.role);
       })
-      .catch(() => () => {
-        if (role) {
-          document.location.href = "/sign-in";
-        }
+      .catch(() => {
+        document.location.href = "/sign-in";
       });
   };
 
