@@ -8,6 +8,7 @@ import Service from "../Service/index";
 import Contact from "../Contact/index";
 import Login from "../Login/index";
 import Register from "../Register/index";
+import Bill from "./../Bill";
 import Pets from "../Pets/index";
 import Products from "../Products/Products";
 import Cart from "../Cart/index";
@@ -144,6 +145,9 @@ const Navbar = ({ cart }) => {
         </Route>
         <Route path='/PaymentCart'>
           <PaymentCart />
+        </Route>
+        <Route path="/Bill">
+          <Bill />
         </Route>
       </Switch>
     </>
