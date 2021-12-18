@@ -78,6 +78,9 @@ const PaymentCart = () => {
         )
         .then(() => {
           setMessage("Thanh toán thành công");
+        })
+        .catch(() => {
+          setMessage("Có trục trặc xảy ra");
         });
     } else {
       setMessage("Vui lòng điền thông tin cần thiết");
@@ -173,14 +176,15 @@ const PaymentCart = () => {
                 </tr>
               </thead>
               <tbody>
-                {cart1.map((item) => (
-                  <tr>
-                    <td>
-                      {item.name} x {item.quantity}
-                    </td>
-                    <td>{item.quantity * item.value} ₫</td>
-                  </tr>
-                ))}
+                {cart1 &&
+                  cart1.map((item) => (
+                    <tr>
+                      <td>
+                        {item.name} x {item.quantity}
+                      </td>
+                      <td>{item.quantity * item.value} ₫</td>
+                    </tr>
+                  ))}
               </tbody>
             </table>
             <hr></hr>
@@ -193,7 +197,7 @@ const PaymentCart = () => {
             </p>
             <p style={{ marginTop: "auto" }}>
               {" "}
-              Tổng tiền: 
+              Tổng tiền:
               <strong style={{ float: "right" }}>{totalPrice} ₫</strong>
             </p>
             <Button color='primary' onClick={submitPayment}>

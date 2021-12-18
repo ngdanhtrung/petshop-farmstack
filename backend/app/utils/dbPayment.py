@@ -45,6 +45,7 @@ async def add_payment(username, payment):
             "amount": totalAmount
         }})
         await dbUser.clear_cart(username)
+        await paymentTbl.update_many({},[{ "$set": { "created_at": { "$toDate": "$created_at" } }}])
         document = await paymentTbl.find_one({"_id": insert.inserted_id})
         return document
     except:
