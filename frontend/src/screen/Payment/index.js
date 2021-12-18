@@ -81,7 +81,7 @@ const Payment = () => {
             extra: extra,
             petID: pet._id,
             petName: pet.name,
-            value: pet.value,
+            amount: pet.value,
           },
           {
             headers: {

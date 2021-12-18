@@ -31,15 +31,15 @@ const Bill = () => {
   return (
     <>
       {payment && (
-        <div className="invoice-box" ref={ref}>
+        <div className='invoice-box' ref={ref}>
           <table cellPadding={0} cellSpacing={0}>
             <tbody>
-              <tr className="top">
+              <tr className='top'>
                 <td colSpan={2}>
                   <table>
                     <tbody>
                       <tr>
-                        <td className="title">PETS SHOP</td>
+                        <td className='title'>PETS SHOP</td>
                         <td>
                           Invoice #: {payment._id}
                           <br />
@@ -50,7 +50,7 @@ const Bill = () => {
                   </table>
                 </td>
               </tr>
-              <tr className="information">
+              <tr className='information'>
                 <td colSpan={2}>
                   <table>
                     <tbody>
@@ -72,29 +72,29 @@ const Bill = () => {
                   </table>
                 </td>
               </tr>
-              <tr className="heading">
+              <tr className='heading'>
                 <td>Payment Method</td>
                 <td></td>
               </tr>
-              <tr className="details">
+              <tr className='details'>
                 <td>COD</td>
               </tr>
-              <tr className="heading">
+              <tr className='heading'>
                 <td>Item</td>
                 <td>Price</td>
               </tr>
-              <tr className="item">
+              <tr className='item'>
                 <td>{payment.petName}</td>
-                <td>{payment.value} đ</td>
+                <td>{payment.amount} đ</td>
               </tr>
 
-              <tr className="total">
+              <tr className='total'>
                 <td />
                 <td>Total: {payment.value} đ</td>
               </tr>
             </tbody>
           </table>
-          <Pdf targetRef={ref} filename="post.pdf">
+          <Pdf targetRef={ref} filename='post.pdf'>
             {({ toPdf }) => <button onClick={toPdf}>Print PDF</button>}
           </Pdf>
         </div>
