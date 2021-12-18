@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import CartItem from "./CartItem";
 import "./styles.css";
 import axios from "axios";
-import {Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
 const Cart = ({ cart }) => {
   const [totalPrice, setTotalPrice] = useState(0);
   const [totalItem, setTotalItem] = useState(0);
@@ -20,7 +20,7 @@ const Cart = ({ cart }) => {
       })
       .then((res) => {
         setCart(res.data.cart);
-        console.log(res.data.cart);
+        console.log(cart.length);
       });
   };
   useEffect(() => {
@@ -40,45 +40,59 @@ const Cart = ({ cart }) => {
 
   return (
     <>
-      <div className="containers-row-cart">
-        <div style={{textAlign: "center", marginRight: "20px"}}>
-        <table className='table-cart'>
-          <thead>
-            <tr>
-              <th className='table-name'>Tên sản phẩm</th>
-              <th className='table-img'>Ảnh</th>
-              <th className='table-price'>Giá</th>
-              <th className='table-numbercount'>Số lượng</th>
-              <th></th>
-            </tr>
-          </thead>
-        </table>
-        {cart1 &&
-          cart1.map((value) => (
-            <CartItem key={value.id} item={value} getCart={getCart}></CartItem>
-          ))}
-        {/*                 
+      {cart1.length !== 0 ? (
+        <div className='containers-row-cart'>
+          <div style={{ textAlign: "center", marginRight: "20px" }}>
+            <table className='table-cart'>
+              <thead>
+                <tr>
+                  <th className='table-name'>Tên sản phẩm</th>
+                  <th className='table-img'>Ảnh</th>
+                  <th className='table-price'>Giá</th>
+                  <th className='table-numbercount'>Số lượng</th>
+                  <th></th>
+                </tr>
+              </thead>
+            </table>
+
+            {cart1.map((value) => (
+              <CartItem
+                key={value.id}
+                item={value}
+                getCart={getCart}
+              ></CartItem>
+            ))}
+            {/*                 
             <div>Số lượng: {totalItem}</div> */}
             <hr></hr>
-            
+          </div>
+          <div className='cart_totals'>
+            <url>
+              <li>
+                {" "}
+                Tổng trị giá:
+                <span className='sum-count-price'>{totalPrice} đ</span>
+              </li>
+              <li>
+                {" "}
+                Phí vận chuyển:
+                <span className='sum-count-price'>Free ship</span>
+              </li>
+              <hr></hr>
+              <li className='li-total' style={{ fontWeight: 900 }}>
+                {" "}
+                Tổng tiền:
+                <span className='sum-count-price'>{totalPrice} đ</span>
+              </li>
+            </url>
+            <Link to='/PaymentCart' className='btn-order'>
+              Mua ngay
+            </Link>
+          </div>
         </div>
-            <div className="cart_totals">
-              <url>
-                <li> Tổng trị giá:
-                  <span className='sum-count-price'>{totalPrice} đ</span>
-                </li>
-                <li> Phí vận chuyển:
-                  <span className='sum-count-price'>Free ship</span>
-                </li>
-                <hr></hr>
-                <li className='li-total' style={{fontWeight:900}}> Tổng tiền:
-                  <span className='sum-count-price'>{totalPrice} đ</span>
-                </li>
-              </url>
-              <Link to='/PaymentCart' className='btn-order'>Mua ngay</Link>
-        </div>
-
-      </div>
+      ) : (
+        <div>Giỏ hàng ko có gì</div>
+      )}
     </>
   );
 };
