@@ -33,7 +33,7 @@ function EChart() {
       (_, i) => start + i * step
     );
   const thisMonth = moment().format("M");
-  const arrMonth = range(thisMonth - 8, thisMonth, 1);
+  const arrMonth = range(thisMonth - 11, thisMonth, 1);
   console.log(arrMonth);
   let arrMonthData = [];
   let arrMonthDisplay = [];
@@ -151,6 +151,8 @@ function EChart() {
           maxWidth: 160,
           style: {
             colors: [
+              "#fff",
+              "#fff",
               "#fff",
               "#fff",
               "#fff",

@@ -34,3 +34,11 @@ class PetPayment(BaseModel):
     class Config:
         allow_population_by_field_name = True
         # schema_extra = {"example": {"created_at": datetime.utcnow}}
+
+class totalAmount(BaseModel):
+    id: dict = Field(alias="_id")
+    total: int
+    # month: int
+    # year: int
+    class Config:
+        allow_population_by_field_name = True
