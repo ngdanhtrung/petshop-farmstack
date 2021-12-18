@@ -6,7 +6,7 @@ import Icon from "../../component/Icon/icon2";
 import axios from "axios";
 import { Link, Switch, Route, useRouteMatch } from "react-router-dom";
 import ProductDetails from "./ProductDetails/index";
-import {FiSearch} from 'react-icons/fi'
+import { FiSearch } from "react-icons/fi";
 const Products = ({ products }) => {
   let { path, url } = useRouteMatch();
   const [input, setInput] = useState("");
@@ -29,28 +29,34 @@ const Products = ({ products }) => {
       .catch((error) => console.log(error));
   };
   const searchItem = async () => {
-    await axios
-      .get(`${search}/${input}`)
-      .then((res) => {
-        setItems(res.data);
-        console.log(res.data);
-      })
-      .catch((error) => console.log(error));
+    if (input == "") getItems();
+    else {
+      await axios
+        .get(`${search}/${input}`)
+        .then((res) => {
+          setItems(res.data);
+          console.log(res.data);
+        })
+        .catch((error) => console.log(error));
+    }
   };
-  useEffect(getItems, [input]);
+  useEffect(getItems, []);
   useEffect(searchItem, [input]);
 
   return (
     <>
-
       <Switch>
         <Route exact path={path}>
-          <div className="containers-input-search">
-             <input className="input-search" value={input} onChange={onChangeHandler}></input>
-              <FiSearch className="icon-search"></FiSearch>
+          <div className='containers-input-search'>
+            <input
+              className='input-search'
+              value={input}
+              onChange={onChangeHandler}
+            ></input>
+            <FiSearch className='icon-search'></FiSearch>
           </div>
-          <Icon title="Các sản phẩm cho thú cưng của bạn" />
-          <div className="row-products">
+          <Icon title='Các sản phẩm cho thú cưng của bạn' />
+          <div className='row-products'>
             {items ? (
               items.map((product) => (
                 <Product key={product._id} product={product} />
