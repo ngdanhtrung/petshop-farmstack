@@ -38,50 +38,23 @@ import { CSVLink } from "react-csv";
 function Home() {
   const { Title, Text } = Typography;
 
-  const [reverse, setReverse] = useState(false);
   const [userList, setUserList] = useState([{}]);
+  const [paymentsList, setPaymentsList] = useState([{}]);
 
-  const getUsersList = () => {
+  useEffect((async () => {
     axios.get(`${process.env.REACT_APP_API_KEY}users`).then((res) => {
       setUserList(res.data);
       console.log(res.data);
     });
-  };
+    axios
+      .get(`${process.env.REACT_APP_API_KEY}payments/getPayments`)
+      .then((res) => {
+        setPaymentsList(res.data);
+        console.log(res.data);
+      });
+  }), []);
 
-  useEffect(getUsersList, []);
-
-
-  const timelineList = [
-    {
-      title: "$2,400 - Redesign store",
-      time: "09 JUN 7:20 PM",
-      color: "green",
-    },
-    {
-      title: "New order #3654323",
-      time: "08 JUN 12:20 PM",
-      color: "green",
-    },
-    {
-      title: "Company server payments",
-      time: "04 JUN 3:10 PM",
-    },
-    {
-      title: "New card added for order #4826321",
-      time: "02 JUN 2:45 PM",
-    },
-    {
-      title: "Unlock folders for development",
-      time: "18 MAY 1:30 PM",
-    },
-    {
-      title: "New order #46282344",
-      time: "14 MAY 3:30 PM",
-      color: "gray",
-    },
-  ];
-
-  const columns = [
+  const usersColumns = [
     {
       title: "Mã người dùng",
       dataIndex: "_id",
@@ -115,6 +88,39 @@ function Home() {
     },
   ];
 
+  const paymentsColumns = [
+    {
+      title: "Mã thanh toán",
+      dataIndex: "_id",
+      key: "_id",
+    },
+    {
+      title: "Tên khách",
+      dataIndex: "name",
+      key: "name",
+    },
+    {
+      title: "Địa chỉ",
+      dataIndex: "address",
+      key: "address",
+    },
+    {
+      title: "Số điện thoại",
+      dataIndex: "number",
+      key: "number",
+    },
+    {
+      title: "Email",
+      dataIndex: "email",
+      key: "email",
+    },
+    {
+      title: "Ngày tạo đơn",
+      dataIndex: "created_at",
+      key: "created_at",
+      render: (text) => moment(text).format("YYYY-MM-DD HH:mm"),
+    },
+  ];
   
   return (
     <>
@@ -145,9 +151,9 @@ function Home() {
               </div>
               <div className='ant-list-box table-responsive'>
                 <Table
-                  columns={columns}
+                  columns={usersColumns}
                   dataSource={userList}
-                  pagination={{position:['bottomCenter']}}
+                  pagination={{ position: ["bottomCenter"] }}
                 />
               </div>
               <div className='uploadfile shadow-none'>
@@ -167,31 +173,34 @@ function Home() {
             </Card>
           </Col>
           <Col xs={24} sm={24} md={12} lg={12} xl={24} className='mb-24'>
-            <Card bordered={false} className='criclebox h-full'>
-              <div className='timeline-box'>
-                <Title level={5}>Orders History</Title>
-                <Paragraph className='lastweek' style={{ marginBottom: 24 }}>
-                  this month <span className='bnb2'>20%</span>
-                </Paragraph>
-
-                <Timeline
-                  pending='Recording...'
-                  className='timelinelist'
-                  reverse={reverse}
-                >
-                  {timelineList.map((t, index) => (
-                    <Timeline.Item color={t.color} key={index}>
-                      <Title level={5}>{t.title}</Title>
-                      <Text>{t.time}</Text>
-                    </Timeline.Item>
-                  ))}
-                </Timeline>
+            <Card bordered={false} className='criclebox cardbody h-full'>
+              <div className='project-ant'>
+                <div>
+                  <Title level={5}>Danh sách hoá đơn</Title>
+                  <Paragraph className='lastweek'>
+                    Danh sách các đơn hàng đã thanh toán
+                  </Paragraph>
+                </div>
+              </div>
+              <div className='ant-list-box table-responsive'>
+                <Table
+                  columns={paymentsColumns}
+                  dataSource={paymentsList}
+                  pagination={{ position: ["bottomCenter"] }}
+                />
+              </div>
+              <div className='uploadfile shadow-none'>
                 <Button
-                  type='primary'
-                  className='width-100'
-                  onClick={() => setReverse(!reverse)}
+                  type='dashed'
+                  className='ant-full-box'
+                  icon={<VerticalAlignBottomOutlined />}
                 >
-                  {<MenuUnfoldOutlined />} REVERSE
+                  <CSVLink
+                    data={paymentsList}
+                    filename={moment().format("[Payments List] YYYY-MM-DD HH:mm")}
+                  >
+                    <span className='click'>Click to Download</span>
+                  </CSVLink>
                 </Button>
               </div>
             </Card>

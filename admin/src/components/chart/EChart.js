@@ -66,7 +66,7 @@ function EChart() {
         arrMonthDisplay = arrMonthData
           .filter(
             (item) =>
-              item.month >= thisMonth - 8 &&
+              item.month >= thisMonth - 11 &&
               item.month <= thisMonth &&
               item.year == 2021
           )

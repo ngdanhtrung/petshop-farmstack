@@ -76,6 +76,13 @@ async def get_payment_by_id(id):
     document = await paymentTbl.find_one({"_id": id})
     return document
 
+async def fetch_all_payments():
+    result = []
+    cursor = paymentTbl.find({})
+    async for document in cursor:
+        result.append(PaymentsModel.FetchedPayment(**document))
+    return result
+
 async def count_payments():
     return await paymentTbl.count_documents({})
 

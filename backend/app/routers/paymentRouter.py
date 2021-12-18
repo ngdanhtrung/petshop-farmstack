@@ -42,3 +42,7 @@ async def get_payment(id):
     if response:
         return response
 
+@router.get('/getPayments/')
+async def get_payments():
+    response = await dbPayment.fetch_all_payments()
+    return response

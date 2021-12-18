@@ -42,3 +42,11 @@ class totalAmount(BaseModel):
     # year: int
     class Config:
         allow_population_by_field_name = True
+
+class FetchedPayment(BaseModel):
+    id: str = Field(default_factory=uuid.uuid4, alias="_id")
+    name: str = Field(...)
+    address: str = Field(...)
+    number: int
+    email: str = "Default"
+    created_at: datetime = Field(default_factory=datetime.utcnow)
