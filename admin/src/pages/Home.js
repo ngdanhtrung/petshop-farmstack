@@ -34,6 +34,7 @@ import card from "../assets/images/info-card-1.jpg";
 import axios from "axios";
 import moment from "moment";
 import { CSVLink } from "react-csv";
+import NumberFormat from "react-number-format";
 
 function Home() {
   const { Title, Text } = Typography;
@@ -74,7 +75,6 @@ function Home() {
 
   useEffect(getLoggedInUser, []);
 
-  useEffect(getUsersList, []);
 
     const usersColumns = [
     {
@@ -135,6 +135,19 @@ function Home() {
       title: "Email",
       dataIndex: "email",
       key: "email",
+    },
+    {
+      title: "Số tiền thanh toán",
+      dataIndex: "amount",
+      key: "amount",
+      render: (text) => (
+        <NumberFormat
+          value={text}
+          displayType={"text"}
+          thousandSeparator={true}
+          suffix='VND'
+        />
+      ),
     },
     {
       title: "Ngày tạo đơn",

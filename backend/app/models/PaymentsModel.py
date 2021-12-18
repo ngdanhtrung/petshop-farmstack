@@ -49,4 +49,5 @@ class FetchedPayment(BaseModel):
     address: str = Field(...)
     number: int
     email: str = "Default"
+    amount: int
     created_at: datetime = Field(default_factory=datetime.utcnow)
