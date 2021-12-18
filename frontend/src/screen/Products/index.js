@@ -14,42 +14,27 @@ const Product = ({ product, addCart, loadCurrentItem }) => {
   const urlRequest = `${process.env.REACT_APP_API_KEY}items/addItem`;
   const getUserRequest = `${process.env.REACT_APP_API_KEY}users/me`;
 
-  const getLoggedInUser = async () => {
-    await axios
-      .get(getUserRequest, {
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem("access_token"),
-        },
-      })
-      .then((res) => {
-        setUsername(res.data.username);
-      })
-      .catch((error) => console.log(error));
-  };
-
   const addSingleItem = async (product) => {
-    getLoggedInUser();
-    if (username) {
-      await axios
-        .put(
-          urlRequest,
-          {
-            id: product._id,
-            name: product.name,
-            image: product.image,
-            quantity: 1,
-            value: product.value,
+    await axios
+      .put(
+        urlRequest,
+        {
+          id: product._id,
+          name: product.name,
+          image: product.image,
+          quantity: 1,
+          value: product.value,
+        },
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("access_token"),
           },
-          {
-            headers: {
-              Authorization: "Bearer " + localStorage.getItem("access_token"),
-            },
-          }
-        )
-        .catch((error) => console.log(error));
-    } else {
-      setMessage("Xin vui lòng đăng nhập trước");
-    }
+        }
+      )
+      .then(() => {
+        setMessage("Vật phẩm đã được thêm");
+      })
+      .catch(() => setMessage("Xin vui lòng đăng nhập trước"));
   };
 
   return (

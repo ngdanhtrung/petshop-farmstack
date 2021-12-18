@@ -18,20 +18,6 @@ const ProductDetails = ({ current, addCart }) => {
 
   const urlRequest = `${process.env.REACT_APP_API_KEY}items/addItem`;
   const getSingleProduct = `${process.env.REACT_APP_API_KEY}products/getSingleProduct`;
-  const getUserRequest = `${process.env.REACT_APP_API_KEY}users/me`;
-
-  const getLoggedInUser = async () => {
-    await axios
-      .get(getUserRequest, {
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem("access_token"),
-        },
-      })
-      .then((res) => {
-        setUsername(res.data.username);
-      })
-      .catch((error) => console.log(error));
-  };
 
   const getItem = async () => {
     await axios
@@ -49,31 +35,27 @@ const ProductDetails = ({ current, addCart }) => {
   }, []);
 
   const addSingleItem = async (product) => {
-    getLoggedInUser();
-    if (username) {
-      await axios
-        .put(
-          urlRequest,
-          {
-            id: product._id,
-            name: product.name,
-            image: product.image,
-            quantity: input,
-            value: product.value,
+    await axios
+      .put(
+        urlRequest,
+        {
+          id: product._id,
+          name: product.name,
+          image: product.image,
+          quantity: input,
+          value: product.value,
+        },
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("access_token"),
           },
-          {
-            headers: {
-              Authorization: "Bearer " + localStorage.getItem("access_token"),
-            },
-          }
-        )
-        .then((res) => {
-          console.log(res.data);
-        })
-        .catch((error) => console.log(error));
-    } else {
-      setMessage("Xin vui lòng đăng nhập trước");
-    }
+        }
+      )
+      .then((res) => {
+        console.log(res.data);
+        setMessage("Vật phẩm đã được thêm");
+      })
+      .catch(() => setMessage("Xin vui lòng đăng nhập trước"));
   };
 
   return (
