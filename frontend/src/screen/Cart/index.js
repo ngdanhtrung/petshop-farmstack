@@ -20,7 +20,7 @@ const Cart = ({ cart }) => {
       })
       .then((res) => {
         setCart(res.data.cart);
-        console.log(cart.length);
+        console.log(cart);
       });
   };
   useEffect(() => {
@@ -40,7 +40,7 @@ const Cart = ({ cart }) => {
 
   return (
     <>
-      {cart1.length !== 0 ? (
+      {cart1 !== undefined && cart1.length !== 0 ? (
         <div className='containers-row-cart'>
           <div style={{ textAlign: "center", marginRight: "20px" }}>
             <table className='table-cart'>
