@@ -4,12 +4,17 @@
     width: 20%;
 }
 
-.table {
-    width: 100%;
+.table-cart {
+    width: 648px;
     text-align: center;
     margin: 30px;
+
 }
 
+.table-cart tr {
+    width: 648px;
+    
+}
 .table-img {
     min-width: 25%;
     width: 25%;

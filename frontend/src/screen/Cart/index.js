@@ -41,8 +41,8 @@ const Cart = ({ cart }) => {
   return (
     <>
       <div className="containers-row-cart">
-        <div>
-        <table className='table'>
+        <div style={{textAlign: "center", marginRight: "20px"}}>
+        <table className='table-cart'>
           <thead>
             <tr>
               <th className='table-name'>Tên sản phẩm</th>

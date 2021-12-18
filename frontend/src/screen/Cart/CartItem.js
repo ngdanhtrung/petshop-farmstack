@@ -46,7 +46,7 @@ const CartItem = ({ item, getCart }) => {
   };
   return (
     <div>
-      <table className='table'>
+      <table className='table-cart'>
         <tr>
           <td className='title-table table-name'>{item.name}</td>
           <td className='table-img'>
