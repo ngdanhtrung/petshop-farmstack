@@ -44,18 +44,17 @@ async def count_users():
 async def count_users_in_month(time):
     await collection.create_index([("created_at", pymongo.TEXT)])
     results = []
-    # cursor = collection.find({"isPet": boolean, "$text": {"$search": keyword, "$diacriticSensitive": True} })
-    cursor = collection.aggregate([
-       { "$search": {
-            "text" : {
-                "path" : "created_at",
-                "query": time,
-                "fuzzy": {}
-            }
-        }
-    },])
+    cursor = collection.find({"$text": {"$search": time, "$diacriticSensitive": True} })
+    # cursor = collection.aggregate([
+    #    { "$search": {
+    #         "text" : {
+    #             "path" : "created_at",
+    #             "query": time,
+    #         }
+    #     }
+    # },])
     async for document in cursor:
-        results.append(UsersModel.Item(**document))
+        results.append(UsersModel.User(**document))
     return results
 
 def encrypt_password(password):
@@ -67,6 +66,7 @@ async def create_user(user):
         user.pwd = encrypt_password(user.pwd)
         document = jsonable_encoder(user)
         await collection.insert_one(document)
+        await collection.update_many({},[{ "$set": { "created_at": { "$toDate": "$created_at" } }}])
         return document
     except:
         raise HTTPException(status_code=400,
