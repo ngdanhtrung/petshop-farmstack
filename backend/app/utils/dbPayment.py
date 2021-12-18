@@ -50,3 +50,7 @@ async def add_payment(username, payment):
         return document
     except:
         raise HTTPException(400, f'something went wrong')
+
+async def get_payment_by_id(id):
+    document = await paymentTbl.find_one({"_id": id})
+    return document

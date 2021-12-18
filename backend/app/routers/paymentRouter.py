@@ -25,3 +25,10 @@ async def create_new_payment(payment: Payment,
     response = await dbPayment.add_payment(username, payment)
     if response:
         return response
+
+@router.get('/findPayment/{id}')
+async def get_payment(id):
+    response = await dbPayment.get_payment_by_id(id)
+    if response:
+        return response
+
