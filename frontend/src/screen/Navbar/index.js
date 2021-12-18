@@ -78,8 +78,9 @@ const Navbar = ({ cart }) => {
         </nav>
         <nav className="navbar">
           <div className="navbar-container">
-            {data.map((value) => (
+            {data.map(( value, index) => (
               <NavLink
+                key = {index}
                 to={value.link}
                 exact={value.exact}
                 className="navbar-name"

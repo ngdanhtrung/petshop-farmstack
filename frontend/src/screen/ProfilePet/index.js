@@ -103,8 +103,8 @@ const ProfilePet = () => {
         <>
           <Icon title="Các thú cưng khác" />
           <div className="row-profile-pet">
-            {recommend.map((pet) => (
-              <div className="col-pet">
+            {recommend.map((pet, index) => (
+              <div key={index} className="col-pet">
                 <div className="profile-card-more">
                   <img src={pet.image}></img>
                   <div className="icon-profile">
