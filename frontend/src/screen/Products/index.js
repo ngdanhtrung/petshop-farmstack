@@ -8,34 +8,57 @@ import ProductDetails from "./ProductDetails/index";
 import axios from "axios";
 const Product = ({ product, addCart, loadCurrentItem }) => {
   let { path, url } = useRouteMatch();
+  const [username, setUsername] = useState("");
+  const [message, setMessage] = useState("");
+
   const urlRequest = `${process.env.REACT_APP_API_KEY}items/addItem`;
-  const addSingleItem = async (product) => {
-    console.log(product);
+  const getUserRequest = `${process.env.REACT_APP_API_KEY}users/me`;
+
+  const getLoggedInUser = async () => {
     await axios
-      .put(
-        urlRequest,
-        {
-          id: product._id,
-          name: product.name,
-          image: product.image,
-          quantity: 1,
-          value: product.value,
+      .get(getUserRequest, {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("access_token"),
         },
-        {
-          headers: {
-            Authorization: "Bearer " + localStorage.getItem("access_token"),
-          },
-        }
-      )
+      })
       .then((res) => {
-        console.log(res.data);
+        setUsername(res.data.username);
+        console.log(res.data.username);
       })
       .catch((error) => console.log(error));
   };
 
+  const addSingleItem = async (product) => {
+    getLoggedInUser();
+    if (username) {
+      await axios
+        .put(
+          urlRequest,
+          {
+            id: product._id,
+            name: product.name,
+            image: product.image,
+            quantity: 1,
+            value: product.value,
+          },
+          {
+            headers: {
+              Authorization: "Bearer " + localStorage.getItem("access_token"),
+            },
+          }
+        )
+        .then((res) => {
+          console.log(res.data);
+        })
+        .catch((error) => console.log(error));
+    } else {
+      setMessage("Xin vui lòng đăng nhập trước");
+    }
+  };
+
   return (
-    <div className="col-products">
-      <Link 
+    <div className='col-products'>
+      <Link
         onClick={() => loadCurrentItem(product)}
         to={`/Products/${product._id}`}
         className=' link-products'
@@ -43,9 +66,13 @@ const Product = ({ product, addCart, loadCurrentItem }) => {
         <img alt='a' src={product.image}></img>
       </Link>
       <div className='type'>{product.extra.type}</div>
-      <Link onClick={() => loadCurrentItem(product)}
-        to={`/Products/${product._id}`} 
-        className="name-product"><h3>{product.name}</h3></Link>
+      <Link
+        onClick={() => loadCurrentItem(product)}
+        to={`/Products/${product._id}`}
+        className='name-product'
+      >
+        <h3>{product.name}</h3>
+      </Link>
       <div class='price'>{product.value} đ</div>
       <button
         className='btn-add-to-cart'
@@ -53,6 +80,7 @@ const Product = ({ product, addCart, loadCurrentItem }) => {
       >
         Thêm vào giỏ hàng
       </button>
+      {message}
     </div>
   );
 };
