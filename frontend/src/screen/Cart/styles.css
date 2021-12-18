@@ -109,3 +109,8 @@ margin-right: auto;
     border: 2px solid #e7470c;
     color: #e7470c;
 }
+
+.containers-row-cart {
+    display: flex;
+    flex-direction: row;
+}

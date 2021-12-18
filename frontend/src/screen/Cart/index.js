@@ -40,7 +40,8 @@ const Cart = ({ cart }) => {
 
   return (
     <>
-      <div>
+      <div className="containers-row-cart">
+        <div>
         <table className='table'>
           <thead>
             <tr>
@@ -59,6 +60,8 @@ const Cart = ({ cart }) => {
         {/*                 
             <div>Số lượng: {totalItem}</div> */}
             <hr></hr>
+            
+        </div>
             <div className="cart_totals">
               <url>
                 <li> Tổng trị giá:
