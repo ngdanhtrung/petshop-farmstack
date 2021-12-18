@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory, Redirect } from "react-router-dom";
+
 import {
   Card,
   CardImg,
@@ -21,23 +22,93 @@ import {
 import axios from "axios";
 //import './index.css'
 const Payment = () => {
+  const history = useHistory();
   let params = useParams();
   const [pet, setPet] = useState(null);
+  const [redirect, setRedirect] = useState(false);
+  const [fullName, setFullName] = useState("");
+  const [address, setAddress] = useState("");
+  const [number, setNumber] = useState("");
+  const [mail, setMail] = useState("");
+  const [extra, setExtra] = useState("");
+  const [message, setMessage] = useState("");
+  const [result, setResult] = useState([]);
+  const handleName = (e) => {
+    setFullName(e.target.value);
+  };
+
+  const handleAddress = (e) => {
+    setAddress(e.target.value);
+  };
+
+  const handleNum = (e) => {
+    setNumber(e.target.value);
+  };
+
+  const handleMail = (e) => {
+    setMail(e.target.value);
+  };
+
+  const handleExtra = (e) => {
+    setExtra(e.target.value);
+  };
+
   const urlRequest = `${process.env.REACT_APP_API_KEY}products/getSingleProduct`;
+  const payment = `${process.env.REACT_APP_API_KEY}payments/addPPet`;
 
   const getPet = async () => {
     await axios
       .get(`${urlRequest}/${params.id}`)
       .then((res) => {
         setPet(res.data);
+        console.log(res.data);
       })
       .catch((error) => {
         console.log(error);
       });
   };
+
+  const handleClickE = async () => {
+    if ((fullName, address, number)) {
+      await axios
+        .post(
+          payment,
+          {
+            name: fullName,
+            address: address,
+            number: number,
+            email: mail,
+            extra: extra,
+            petID: pet._id,
+            petName: pet.name,
+            value: pet.value,
+          },
+          {
+            headers: {
+              Authorization: "Bearer " + localStorage.getItem("access_token"),
+            },
+          }
+        )
+        .then((res) => {
+          setResult(res.data);
+          setRedirect(true);
+        })
+        .catch((error) => {
+          console.log(error.response);
+          setMessage("Có trục trặc xảy ra");
+        });
+    } else {
+      setMessage("Vui lòng điền thông tin cần thiết");
+    }
+  };
+
   useEffect(() => {
     getPet();
   }, [params.id]);
+
+  if (redirect) {
+    return <Redirect to={`/bill/${result._id}`} />;
+  }
   return (
     <>
       {pet && (
@@ -53,6 +124,8 @@ const Payment = () => {
                     name='fullname'
                     placeholder='Tên'
                     type='text'
+                    value={fullName}
+                    onChange={handleName}
                   />
                 </FormGroup>
                 <FormGroup>
@@ -62,6 +135,8 @@ const Payment = () => {
                     name='address'
                     placeholder='Địa chỉ'
                     type='text'
+                    value={address}
+                    onChange={handleAddress}
                   />
                 </FormGroup>
                 <FormGroup>
@@ -71,6 +146,8 @@ const Payment = () => {
                     name='phone'
                     placeholder='Số điện thoại'
                     type='text'
+                    value={number}
+                    onChange={handleNum}
                   />
                 </FormGroup>
 
@@ -81,11 +158,19 @@ const Payment = () => {
                     name='email'
                     placeholder='Email'
                     type='text'
+                    value={mail}
+                    onChange={handleMail}
                   />
                 </FormGroup>
                 <FormGroup>
                   <Label for='more'>Thông tin bổ sung</Label>
-                  <Input id='more' name='more' type='textarea' />
+                  <Input
+                    id='more'
+                    name='more'
+                    type='textarea'
+                    value={extra}
+                    onChange={handleExtra}
+                  />
                 </FormGroup>
               </Form>
             </Col>
@@ -103,7 +188,8 @@ const Payment = () => {
                     {pet.value}
                   </CardSubtitle>
                   <CardText>{pet.description}</CardText>
-                  <Button>Nhận nuôi</Button>
+                  <Button onClick={handleClickE}>Nhận nuôi</Button>
+                  {message}
                 </CardBody>
               </Card>
             </Col>

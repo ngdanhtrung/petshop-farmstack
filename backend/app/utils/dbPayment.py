@@ -50,3 +50,27 @@ async def add_payment(username, payment):
         return document
     except:
         raise HTTPException(400, f'something went wrong')
+
+async def add_payment_pet(username, payment):
+    try:
+        user = await userTbl.find_one({"username": username}, {
+            "username": 1,
+        })
+        user = jsonable_encoder(user)
+        payment = jsonable_encoder(payment)
+        insert = await paymentTbl.insert_one(payment)
+        await paymentTbl.update_one({
+            "_id": insert.inserted_id,
+        }, {'$set': {
+            "user": user,
+        }})
+        await paymentTbl.update_many({},[{ "$set": { "created_at": { "$toDate": "$created_at" } }}])
+        document = await paymentTbl.find_one({"_id": insert.inserted_id})
+        return document
+    except:
+        raise HTTPException(400, f'something went wrong')
+
+
+async def get_payment_by_id(id):
+    document = await paymentTbl.find_one({"_id": id})
+    return document
