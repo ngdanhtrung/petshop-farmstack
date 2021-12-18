@@ -96,6 +96,17 @@ async def authenticate_user(username, password):
     else:
         raise HTTPException(status_code=400, detail="Username does not exist")
 
+async def authenticate_admin(username, password):
+    if await collection.count_documents({"username": username, "role" : "admin"}) == 1:
+        doc = await collection.find_one({"username": username})
+        p = doc['pwd']
+        password_check = pwd_context.verify(password, p)
+        # print(password_check)
+        return password_check
+    else:
+        raise HTTPException(status_code=400, detail="Admin does not exist")
+
+
 
 #get user through token
 async def get_current_user(token: str = Depends(oauth2_scheme)):
