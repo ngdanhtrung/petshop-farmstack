@@ -6,6 +6,7 @@ import { FaPaw } from "react-icons/fa";
 import { Link, Switch, Route, useRouteMatch } from "react-router-dom";
 import ProfilePet from "../ProfilePet/index";
 import { FiSearch } from "react-icons/fi";
+import {RiEmotionSadLine} from 'react-icons/ri';
 const Pets = () => {
   let { path } = useRouteMatch();
   const [pets, setPets] = useState([]);
@@ -89,7 +90,10 @@ const Pets = () => {
                     </div>
                   ))
                 ) : (
-                  <div>ko tìm thấy gì cả</div>
+                  <div className="message-not-found">
+                    <RiEmotionSadLine></RiEmotionSadLine>
+                    <span>Rất tiếc, Không tìm thấy thú cưng phù hợp với tìm kiếm của bạn!</span>
+                  </div>
                 )}
               </div>
             </>
@@ -99,7 +103,7 @@ const Pets = () => {
           </Route>
         </Switch>
       </div>
-      )
+      
     </>
   );
 };
