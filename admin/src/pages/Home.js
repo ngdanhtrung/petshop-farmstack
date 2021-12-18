@@ -27,11 +27,11 @@ import {
   RightOutlined,
 } from "@ant-design/icons";
 import Paragraph from "antd/lib/typography/Paragraph";
+import axios from "axios";
 
 import Echart from "../components/chart/EChart";
 import LineChart from "../components/chart/LineChart";
 import card from "../assets/images/info-card-1.jpg";
-import axios from "axios";
 import moment from "moment";
 import { CSVLink } from "react-csv";
 import NumberFormat from "react-number-format";
@@ -54,30 +54,6 @@ function Home() {
         console.log(res.data);
       });
   }, []);
-
-  const [role, setRole] = useState("");
-  const urlRequest = `${process.env.REACT_APP_API_KEY}users/me`;
-
-  const getLoggedInUser = async () => {
-    await axios
-      .get(urlRequest, {
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem("access_token"),
-        },
-      })
-      .then((res) => {
-        setRole(res.data.role);
-        if (res.data.role != "admin") {
-          document.location.href = "/sign-in";
-        }
-      })
-      .catch(() => {
-        document.location.href = "/sign-in";
-      });
-  };
-
-  useEffect(getLoggedInUser, []);
-
 
   const usersColumns = [
     {
