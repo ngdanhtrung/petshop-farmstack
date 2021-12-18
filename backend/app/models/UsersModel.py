@@ -4,6 +4,7 @@ from datetime import datetime
 import uuid
 from email_validator import validate_email, EmailNotValidError
 from pydantic import BaseModel, Field, ValidationError, validator, EmailStr
+from pydantic.types import Json
 
 
 class LoggedInUser(BaseModel):
@@ -63,7 +64,10 @@ class User(BaseModel):
         }
 
 class UserCount(BaseModel):
-    _id = {}
+    id: dict = Field(alias="_id")
     count: int
     # month: int
     # year: int
+    class Config:
+        allow_population_by_field_name = True
+     

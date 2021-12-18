@@ -44,13 +44,13 @@ async def count_users():
 async def count_users_in_month():
     results = []
     cursor = collection.aggregate([ 
-       {"$project" : { 
-            "month" : {"$month" : "$created_at"}, 
-            "year" : {"$year" :  "$created_at"}}
-       }, 
+        {"$project": {
+            "month" : {"$month" : "$created_at"},
+            "year" : {"$year" : "$created_at"},
+        }},
         {"$group" : { 
             "_id" : {"month" : "$month", "year" : "$year"},  
-            "count" : {"$sum":1},
+            "count" : {"$sum": 1},
             # "month" : {"month" : "$month"},
             # "year" : {"year" : "$year"}
         }}])
