@@ -7,6 +7,7 @@ import axios from "axios";
 import { Link, Switch, Route, useRouteMatch } from "react-router-dom";
 import ProductDetails from "./ProductDetails/index";
 import { FiSearch } from "react-icons/fi";
+import {RiEmotionSadLine} from 'react-icons/ri';
 const Products = ({ products }) => {
   let { path, url } = useRouteMatch();
   const [input, setInput] = useState("");
@@ -62,7 +63,10 @@ const Products = ({ products }) => {
                 <Product key={product._id} product={product} />
               ))
             ) : (
-              <div>ko</div>
+              <div className="message-not-found">
+                    <RiEmotionSadLine></RiEmotionSadLine>
+                    <span> Rất tiếc, Không tìm thấy sản phẩm phù hợp với tìm kiếm của bạn!</span>
+                  </div>
             )}
           </div>
         </Route>

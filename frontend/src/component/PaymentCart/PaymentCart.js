@@ -193,8 +193,8 @@ const PaymentCart = () => {
             </p>
             <p style={{ marginTop: "auto" }}>
               {" "}
-              Tổng tiền: {totalPrice} ₫
-              <strong style={{ float: "right" }}></strong>
+              Tổng tiền: 
+              <strong style={{ float: "right" }}>{totalPrice} ₫</strong>
             </p>
             <Button color='primary' onClick={submitPayment}>
               Thanh toán

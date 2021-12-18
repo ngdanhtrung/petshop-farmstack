@@ -72,3 +72,13 @@ li {
   border: 2px solid #fff;
   border: 0.3px #630abb solid;
 }
+
+.message-not-found {
+  color: #5a5756;
+  margin-right: auto;
+  margin-left: auto;
+  height: 480px;
+  display: flex;
+  align-items: center;
+  font-family: 'Montserrat', sans-serif;
+}
