@@ -20,14 +20,14 @@ function LineChart() {
 
   return (
     <>
-      <div className="linechart">
+      <div className='linechart'>
         <div>
-          <Title level={5}>Active Users</Title>
-          <Paragraph className="lastweek">
-            than last week <span className="bnb2">+30%</span>
+          <Title level={5}>Bảng thống kê doanh thu</Title>
+          <Paragraph className='lastweek'>
+            Đây là bảng thống kê doanh thu trong 9 tháng vừa qua
           </Paragraph>
         </div>
-        <div className="sales">
+        <div className='sales'>
           <ul>
             <li>{<MinusOutlined />} Traffic</li>
             <li>{<MinusOutlined />} Sales</li>
@@ -36,10 +36,10 @@ function LineChart() {
       </div>
 
       <ReactApexChart
-        className="full-width"
+        className='full-width'
         options={lineChart.options}
         series={lineChart.series}
-        type="area"
+        type='area'
         height={350}
         width={"100%"}
       />
