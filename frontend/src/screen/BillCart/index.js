@@ -75,20 +75,20 @@ const BillCart = () => {
                 </td>
               </tr>
               <tr className='heading'>
-                <td>Payment Method</td>
+                <td>Phương thức thanh toán</td>
                 <td></td>
               </tr>
               <tr className='details'>
-                <td>COD</td>
+                <td>Thanh toán khi nhận hàng</td>
                 <td></td>
               </tr>
               <tr>
-                <td>Full name:</td>
+                <td>Tên người dùng:</td>
                 <td>{payment.name}</td>
               </tr>
               <tr className='heading'>
-                <td>Item</td>
-                <td>Price</td>
+                <td>Tên sản phẩm</td>
+                <td>Giá tiền:</td>
               </tr>
               <tr className='item'></tr>
               {cart.map((item) => (
@@ -102,12 +102,12 @@ const BillCart = () => {
 
               <tr className='total'>
                 <td />
-                <td>Total: {payment.amount} đ</td>
+                <td>Tổng tiền: {payment.amount} đ</td>
               </tr>
             </tbody>
           </table>
           <Pdf targetRef={ref} filename='post.pdf'>
-            {({ toPdf }) => <button onClick={toPdf}>Print PDF</button>}
+            {({ toPdf }) => <button style={{backgroundColor: '#E7470C', color: '#fff', border: '1px solid #e7470c'}} onClick={toPdf}>Xuất file PDF</button>}
           </Pdf>
         </div>
       )}
