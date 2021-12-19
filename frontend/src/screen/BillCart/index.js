@@ -83,7 +83,7 @@ const BillCart = () => {
                 <td></td>
               </tr>
               <tr>
-                <td>Full name:</td>
+                <td>Tên người dùng:</td>
                 <td>{payment.name}</td>
               </tr>
               <tr className='heading'>
