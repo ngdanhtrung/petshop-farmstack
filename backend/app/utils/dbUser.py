@@ -94,7 +94,7 @@ async def authenticate_user(username, password):
         # print(password_check)
         return password_check
     else:
-        raise HTTPException(status_code=400, detail="Username does not exist")
+        raise HTTPException(status_code=400, detail="Tên người dùng không chính xác")
 
 async def authenticate_admin(username, password):
     if await collection.count_documents({"username": username, "role" : "admin"}) == 1:
@@ -104,7 +104,7 @@ async def authenticate_admin(username, password):
         # print(password_check)
         return password_check
     else:
-        raise HTTPException(status_code=400, detail="Admin does not exist")
+        raise HTTPException(status_code=400, detail="Tên Admin không chính xác")
 
 
 
