@@ -80,10 +80,22 @@ function Tables() {
       })
       .catch((error) => console.log(error));
   };
+
   const getTable = () => {
     getPetList();
     getPets();
   };
+
+  const removeItem = async (id) => {
+    await axios
+      .delete(`${process.env.REACT_APP_API_KEY}products/removeProduct/${id}`)
+      .then((res) => {
+        console.log(res.data);
+        getTable();
+      })
+      .catch((error) => console.log(error));
+  };
+
   useEffect(getTable, []);
 
   // table code start
@@ -159,6 +171,24 @@ function Tables() {
         />
       ),
     },
+    // {
+    //   title: "Tuỳ chọn",
+    //   key: "_id",
+    //   dataIndex: "_id",
+    //   render: (text) => (
+    //     <>
+    //       <div className='ant-employed'>
+    //         <a
+    //           onClick={() => {
+    //             removeItem(text);
+    //           }}
+    //         >
+    //           Xoá
+    //         </a>
+    //       </div>
+    //     </>
+    //   ),
+    // },
   ];
 
   const data = [
@@ -445,6 +475,24 @@ function Tables() {
         />
       ),
     },
+    // {
+    //   title: "Tuỳ chọn",
+    //   key: "_id",
+    //   dataIndex: "_id",
+    //   render: (text) => (
+    //     <>
+    //       <div className='ant-employed'>
+    //         <a
+    //           onClick={() => {
+    //             removeItem(text);
+    //           }}
+    //         >
+    //           Xoá
+    //         </a>
+    //       </div>
+    //     </>
+    //   ),
+    // },
   ];
 
   const onChange = (e) => console.log(`radio checked:${e.target.value}`);

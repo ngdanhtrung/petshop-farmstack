@@ -84,5 +84,13 @@ async def get_user_by_username(username):
         return response
     raise HTTPException(404, f'there is no user with the username {username}')
 
+@router.delete('/deleteUser/{id}')
+async def delete_user(id):
+    response = await dbUser.delete_user(id)
+    if response:
+        return {"detail": "user deleted"}
+
+
+
 
 

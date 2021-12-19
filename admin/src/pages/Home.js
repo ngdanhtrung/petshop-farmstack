@@ -55,6 +55,23 @@ function Home() {
       });
   }, []);
 
+  const getUsers = async () => {
+    axios.get(`${process.env.REACT_APP_API_KEY}users`).then((res) => {
+      setUserList(res.data);
+      console.log(res.data);
+    });
+  };
+
+  const removeUser = async (id) => {
+    await axios
+      .delete(`${process.env.REACT_APP_API_KEY}users/deleteUser/${id}`)
+      .then((res) => {
+        console.log(res.data);
+        getUsers();
+      })
+      .catch((error) => console.log(error));
+  };
+
   const usersColumns = [
     {
       title: "Mã người dùng",
@@ -86,6 +103,24 @@ function Home() {
       dataIndex: "created_at",
       key: "created_at",
       render: (text) => moment(text).format("YYYY-MM-DD HH:mm"),
+    },
+    {
+      title: "Tuỳ chọn",
+      key: "_id",
+      dataIndex: "_id",
+      render: (text) => (
+        <>
+          <div className='ant-employed'>
+            <a
+              onClick={() => {
+                removeUser(text);
+              }}
+            >
+              Xoá
+            </a>
+          </div>
+        </>
+      ),
     },
   ];
 

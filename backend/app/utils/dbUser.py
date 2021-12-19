@@ -210,3 +210,7 @@ async def get_cart_count(username):
     async for document in cursor:
         count.append(UsersModel.Count(**document))
     return count
+
+async def delete_user(id):
+    result = await collection.delete_one({"_id": id})
+    return result
