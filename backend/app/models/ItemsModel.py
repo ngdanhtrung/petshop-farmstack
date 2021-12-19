@@ -1,3 +1,4 @@
+from typing import Optional
 import uuid
 from pydantic import BaseModel, Field, ValidationError, validator, EmailStr
 
@@ -63,3 +64,13 @@ class Cart(BaseModel):
     image: str
     quantity: int = 1
     value: int = 1000
+
+class PetTable(BaseModel):
+    # id: str = Field(default_factory=uuid.uuid4, alias="_id")
+    name: str
+    image: str = None
+    value: int = 0
+    type: Optional[str]
+    age: Optional[str]
+    color: Optional[str]
+    gender: Optional[str]

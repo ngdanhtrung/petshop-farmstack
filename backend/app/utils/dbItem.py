@@ -105,3 +105,14 @@ async def recommend(keyword, boolean, id):
     async for document in recommend:
         results.append(ItemsModel.Item(**document))
     return results
+
+async def list_pets_table():
+    results = []
+    cursor = collection.aggregate([
+       { "$project": {
+            "name" : 1, "image": 1, "isPet": 1, "value" : 1, "type" : "$extra.type","age" : "$extra.age", "color" : "$extra.color", "gender" : "$extra.gender"
+        }
+    }, {"$match" : {"isPet": True}}])
+    async for document in cursor:
+        results.append(ItemsModel.PetTable(**document))
+    return results

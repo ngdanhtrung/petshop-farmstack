@@ -26,3 +26,9 @@ async def total_amount_by_month():
   response = await dbPayment.total_amount_by_month()
   if response:
     return response
+  
+@router.get('/petTable/')
+async def list_pets_table():
+  response = await dbItem.list_pets_table()
+  if response:
+    return response
