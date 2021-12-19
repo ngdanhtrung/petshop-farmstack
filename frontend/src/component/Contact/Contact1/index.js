@@ -20,7 +20,7 @@ const Contact1 = () => {
           className="input"
         ></input>
         <input
-          type="number"
+          type="text"
           name="phone"
           placeholder="Nhập số điện thoại của bạn"
           required
