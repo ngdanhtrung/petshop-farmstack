@@ -47,7 +47,7 @@ async def login(form_data: OAuth2PasswordRequestForm = Depends()):
                                            expires_delta=timedelta(minutes=30))
         return {"access_token": access_token, "token_type": "bearer"}
     else:
-        raise HTTPException(status_code=400, detail="Incorrect password")
+        raise HTTPException(status_code=400, detail="Mật khẩu không chính xác")
 
 @router.post('/loginAdmin')
 async def login(form_data: OAuth2PasswordRequestForm = Depends()):
@@ -59,7 +59,7 @@ async def login(form_data: OAuth2PasswordRequestForm = Depends()):
                                            expires_delta=timedelta(minutes=30))
         return {"access_token": access_token, "token_type": "bearer"}
     else:
-        raise HTTPException(status_code=400, detail="Incorrect password")
+        raise HTTPException(status_code=400, detail="Mật khẩu không chính xác")
 
 @router.get('/me', response_model=LoggedInUser)
 async def get_logged_in_user(user: LoggedInUser = Depends(dbUser.get_current_user)):
