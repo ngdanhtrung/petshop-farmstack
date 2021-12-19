@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useHistory, Redirect } from "react-router-dom";
-
+import NumberFormat from "react-number-format";
 import {
   Card,
   CardImg,
@@ -112,80 +112,88 @@ const Payment = () => {
   return (
     <>
       {pet && (
-        <Container className='payment' style={{ marginTop: 30 }}>
-          <Row xs='4'>
-            <Col xs='8' className='bg-light border'>
+        <Container className="payment" style={{ marginTop: 30 }}>
+          <Row xs="4">
+            <Col xs="8" className="bg-light border">
               <Form>
                 <h1>Thông tin thanh toán</h1>
                 <FormGroup>
-                  <Label for='fullname'>Tên</Label>
+                  <Label for="fullname">Tên</Label>
                   <Input
-                    id='fullname'
-                    name='fullname'
-                    placeholder='Tên'
-                    type='text'
+                    id="fullname"
+                    name="fullname"
+                    placeholder="Tên"
+                    type="text"
                     value={fullName}
                     onChange={handleName}
                   />
                 </FormGroup>
                 <FormGroup>
-                  <Label for='address'>Địa chỉ</Label>
+                  <Label for="address">Địa chỉ</Label>
                   <Input
-                    id='address'
-                    name='address'
-                    placeholder='Địa chỉ'
-                    type='text'
+                    id="address"
+                    name="address"
+                    placeholder="Địa chỉ"
+                    type="text"
                     value={address}
                     onChange={handleAddress}
                   />
                 </FormGroup>
                 <FormGroup>
-                  <Label for='phone'>Số điện thoại</Label>
+                  <Label for="phone">Số điện thoại</Label>
                   <Input
-                    id='phone'
-                    name='phone'
-                    placeholder='Số điện thoại'
-                    type='text'
+                    id="phone"
+                    name="phone"
+                    placeholder="Số điện thoại"
+                    type="text"
                     value={number}
                     onChange={handleNum}
                   />
                 </FormGroup>
 
                 <FormGroup>
-                  <Label for='email'>Email</Label>
+                  <Label for="email">Email</Label>
                   <Input
-                    id='email'
-                    name='email'
-                    placeholder='Email'
-                    type='text'
+                    id="email"
+                    name="email"
+                    placeholder="Email"
+                    type="text"
                     value={mail}
                     onChange={handleMail}
                   />
                 </FormGroup>
                 <FormGroup>
-                  <Label for='more'>Thông tin bổ sung</Label>
+                  <Label for="more">Thông tin bổ sung</Label>
                   <Input
-                    id='more'
-                    name='more'
-                    type='textarea'
+                    id="more"
+                    name="more"
+                    type="textarea"
                     value={extra}
                     onChange={handleExtra}
                   />
                 </FormGroup>
               </Form>
             </Col>
-            <Col xs='4' className='bg-light border'>
+            <Col xs="4" className="bg-light border">
               <Card style={{ width: "100%" }}>
                 <CardImg
-                  alt='Card image cap'
+                  alt="Card image cap"
                   src={pet.image}
                   top
-                  width='100%'
+                  width="100%"
                 />
                 <CardBody>
-                  <CardTitle tag='h5'>{pet.name}</CardTitle>
-                  <CardSubtitle className='mb-2 text-muted' tag='h6'>
-                    {pet.value}
+                  <CardTitle tag="h5">{pet.name}</CardTitle>
+                  <CardSubtitle className="mb-2 text-muted" tag="h6">
+                    <p>
+                      Giá tiền:
+                      <NumberFormat
+                        value={pet.value}
+                        displayType={"text"}
+                        thousandSeparator={true}
+                        suffix="VND"
+                      />
+                    </p>
                   </CardSubtitle>
                   <CardText>{pet.description}</CardText>
                   <Button onClick={handleClickE}>Nhận nuôi</Button>

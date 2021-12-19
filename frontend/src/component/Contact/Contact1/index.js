@@ -7,7 +7,6 @@ const Contact1 = () => {
       <div className="container-contact">
         <input
           type="text"
-          value=""
           name="name"
           placeholder="Nhập tên của bạn"
           required
@@ -15,7 +14,6 @@ const Contact1 = () => {
         ></input>
         <input
           type="text"
-          value=""
           name="email"
           placeholder="Nhập email của bạn"
           required
@@ -23,15 +21,13 @@ const Contact1 = () => {
         ></input>
         <input
           type="text"
-          value=""
           name="phone"
           placeholder="Nhập số điện thoại của bạn"
           required
           className="input"
         ></input>
         <input
-          type="text"
-          value=""
+          type="date"
           name="date"
           placeholder="Nhập thời gian muốn trao đổi"
           required
@@ -39,7 +35,6 @@ const Contact1 = () => {
         ></input>
         <input
           type="text"
-          value=""
           name="type"
           placeholder="Nhập thể loại thú cưng"
           required
@@ -47,7 +42,6 @@ const Contact1 = () => {
         ></input>
         <input
           type="text"
-          value=""
           name="srv"
           placeholder="Nhập loại dịch vụ"
           required
