@@ -95,7 +95,7 @@ const Bill = () => {
             </tbody>
           </table>
           <Pdf targetRef={ref} filename='post.pdf'>
-            {({ toPdf }) => <button onClick={toPdf}>Print PDF</button>}
+            {({ toPdf }) => <button onClick={toPdf}>Xuất file PDF</button>}
           </Pdf>
         </div>
       )}
