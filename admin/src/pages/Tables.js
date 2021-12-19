@@ -11,8 +11,17 @@
 */
 import { VerticalAlignBottomOutlined } from "@ant-design/icons";
 import {
-  Avatar, Button, Card, Col, message,
-  Progress, Radio, Row, Table, Typography, Upload
+  Avatar,
+  Button,
+  Card,
+  Col,
+  message,
+  Progress,
+  Radio,
+  Row,
+  Table,
+  Typography,
+  Upload,
 } from "antd";
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -27,7 +36,6 @@ import face5 from "../assets/images/face-5.jpeg";
 import face6 from "../assets/images/face-6.jpeg";
 import { CSVLink } from "react-csv";
 import moment from "moment";
-
 
 function Tables() {
   const { Title } = Typography;
@@ -51,6 +59,7 @@ function Tables() {
   };
 
   const [productsList, setProductsList] = useState([{}]);
+  const [petsList, setPetsList] = useState([{}]);
 
   const getPetList = async () => {
     await axios
@@ -62,7 +71,20 @@ function Tables() {
       .catch((error) => console.log(error));
   };
 
-  useEffect(getPetList, []);
+  const getPets = async () => {
+    await axios
+      .get(`${process.env.REACT_APP_API_KEY}admin/petTable`)
+      .then((res) => {
+        setPetsList(res.data);
+        console.log(res.data);
+      })
+      .catch((error) => console.log(error));
+  };
+  const getTable = () => {
+    getPetList();
+    getPets();
+  };
+  useEffect(getTable, []);
 
   // table code start
   const columns = [
@@ -87,6 +109,55 @@ function Tables() {
       title: "EMPLOYED",
       key: "employed",
       dataIndex: "employed",
+    },
+  ];
+
+  const pets = [
+    {
+      title: "Thú",
+      dataIndex: "name",
+      key: "name",
+      width: "32%",
+    },
+    {
+      title: "Ảnh",
+      dataIndex: "image",
+      key: "image",
+      render: (text) => <Avatar size={64} src={text} />,
+    },
+    {
+      title: "Loại",
+      dataIndex: "type",
+      key: "function",
+    },
+
+    {
+      title: "Ngày sinh",
+      key: "age",
+      dataIndex: "age",
+    },
+    {
+      title: "Màu",
+      key: "color",
+      dataIndex: "color",
+    },
+    {
+      title: "Giới tính",
+      key: "gender",
+      dataIndex: "gender",
+    },
+    {
+      title: "Giá thú nuôi",
+      key: "value",
+      dataIndex: "value",
+      render: (text) => (
+        <NumberFormat
+          value={text}
+          displayType={"text"}
+          thousandSeparator={true}
+          suffix='VND'
+        />
+      ),
     },
   ];
 
@@ -356,7 +427,7 @@ function Tables() {
     {
       title: "Ảnh đại diện",
       dataIndex: "image",
-      render: (text) => <Avatar size={64} src={text}/>,
+      render: (text) => <Avatar size={64} src={text} />,
     },
     {
       title: "Tên sản phẩm",
@@ -365,9 +436,17 @@ function Tables() {
     {
       title: "Giá sản phảm",
       dataIndex: "value",
-      render: (text) => <NumberFormat value={text} displayType={"text"} thousandSeparator={true} suffix="VND"/>,
-    }
+      render: (text) => (
+        <NumberFormat
+          value={text}
+          displayType={"text"}
+          thousandSeparator={true}
+          suffix='VND'
+        />
+      ),
+    },
   ];
+
   const onChange = (e) => console.log(`radio checked:${e.target.value}`);
 
   return (
@@ -382,9 +461,9 @@ function Tables() {
             >
               <div className='table-responsive'>
                 <Table
-                  columns={columns}
-                  dataSource={data}
-                  pagination={false}
+                  columns={pets}
+                  dataSource={petsList}
+                  pagination={{ position: ["bottomCenter"] }}
                   className='ant-border-space'
                 />
               </div>
